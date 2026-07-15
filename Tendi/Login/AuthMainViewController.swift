@@ -18,11 +18,13 @@ class AuthMainViewController: UIViewController {
     }
     
     @IBAction private func emailLoginButtonTapped(_ sender: UIButton) {
-        navigationController?.pushViewController(Tendi_LoginViewController(), animated: true)
+        guard isAgreementAccepted() else { return }
+        navigationController?.pushViewController(Tendi_LoginViewController(mode: .signIn), animated: true)
     }
     
     @IBAction private func newAccountButtonTapped(_ sender: UIButton) {
-        print("newAccountButtonTapped")
+        guard isAgreementAccepted() else { return }
+        navigationController?.pushViewController(Tendi_LoginViewController(mode: .signUp), animated: true)
     }
     
     @IBAction private func agreementButtonTapped(_ sender: UIButton) {
@@ -30,7 +32,28 @@ class AuthMainViewController: UIViewController {
     }
     
     @IBAction private func policyButtonTapped(_ sender: UIButton) {
-        print("policyButtonTapped")
+        TendiHUD.showToast("Privacy Policy", in: view)
+    }
+    
+    private func isAgreementAccepted() -> Bool {
+        guard isAgreementSelected else {
+            showAgreementAlert()
+            return false
+        }
+        return true
+    }
+    
+    private func showAgreementAlert() {
+        TendiHUD.showPrompt(
+            in: view,
+            title: "Terms Required",
+            message: "Please agree to the Terms and Privacy Policy before continuing.",
+            primaryTitle: "Agree",
+            secondaryTitle: "Cancel",
+            primaryAction: { [weak self] in
+                self?.isAgreementSelected = true
+            }
+        )
     }
 
 

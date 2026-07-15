@@ -7,15 +7,7 @@ enum TendiFont {
 
     @discardableResult
     static func registerBundledFonts() -> [String] {
-        let names = bundledFontURLs().compactMap(registerFont)
-
-        #if DEBUG
-        if !names.isEmpty {
-            print("Registered bundled fonts: \(names.joined(separator: ", "))")
-        }
-        #endif
-
-        return names
+        bundledFontURLs().compactMap(registerFont)
     }
 
     static func custom(_ postScriptName: String, size: CGFloat, fallbackWeight: UIFont.Weight = .regular) -> UIFont {
@@ -47,13 +39,7 @@ enum TendiFont {
         let postScriptName = font.postScriptName as String? ?? url.deletingPathExtension().lastPathComponent
         var error: Unmanaged<CFError>?
 
-        if !CTFontManagerRegisterGraphicsFont(font, &error) {
-            #if DEBUG
-            if let error = error?.takeRetainedValue() {
-                print("Font registration warning for \(url.lastPathComponent): \(error)")
-            }
-            #endif
-        }
+        CTFontManagerRegisterGraphicsFont(font, &error)
 
         return postScriptName
     }
