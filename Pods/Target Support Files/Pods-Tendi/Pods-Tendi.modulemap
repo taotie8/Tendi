@@ -1,0 +1,6 @@
+framework module Pods_Tendi {
+  umbrella header "Pods-Tendi-umbrella.h"
+
+  export *
+  module * { export * }
+}
