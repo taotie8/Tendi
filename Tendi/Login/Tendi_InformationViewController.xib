@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_InformationViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="avatarImageView" destination="0md-wt-pjO" id="j55-A2-EGp"/>
+                <outlet property="birthdayLabel" destination="yIS-ZE-36M" id="eCe-lp-BsA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,8 +26,12 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="8gC-2n-1lR">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0md-wt-pjO">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0md-wt-pjO">
                             <rect key="frame" x="160.66666666666666" y="132" width="72" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="72" id="T4i-xe-dPO"/>
+                                <constraint firstAttribute="width" constant="72" id="v4Y-J6-Ngn"/>
+                            </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHI-5Z-uaR">
                             <rect key="frame" x="21" y="224" width="351" height="90"/>
@@ -80,7 +86,7 @@
                                         <constraint firstAttribute="height" constant="50" id="t2i-XD-1v8"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uah-Yc-euK">
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write your bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uah-Yc-euK">
                                     <rect key="frame" x="13" y="37" width="325" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="ymV-S9-B6j"/>
@@ -139,20 +145,23 @@
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xy0-ON-Vvm">
-                                    <rect key="frame" x="286" y="40" width="65" height="50"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xy0-ON-Vvm">
+                                    <rect key="frame" x="12" y="40" width="327" height="50"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="65" id="Po4-aw-JCH"/>
                                         <constraint firstAttribute="height" constant="50" id="xTC-BT-z5I"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="right_icon"/>
+                                    <connections>
+                                        <action selector="birthdayButtonTapped:" destination="-1" eventType="touchUpInside" id="LAf-gR-LCW"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="y7D-jg-LP2" secondAttribute="trailing" id="3pR-5M-uQr"/>
-                                <constraint firstAttribute="trailing" secondItem="Xy0-ON-Vvm" secondAttribute="trailing" id="4FN-Te-84d"/>
+                                <constraint firstAttribute="trailing" secondItem="Xy0-ON-Vvm" secondAttribute="trailing" constant="12" id="4FN-Te-84d"/>
+                                <constraint firstItem="Xy0-ON-Vvm" firstAttribute="leading" secondItem="b3x-6Q-gF5" secondAttribute="leading" constant="12" id="AGZ-Xe-0vJ"/>
                                 <constraint firstItem="qct-2T-qGg" firstAttribute="leading" secondItem="b3x-6Q-gF5" secondAttribute="leading" id="Eb4-NT-ZYf"/>
                                 <constraint firstItem="y7D-jg-LP2" firstAttribute="top" secondItem="qct-2T-qGg" secondAttribute="bottom" constant="16" id="HnC-Y1-z3d"/>
                                 <constraint firstAttribute="height" constant="90" id="U9Q-LH-o0x"/>
@@ -164,6 +173,17 @@
                                 <constraint firstAttribute="trailing" secondItem="yIS-ZE-36M" secondAttribute="trailing" constant="75" id="tMC-k3-wmL"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IW-rb-9Fv">
+                            <rect key="frame" x="160.66666666666666" y="132" width="72" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="72" id="Do6-RN-jJ4"/>
+                                <constraint firstAttribute="width" constant="72" id="OTW-0Y-OQ1"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="avatarButtonTapped:" destination="-1" eventType="touchUpInside" id="Z3B-PU-a4c"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -178,8 +198,10 @@
                         <constraint firstItem="Wzh-vP-jMh" firstAttribute="leading" secondItem="afB-fC-Qro" secondAttribute="leading" constant="32" id="PBL-gN-qTS"/>
                         <constraint firstAttribute="trailing" secondItem="Q5g-aE-Cbi" secondAttribute="trailing" constant="21" id="QU5-NO-KTe"/>
                         <constraint firstAttribute="bottom" secondItem="R1p-2V-EaH" secondAttribute="bottom" constant="45" id="RJV-GJ-mbV"/>
+                        <constraint firstItem="7IW-rb-9Fv" firstAttribute="centerX" secondItem="afB-fC-Qro" secondAttribute="centerX" id="WSh-8y-xwI"/>
                         <constraint firstItem="8gC-2n-1lR" firstAttribute="top" secondItem="afB-fC-Qro" secondAttribute="top" id="Wfm-hu-7je"/>
                         <constraint firstItem="Q5g-aE-Cbi" firstAttribute="leading" secondItem="afB-fC-Qro" secondAttribute="leading" constant="21" id="Xqe-BA-Qtj"/>
+                        <constraint firstItem="7IW-rb-9Fv" firstAttribute="top" secondItem="afB-fC-Qro" secondAttribute="top" constant="132" id="boU-SV-zTm"/>
                         <constraint firstItem="0md-wt-pjO" firstAttribute="top" secondItem="afB-fC-Qro" secondAttribute="top" constant="132" id="eMf-Gy-mjk"/>
                         <constraint firstAttribute="bottom" secondItem="8gC-2n-1lR" secondAttribute="bottom" id="kmg-8u-T9M"/>
                         <constraint firstItem="0md-wt-pjO" firstAttribute="centerX" secondItem="afB-fC-Qro" secondAttribute="centerX" id="oB9-e1-XBK"/>
@@ -198,7 +220,7 @@
                 <constraint firstAttribute="bottom" secondItem="afB-fC-Qro" secondAttribute="bottom" id="uZj-rv-NJT"/>
                 <constraint firstItem="afB-fC-Qro" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vwz-L7-pM9"/>
             </constraints>
-            <point key="canvasLocation" x="-77" y="106"/>
+            <point key="canvasLocation" x="-77.099236641221367" y="105.63380281690141"/>
         </view>
     </objects>
     <resources>

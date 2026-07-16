@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = self.window ?? UIWindow(windowScene: windowScene)
         let rootViewController = (window.rootViewController as? AuthMainViewController) ?? AuthMainViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        let navigationController = UINavigationController(rootViewController: BaseTabbarController())
         navigationController.setNavigationBarHidden(true, animated: false)
 
         window.rootViewController = navigationController

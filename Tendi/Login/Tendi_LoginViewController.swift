@@ -57,6 +57,8 @@ class Tendi_LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureForMode()
+        emailTextField.text = "tendi666@gmail.com"
+        passwordTextField.text = "666666"
     }
     
     @IBAction private func submitButtonTapped(_ sender: UIButton) {
