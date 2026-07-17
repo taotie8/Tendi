@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BIg-f8-mqq">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-OL-E29">
+                    <rect key="frame" x="0.0" y="583" width="393" height="269"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_view" translatesAutoresizingMaskIntoConstraints="NO" id="9fb-ke-Z9x">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="269"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kx-8f-w9g">
+                            <rect key="frame" x="42.666666666666657" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="choose_report"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoM-sU-LHM">
+                            <rect key="frame" x="204.66666666666663" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="choose_block"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQI-y2-eFx">
+                            <rect key="frame" x="101.66666666666669" y="182" width="190" height="42"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="center_cancel"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qoM-sU-LHM" firstAttribute="top" secondItem="eMx-OL-E29" secondAttribute="top" constant="30" id="4If-zk-VIA"/>
+                        <constraint firstAttribute="bottom" secondItem="rQI-y2-eFx" secondAttribute="bottom" constant="45" id="GHW-mt-g7v"/>
+                        <constraint firstItem="9fb-ke-Z9x" firstAttribute="top" secondItem="eMx-OL-E29" secondAttribute="top" id="JiJ-ER-dJf"/>
+                        <constraint firstAttribute="trailing" secondItem="9fb-ke-Z9x" secondAttribute="trailing" id="Qc8-bI-3ku"/>
+                        <constraint firstAttribute="bottom" secondItem="9fb-ke-Z9x" secondAttribute="bottom" id="Ugg-Ax-0H2"/>
+                        <constraint firstItem="9fb-ke-Z9x" firstAttribute="leading" secondItem="eMx-OL-E29" secondAttribute="leading" id="ZNl-la-8xs"/>
+                        <constraint firstAttribute="height" constant="269" id="boz-Lf-QOa"/>
+                        <constraint firstItem="1kx-8f-w9g" firstAttribute="centerX" secondItem="eMx-OL-E29" secondAttribute="centerX" constant="-81" id="daN-SG-wmj"/>
+                        <constraint firstItem="1kx-8f-w9g" firstAttribute="top" secondItem="eMx-OL-E29" secondAttribute="top" constant="30" id="hbu-4S-Guh"/>
+                        <constraint firstItem="rQI-y2-eFx" firstAttribute="centerX" secondItem="eMx-OL-E29" secondAttribute="centerX" id="jU2-BT-vNh"/>
+                        <constraint firstItem="qoM-sU-LHM" firstAttribute="leading" secondItem="1kx-8f-w9g" secondAttribute="trailing" constant="16" id="muN-u0-g6t"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="eMx-OL-E29" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="6od-3w-B3O"/>
+                <constraint firstAttribute="bottom" secondItem="BIg-f8-mqq" secondAttribute="bottom" id="PFZ-xF-VTZ"/>
+                <constraint firstItem="BIg-f8-mqq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="QPb-zd-w6b"/>
+                <constraint firstItem="eMx-OL-E29" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Voq-dA-DTf"/>
+                <constraint firstAttribute="bottom" secondItem="eMx-OL-E29" secondAttribute="bottom" id="k3H-Yh-maL"/>
+                <constraint firstItem="BIg-f8-mqq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kNK-HB-XTF"/>
+                <constraint firstItem="BIg-f8-mqq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yQm-YR-B92"/>
+            </constraints>
+            <point key="canvasLocation" x="117" y="94"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bottom_view" width="375" height="269"/>
+        <image name="center_cancel" width="190" height="42"/>
+        <image name="choose_block" width="146" height="124"/>
+        <image name="choose_report" width="146" height="124"/>
+    </resources>
+</document>

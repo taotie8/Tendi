@@ -13,10 +13,11 @@ class BaseTabbarController: UITabBarController {
     private var tabButtons: [UIButton] = []
     private var tabButtonWidthConstraints: [NSLayoutConstraint] = []
     
-    private let customTabBarHeight: CGFloat = 86
+    private let customTabBarHeight: CGFloat = 87
     private let normalItemWidth: CGFloat = 64
     private let selectedItemWidth: CGFloat = 122
     private let itemSpacing: CGFloat = 8
+    private var isCustomTabBarHidden = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class BaseTabbarController: UITabBarController {
     
     private func makeRootViewController(for viewController: UIViewController) -> UIViewController {
         let rootVC = UINavigationController(rootViewController: viewController)
+        rootVC.delegate = self
         rootVC.additionalSafeAreaInsets.bottom = customTabBarHeight
         return rootVC
     }
@@ -94,6 +96,7 @@ class BaseTabbarController: UITabBarController {
     @objc private func tabButtonTapped(_ sender: UIButton) {
         selectedIndex = sender.tag
         updateTabBarSelection()
+        updateCustomTabBarVisibility(animated: true)
     }
     
     private func updateTabBarSelection() {
@@ -107,5 +110,56 @@ class BaseTabbarController: UITabBarController {
             self.customTabBarView.layoutIfNeeded()
         }
     }
+
+    private func updateCustomTabBarVisibility(animated: Bool) {
+        guard let navigationController = selectedViewController as? UINavigationController else { return }
+        let shouldHide = navigationController.viewControllers.count > 1
+        setCustomTabBarHidden(shouldHide, animated: animated)
+    }
+
+    private func setCustomTabBarHidden(_ hidden: Bool, animated: Bool) {
+        guard hidden != isCustomTabBarHidden else { return }
+        isCustomTabBarHidden = hidden
+        updateContentBottomInset(isTabBarHidden: hidden)
+
+        let changes = {
+            self.customTabBarView.alpha = hidden ? 0 : 1
+            self.customTabBarView.transform = hidden ? CGAffineTransform(translationX: 0, y: self.customTabBarHeight) : .identity
+        }
+
+        if hidden == false {
+            customTabBarView.isHidden = false
+        }
+
+        let completion: (Bool) -> Void = { _ in
+            self.customTabBarView.isHidden = hidden
+            self.customTabBarView.isUserInteractionEnabled = hidden == false
+        }
+
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: changes, completion: completion)
+        } else {
+            changes()
+            completion(true)
+        }
+    }
+
+    private func updateContentBottomInset(isTabBarHidden: Bool) {
+        guard let navigationControllers = viewControllers as? [UINavigationController] else { return }
+        let bottomInset = isTabBarHidden ? 0 : customTabBarHeight
+        navigationControllers.forEach { $0.additionalSafeAreaInsets.bottom = bottomInset }
+    }
     
+}
+
+extension BaseTabbarController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let shouldHide = viewController !== navigationController.viewControllers.first
+        setCustomTabBarHidden(shouldHide, animated: animated)
+    }
+
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        let shouldHide = viewController !== navigationController.viewControllers.first
+        setCustomTabBarHidden(shouldHide, animated: false)
+    }
 }

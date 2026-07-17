@@ -2,7 +2,7 @@
 
 import UIKit
 
-class Tendi_HomeViewController: UIViewController {
+class Tendi_HomeViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -10,7 +10,6 @@ class Tendi_HomeViewController: UIViewController {
     @IBOutlet weak var follow_button: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 118, height: 148)
@@ -23,6 +22,15 @@ class Tendi_HomeViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: "Tendi_HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "item")
+        
+        tableView.register(UINib(nibName: "Tendi_HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func tap_discoverAndFollowClick(_ sender: UIButton) {
@@ -53,5 +61,25 @@ extension Tendi_HomeViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+}
+
+extension Tendi_HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Tendi_HomeTableViewCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = Tendi_PlayViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
