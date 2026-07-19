@@ -10,6 +10,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_PlayViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="commentContainerView" destination="iye-sf-zQk" id="rQk-zJ-ckv"/>
+                <outlet property="comment_text" destination="jw9-z2-NOO" id="H5B-mm-7FX"/>
+                <outlet property="pay_pause_button" destination="CXF-bx-1cn" id="LpW-Md-jZq"/>
+                <outlet property="playView" destination="0fR-d0-Kyc" id="h7S-Dy-H9F"/>
+                <outlet property="tableView" destination="7E7-Wu-pz6" id="Aoh-qo-A8j"/>
+                <outlet property="tendi_commentView" destination="SwF-oa-6c9" id="dvc-Iv-p4h"/>
+                <outlet property="tendi_content_label" destination="c47-Qu-Fg6" id="qNQ-aK-Vc5"/>
+                <outlet property="tendi_cover_image" destination="XtU-oS-Isa" id="qCi-yM-wtA"/>
+                <outlet property="tendi_follow_button" destination="KKi-Eu-LOZ" id="dS6-mQ-d3D"/>
+                <outlet property="tendi_header" destination="MOC-4h-HYJ" id="fSI-tW-bXY"/>
+                <outlet property="tendi_name_label" destination="RIf-fF-Krd" id="jwC-Ho-Zik"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,13 +53,16 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-Ah-DfY">
+                        <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-Ah-DfY">
                             <rect key="frame" x="0.0" y="93" width="53" height="53"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="53" id="GQU-X7-9gF"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_mess_icon"/>
+                            <connections>
+                                <action selector="tendi_playLoveAndCommentsClick:" destination="-1" eventType="touchUpInside" id="5hQ-7t-SqY"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3J-WT-hTg">
                             <rect key="frame" x="0.0" y="59" width="53" height="22"/>
@@ -59,13 +73,16 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6Y-h3-QNL">
+                        <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6Y-h3-QNL">
                             <rect key="frame" x="0.0" y="6" width="53" height="53"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="53" id="Oa7-cm-Zun"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_zan"/>
+                            <connections>
+                                <action selector="tendi_playLoveAndCommentsClick:" destination="-1" eventType="touchUpInside" id="Gaq-Jk-tND"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,6 +122,9 @@
                                     <rect key="frame" x="100" y="1.6666666666666288" width="95" height="37"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="tendi_follow"/>
+                                    <connections>
+                                        <action selector="tendi_followClick:" destination="-1" eventType="touchUpInside" id="dh1-Ng-M0F"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIf-fF-Krd">
                                     <rect key="frame" x="52" y="11.666666666666629" width="36" height="17"/>
@@ -112,14 +132,27 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-2T-LJg">
+                                    <rect key="frame" x="0.0" y="0.0" width="85" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="Owh-AT-keI"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <connections>
+                                        <action selector="tendi_enterUserMainClick:" destination="-1" eventType="touchUpInside" id="gb7-r0-RnA"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="qQN-2T-LJg" secondAttribute="bottom" id="AEn-l9-t3q"/>
                                 <constraint firstItem="KKi-Eu-LOZ" firstAttribute="leading" secondItem="RIf-fF-Krd" secondAttribute="trailing" constant="12" id="CxT-7n-Fdq"/>
+                                <constraint firstItem="qQN-2T-LJg" firstAttribute="leading" secondItem="x86-mW-9LZ" secondAttribute="leading" id="DIL-VH-shJ"/>
                                 <constraint firstItem="KKi-Eu-LOZ" firstAttribute="centerY" secondItem="x86-mW-9LZ" secondAttribute="centerY" id="Pe0-fW-rPc"/>
                                 <constraint firstItem="RIf-fF-Krd" firstAttribute="centerY" secondItem="MOC-4h-HYJ" secondAttribute="centerY" id="Wv4-Dh-Xak"/>
                                 <constraint firstItem="MOC-4h-HYJ" firstAttribute="top" secondItem="x86-mW-9LZ" secondAttribute="top" id="YHO-m6-bPU"/>
                                 <constraint firstItem="MOC-4h-HYJ" firstAttribute="leading" secondItem="x86-mW-9LZ" secondAttribute="leading" id="ZPV-aP-gsf"/>
+                                <constraint firstItem="qQN-2T-LJg" firstAttribute="top" secondItem="x86-mW-9LZ" secondAttribute="top" id="eFq-O8-sYZ"/>
                                 <constraint firstItem="RIf-fF-Krd" firstAttribute="leading" secondItem="MOC-4h-HYJ" secondAttribute="trailing" constant="12" id="fme-4p-k2R"/>
                                 <constraint firstAttribute="bottom" secondItem="MOC-4h-HYJ" secondAttribute="bottom" id="rEZ-G7-4jR"/>
                                 <constraint firstAttribute="height" constant="40" id="riB-JG-9a7"/>
@@ -169,15 +202,128 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bJX-tY-yQf" secondAttribute="trailing" constant="21" id="vVv-G3-24h"/>
                 <constraint firstAttribute="bottom" secondItem="XtU-oS-Isa" secondAttribute="bottom" id="xuN-rQ-EdP"/>
             </constraints>
-            <point key="canvasLocation" x="93.89312977099236" y="166.90140845070422"/>
+            <point key="canvasLocation" x="-146" y="33"/>
+        </view>
+        <view contentMode="scaleToFill" id="SwF-oa-6c9">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XmD-y5-3pP">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iye-sf-zQk">
+                    <rect key="frame" x="0.0" y="380" width="393" height="472"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsa-Oe-0qO">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="385"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7E7-Wu-pz6">
+                                    <rect key="frame" x="0.0" y="71.333333333333314" width="393" height="313.66666666666669"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_comments" translatesAutoresizingMaskIntoConstraints="NO" id="MMc-wy-bIu">
+                                    <rect key="frame" x="20" y="34" width="109" height="27.333333333333329"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2W-3s-iav">
+                                    <rect key="frame" x="281" y="26.666666666666686" width="91" height="42"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="tendi_close"/>
+                                    <connections>
+                                        <action selector="tendi_closeClick:" destination="-1" eventType="touchUpInside" id="jJH-IJ-fwr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="7E7-Wu-pz6" firstAttribute="leading" secondItem="bsa-Oe-0qO" secondAttribute="leading" id="58M-Xg-voC"/>
+                                <constraint firstItem="MMc-wy-bIu" firstAttribute="leading" secondItem="bsa-Oe-0qO" secondAttribute="leading" constant="20" id="8az-d6-1us"/>
+                                <constraint firstItem="7E7-Wu-pz6" firstAttribute="top" secondItem="MMc-wy-bIu" secondAttribute="bottom" constant="10" id="DOG-x5-8vf"/>
+                                <constraint firstAttribute="trailing" secondItem="7E7-Wu-pz6" secondAttribute="trailing" id="Lj6-YI-eev"/>
+                                <constraint firstAttribute="bottom" secondItem="7E7-Wu-pz6" secondAttribute="bottom" id="cD5-nL-RFj"/>
+                                <constraint firstAttribute="trailing" secondItem="B2W-3s-iav" secondAttribute="trailing" constant="21" id="eiX-3Q-uFa"/>
+                                <constraint firstItem="B2W-3s-iav" firstAttribute="centerY" secondItem="MMc-wy-bIu" secondAttribute="centerY" id="rqN-HL-0JW"/>
+                                <constraint firstItem="MMc-wy-bIu" firstAttribute="top" secondItem="bsa-Oe-0qO" secondAttribute="top" constant="34" id="wTV-8A-viA"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXe-Em-lDX">
+                            <rect key="frame" x="0.0" y="385" width="393" height="87"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_inputView" translatesAutoresizingMaskIntoConstraints="NO" id="KYV-b6-jrt">
+                                    <rect key="frame" x="20" y="10" width="283" height="42"/>
+                                </imageView>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Say something" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jw9-z2-NOO">
+                                    <rect key="frame" x="33" y="10" width="257" height="42"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8T-RD-3Zb">
+                                    <rect key="frame" x="315" y="10" width="58" height="42"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="42" id="3Y4-gg-i1d"/>
+                                        <constraint firstAttribute="width" constant="58" id="aAa-o1-ZzH"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="tendi_send"/>
+                                    <connections>
+                                        <action selector="tendi_sendCommentClick:" destination="-1" eventType="touchUpInside" id="aTQ-10-mLU"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="jw9-z2-NOO" secondAttribute="bottom" constant="35" id="6a9-si-zUA"/>
+                                <constraint firstItem="d8T-RD-3Zb" firstAttribute="centerY" secondItem="KYV-b6-jrt" secondAttribute="centerY" id="ARK-OT-yOP"/>
+                                <constraint firstAttribute="trailing" secondItem="jw9-z2-NOO" secondAttribute="trailing" constant="103" id="LlO-vE-yZQ"/>
+                                <constraint firstAttribute="trailing" secondItem="KYV-b6-jrt" secondAttribute="trailing" constant="90" id="NK4-fV-c07"/>
+                                <constraint firstItem="jw9-z2-NOO" firstAttribute="leading" secondItem="oXe-Em-lDX" secondAttribute="leading" constant="33" id="QZq-YX-m8K"/>
+                                <constraint firstAttribute="bottom" secondItem="KYV-b6-jrt" secondAttribute="bottom" constant="35" id="TNa-E5-nJs"/>
+                                <constraint firstItem="KYV-b6-jrt" firstAttribute="leading" secondItem="oXe-Em-lDX" secondAttribute="leading" constant="20" id="XV7-jc-ked"/>
+                                <constraint firstItem="jw9-z2-NOO" firstAttribute="top" secondItem="oXe-Em-lDX" secondAttribute="top" constant="10" id="h1u-pz-6Kw"/>
+                                <constraint firstAttribute="trailing" secondItem="d8T-RD-3Zb" secondAttribute="trailing" constant="20" id="i8X-vc-ifT"/>
+                                <constraint firstItem="KYV-b6-jrt" firstAttribute="top" secondItem="oXe-Em-lDX" secondAttribute="top" constant="10" id="i8t-Gb-24w"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.96078431372549022" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="oXe-Em-lDX" secondAttribute="bottom" id="1fb-ih-JmF"/>
+                        <constraint firstItem="oXe-Em-lDX" firstAttribute="top" secondItem="bsa-Oe-0qO" secondAttribute="bottom" id="EsN-87-9pr"/>
+                        <constraint firstItem="bsa-Oe-0qO" firstAttribute="leading" secondItem="iye-sf-zQk" secondAttribute="leading" id="FXq-Yw-eAs"/>
+                        <constraint firstItem="oXe-Em-lDX" firstAttribute="leading" secondItem="iye-sf-zQk" secondAttribute="leading" id="KbX-3O-PGw"/>
+                        <constraint firstItem="bsa-Oe-0qO" firstAttribute="top" secondItem="iye-sf-zQk" secondAttribute="top" id="Vtj-Nc-BwW"/>
+                        <constraint firstAttribute="bottom" secondItem="bsa-Oe-0qO" secondAttribute="bottom" constant="87" id="Ybv-we-drf"/>
+                        <constraint firstAttribute="height" constant="472" id="dQM-bf-b68"/>
+                        <constraint firstAttribute="trailing" secondItem="oXe-Em-lDX" secondAttribute="trailing" id="lkm-rs-xaF"/>
+                        <constraint firstAttribute="trailing" secondItem="bsa-Oe-0qO" secondAttribute="trailing" id="mfs-yu-G9P"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="YBp-qv-Jc5"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iye-sf-zQk" firstAttribute="leading" secondItem="YBp-qv-Jc5" secondAttribute="leading" id="Lzi-Ni-2lq"/>
+                <constraint firstItem="XmD-y5-3pP" firstAttribute="leading" secondItem="YBp-qv-Jc5" secondAttribute="leading" id="Vk2-QP-sBY"/>
+                <constraint firstAttribute="bottom" secondItem="iye-sf-zQk" secondAttribute="bottom" id="h1a-Gu-8rJ"/>
+                <constraint firstItem="XmD-y5-3pP" firstAttribute="top" secondItem="SwF-oa-6c9" secondAttribute="top" id="hhy-Ua-Tlf"/>
+                <constraint firstAttribute="trailing" secondItem="XmD-y5-3pP" secondAttribute="trailing" id="jdq-nD-iJG"/>
+                <constraint firstAttribute="bottom" secondItem="XmD-y5-3pP" secondAttribute="bottom" id="pvf-wG-zBm"/>
+                <constraint firstAttribute="trailing" secondItem="iye-sf-zQk" secondAttribute="trailing" id="xjo-7o-gtq"/>
+            </constraints>
+            <point key="canvasLocation" x="913.74045801526711" y="166.90140845070422"/>
         </view>
     </objects>
     <resources>
         <image name="play_shadow_bottom" width="375" height="162"/>
         <image name="tendi_avatar" width="72" height="72"/>
+        <image name="tendi_close" width="91" height="42"/>
+        <image name="tendi_comments" width="109" height="27.333333969116211"/>
         <image name="tendi_follow" width="95" height="37"/>
+        <image name="tendi_inputView" width="265" height="42"/>
         <image name="tendi_mess_icon" width="53" height="53"/>
         <image name="tendi_play_icon" width="28.333333969116211" height="32"/>
+        <image name="tendi_send" width="64" height="48"/>
         <image name="tendi_zan" width="53" height="53"/>
     </resources>
 </document>

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportDetailViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="ed2-qE-H96" id="REi-hM-0Uw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,6 +36,9 @@
                     <rect key="frame" x="21" y="763" width="351" height="48"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="tendi_Submit"/>
+                    <connections>
+                        <action selector="tendi_submitedClick:" destination="-1" eventType="touchUpInside" id="vgV-jl-AC2"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

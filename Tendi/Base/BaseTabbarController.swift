@@ -24,7 +24,7 @@ class BaseTabbarController: UITabBarController {
 
         let items = [
             TabItem(viewController: Tendi_HomeViewController(), normalImageName: "tendi_home", selectedImageName: "tendi_home_s"),
-            TabItem(viewController: ViewController(), normalImageName: "tendi_find", selectedImageName: "tendi_find_s"),
+            TabItem(viewController: Tendi_FindViewController(), normalImageName: "tendi_find", selectedImageName: "tendi_find_s"),
             TabItem(viewController: ViewController(), normalImageName: "tendi_message", selectedImageName: "tendi_message_s"),
             TabItem(viewController: ViewController(), normalImageName: "tendi_mine", selectedImageName: "tendi_mine_s")
         ]

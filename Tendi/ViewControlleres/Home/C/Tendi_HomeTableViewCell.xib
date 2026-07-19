@@ -42,13 +42,23 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="tendi_follow"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGC-Zn-tSk">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="jeK-B3-8nX"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3qg-xn-q6X"/>
+                                    <constraint firstItem="rGC-Zn-tSk" firstAttribute="top" secondItem="St3-2w-F5C" secondAttribute="top" id="3xi-8y-Uaf"/>
+                                    <constraint firstItem="rGC-Zn-tSk" firstAttribute="leading" secondItem="St3-2w-F5C" secondAttribute="leading" id="Dfx-Ac-72G"/>
                                     <constraint firstItem="Pn9-5J-BHh" firstAttribute="centerY" secondItem="St3-2w-F5C" secondAttribute="centerY" id="Fbi-Zj-aoK"/>
                                     <constraint firstItem="clu-rR-6wE" firstAttribute="top" secondItem="St3-2w-F5C" secondAttribute="top" id="Tdn-N0-rXL"/>
                                     <constraint firstItem="H0J-VB-IYm" firstAttribute="leading" secondItem="clu-rR-6wE" secondAttribute="trailing" constant="16" id="UCF-KW-6wI"/>
+                                    <constraint firstAttribute="bottom" secondItem="rGC-Zn-tSk" secondAttribute="bottom" id="a1Z-yq-oxg"/>
                                     <constraint firstAttribute="trailing" secondItem="Pn9-5J-BHh" secondAttribute="trailing" id="axs-yM-lTM"/>
                                     <constraint firstItem="clu-rR-6wE" firstAttribute="leading" secondItem="St3-2w-F5C" secondAttribute="leading" id="dhZ-CN-qDO"/>
                                     <constraint firstAttribute="bottom" secondItem="clu-rR-6wE" secondAttribute="bottom" id="fMv-qG-Sa5"/>
@@ -73,14 +83,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kn0-i5-AfL">
-                                        <rect key="frame" x="0.0" y="92.999999999999972" width="53" height="53"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="53" id="NEc-Ol-yqg"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="tendi_mess_icon"/>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-fz-L12">
                                         <rect key="frame" x="0.0" y="58.999999999999972" width="53" height="22"/>
                                         <constraints>
@@ -98,23 +100,29 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="tendi_zan"/>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_mess_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dH9-bm-QRc">
+                                        <rect key="frame" x="0.0" y="92.999999999999972" width="53" height="53"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="53" id="tz3-uz-erM"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dH9-bm-QRc" secondAttribute="trailing" id="7nS-08-cNy"/>
                                     <constraint firstAttribute="width" constant="53" id="AeH-3O-nlx"/>
                                     <constraint firstItem="m7t-fz-L12" firstAttribute="leading" secondItem="nUe-8R-V4R" secondAttribute="leading" id="BU8-io-uxV"/>
+                                    <constraint firstItem="KZ2-Lf-rSu" firstAttribute="top" secondItem="dH9-bm-QRc" secondAttribute="bottom" id="FAG-2u-fjo"/>
                                     <constraint firstItem="KZ2-Lf-rSu" firstAttribute="leading" secondItem="nUe-8R-V4R" secondAttribute="leading" id="GQ2-XR-k4q"/>
                                     <constraint firstAttribute="trailing" secondItem="m7t-fz-L12" secondAttribute="trailing" id="HiM-Wb-fjc"/>
-                                    <constraint firstItem="KZ2-Lf-rSu" firstAttribute="top" secondItem="kn0-i5-AfL" secondAttribute="bottom" id="KJF-cu-oKz"/>
+                                    <constraint firstItem="dH9-bm-QRc" firstAttribute="leading" secondItem="nUe-8R-V4R" secondAttribute="leading" id="NOF-9a-yfz"/>
                                     <constraint firstAttribute="trailing" secondItem="Uk3-if-foY" secondAttribute="trailing" id="QaJ-4j-ehQ"/>
                                     <constraint firstAttribute="height" constant="168" id="ecQ-Th-bwd"/>
-                                    <constraint firstItem="kn0-i5-AfL" firstAttribute="top" secondItem="m7t-fz-L12" secondAttribute="bottom" constant="12" id="fCY-Ux-GtA"/>
                                     <constraint firstAttribute="bottom" secondItem="KZ2-Lf-rSu" secondAttribute="bottom" id="gYL-V2-w6d"/>
                                     <constraint firstAttribute="trailing" secondItem="KZ2-Lf-rSu" secondAttribute="trailing" id="gge-Xm-oQ5"/>
                                     <constraint firstItem="m7t-fz-L12" firstAttribute="top" secondItem="Uk3-if-foY" secondAttribute="bottom" id="juF-2t-3iQ"/>
                                     <constraint firstItem="Uk3-if-foY" firstAttribute="leading" secondItem="nUe-8R-V4R" secondAttribute="leading" id="nC5-og-iVU"/>
-                                    <constraint firstAttribute="trailing" secondItem="kn0-i5-AfL" secondAttribute="trailing" id="tXm-3x-j8n"/>
-                                    <constraint firstItem="kn0-i5-AfL" firstAttribute="leading" secondItem="nUe-8R-V4R" secondAttribute="leading" id="yBq-Hr-WvC"/>
+                                    <constraint firstItem="dH9-bm-QRc" firstAttribute="top" secondItem="m7t-fz-L12" secondAttribute="bottom" constant="12" id="rDl-oc-bvr"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="D6q-45-dnp">
@@ -155,7 +163,18 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="32.824427480916029" y="112.67605633802818"/>
+            <connections>
+                <outlet property="cell_bg_image" destination="ptj-Og-5tY" id="ilY-k9-YhQ"/>
+                <outlet property="cell_connent_label" destination="KZ2-Lf-rSu" id="mz4-Kc-foW"/>
+                <outlet property="cell_content_label" destination="YCr-Yp-XYZ" id="n4o-x5-JeO"/>
+                <outlet property="cell_follow_button" destination="H0J-VB-IYm" id="ygd-tr-PCf"/>
+                <outlet property="cell_header_image" destination="clu-rR-6wE" id="E0W-iH-eMG"/>
+                <outlet property="cell_like_button" destination="Uk3-if-foY" id="ur6-qe-Pze"/>
+                <outlet property="cell_like_label" destination="m7t-fz-L12" id="NL1-sB-6vr"/>
+                <outlet property="cell_more_button" destination="Pn9-5J-BHh" id="PRN-G6-Hbc"/>
+                <outlet property="cell_user_button" destination="rGC-Zn-tSk" id="DQM-N1-Kqs"/>
+            </connections>
+            <point key="canvasLocation" x="53" y="129"/>
         </tableViewCell>
     </objects>
     <resources>

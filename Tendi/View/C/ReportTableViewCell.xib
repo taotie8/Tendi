@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Tendi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="report_discriminatory_insult_s" translatesAutoresizingMaskIntoConstraints="NO" id="ZZx-KZ-F5i">
+                        <rect key="frame" x="21" y="8" width="333" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ZZx-KZ-F5i" secondAttribute="height" multiplier="111:16" id="gei-go-dpW"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZZx-KZ-F5i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="9NS-NN-ekd"/>
+                    <constraint firstAttribute="bottom" secondItem="ZZx-KZ-F5i" secondAttribute="bottom" constant="8" id="Vbl-cd-suO"/>
+                    <constraint firstAttribute="trailing" secondItem="ZZx-KZ-F5i" secondAttribute="trailing" constant="21" id="ui6-pC-gHk"/>
+                    <constraint firstItem="ZZx-KZ-F5i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wVm-gc-5v2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cell_imageView" destination="ZZx-KZ-F5i" id="Sj1-TJ-QbX"/>
+            </connections>
+            <point key="canvasLocation" x="79" y="58"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="report_discriminatory_insult_s" width="341" height="54"/>
+    </resources>
+</document>

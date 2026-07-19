@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChooseMoeView" customModule="Tendi" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -23,20 +23,29 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_view" translatesAutoresizingMaskIntoConstraints="NO" id="9fb-ke-Z9x">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="269"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kx-8f-w9g">
+                        <button opaque="NO" tag="985" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kx-8f-w9g">
                             <rect key="frame" x="42.666666666666657" y="30" width="146" height="124"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="choose_report"/>
+                            <connections>
+                                <action selector="chooseMoreClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="OB9-9v-y9j"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoM-sU-LHM">
+                        <button opaque="NO" tag="986" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoM-sU-LHM">
                             <rect key="frame" x="204.66666666666663" y="30" width="146" height="124"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="choose_block"/>
+                            <connections>
+                                <action selector="chooseMoreClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="cJ2-16-gLA"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQI-y2-eFx">
                             <rect key="frame" x="101.66666666666669" y="182" width="190" height="42"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="center_cancel"/>
+                            <connections>
+                                <action selector="chooseCancelClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="W5f-2r-4Fk"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,7 +75,10 @@
                 <constraint firstItem="BIg-f8-mqq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kNK-HB-XTF"/>
                 <constraint firstItem="BIg-f8-mqq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yQm-YR-B92"/>
             </constraints>
-            <point key="canvasLocation" x="117" y="94"/>
+            <connections>
+                <outlet property="bottomContainerView" destination="eMx-OL-E29" id="y4A-Mo-e29"/>
+            </connections>
+            <point key="canvasLocation" x="-596" y="82"/>
         </view>
     </objects>
     <resources>

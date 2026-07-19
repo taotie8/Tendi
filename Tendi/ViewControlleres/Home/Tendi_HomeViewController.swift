@@ -60,7 +60,9 @@ extension Tendi_HomeViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let user = Tendi_UserViewController()
+        user.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(user, animated: true)
     }
 }
 
@@ -73,6 +75,9 @@ extension Tendi_HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Tendi_HomeTableViewCell
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        cell.moreButtonClickHandler = { [weak self] in
+            self?.showChooseMoeView()
+        }
         
         return cell
     }
@@ -81,5 +86,14 @@ extension Tendi_HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = Tendi_PlayViewController()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func showChooseMoeView() {
+        guard let containerView = view.window ?? tabBarController?.view ?? view else { return }
+        ChooseMoeView.show(in: containerView, reportAction: { [weak self] in
+            let reportDetailViewController = ReportDetailViewController()
+            reportDetailViewController.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(reportDetailViewController, animated: true)
+        })
     }
 }
