@@ -12,10 +12,14 @@ class Tendi_FindViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.register(UINib(nibName: "Tendi_FindTableViewCell", bundle: nil), forCellReuseIdentifier: "find")
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func tendi_bananerClick(_ sender: Any) {

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="Tendi_PersonCollectionViewCell" customModule="Tendi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="107" height="136"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="107" height="136"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person_cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Sc4-7Z-ZyT">
+                        <rect key="frame" x="0.0" y="0.0" width="107" height="136"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gp5-yj-fIQ">
+                        <rect key="frame" x="8" y="86" width="91" height="42"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="tendi_close"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00v-DY-yU9">
+                        <rect key="frame" x="33" y="56" width="41.333333333333343" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="j5F-eK-Rps"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Xe2-du-I8m">
+                        <rect key="frame" x="33.666666666666664" y="12" width="39.999999999999993" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Ehi-EN-Q4C"/>
+                            <constraint firstAttribute="width" constant="40" id="PGr-7V-Psr"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Sc4-7Z-ZyT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2mE-t8-Ywy"/>
+                <constraint firstItem="Xe2-du-I8m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="8Pn-Gz-0Mb"/>
+                <constraint firstItem="gp5-yj-fIQ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8av-zy-ztu"/>
+                <constraint firstAttribute="bottom" secondItem="gp5-yj-fIQ" secondAttribute="bottom" constant="8" id="GqS-R7-tAT"/>
+                <constraint firstItem="00v-DY-yU9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="T50-Yt-dxd"/>
+                <constraint firstAttribute="trailing" secondItem="Sc4-7Z-ZyT" secondAttribute="trailing" id="aMq-f2-EOH"/>
+                <constraint firstAttribute="bottom" secondItem="Sc4-7Z-ZyT" secondAttribute="bottom" id="aVt-7g-D3z"/>
+                <constraint firstItem="Xe2-du-I8m" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ewf-Hg-rnu"/>
+                <constraint firstItem="Sc4-7Z-ZyT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tOh-jU-hq1"/>
+                <constraint firstItem="gp5-yj-fIQ" firstAttribute="top" secondItem="00v-DY-yU9" secondAttribute="bottom" constant="8" id="tXx-N5-XTL"/>
+            </constraints>
+            <point key="canvasLocation" x="38" y="106"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person_cell_bg" width="107" height="136"/>
+        <image name="tendi_avatar" width="72" height="72"/>
+        <image name="tendi_close" width="91" height="42"/>
+    </resources>
+</document>

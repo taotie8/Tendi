@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_DallarViewController" customModule="Tendi" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="gNq-C4-wOz" id="JHO-v1-rED"/>
+                <outlet property="dallar_label" destination="ZyW-kd-sRE" id="b6S-3e-i1o"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_bg" translatesAutoresizingMaskIntoConstraints="NO" id="rpE-y0-tos">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn1-qO-8Fe">
+                    <rect key="frame" x="21" y="140" width="351" height="88"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dallar_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Eks-1N-g2C">
+                            <rect key="frame" x="0.0" y="0.0" width="351" height="88"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyW-kd-sRE">
+                            <rect key="frame" x="119.00000000000001" y="49" width="25.666666666666671" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ZyW-kd-sRE" firstAttribute="top" secondItem="Nn1-qO-8Fe" secondAttribute="top" constant="49" id="2uW-xY-EEJ"/>
+                        <constraint firstItem="Eks-1N-g2C" firstAttribute="leading" secondItem="Nn1-qO-8Fe" secondAttribute="leading" id="3EI-zY-zgh"/>
+                        <constraint firstItem="ZyW-kd-sRE" firstAttribute="leading" secondItem="Nn1-qO-8Fe" secondAttribute="leading" constant="119" id="EKe-96-vhm"/>
+                        <constraint firstAttribute="bottom" secondItem="Eks-1N-g2C" secondAttribute="bottom" id="R1j-fo-nAx"/>
+                        <constraint firstItem="Eks-1N-g2C" firstAttribute="top" secondItem="Nn1-qO-8Fe" secondAttribute="top" id="Zt6-Ew-I5C"/>
+                        <constraint firstAttribute="height" constant="88" id="dok-Fq-UT8"/>
+                        <constraint firstAttribute="trailing" secondItem="Eks-1N-g2C" secondAttribute="trailing" id="rqp-bi-cNf"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gNq-C4-wOz">
+                    <rect key="frame" x="0.0" y="248" width="393" height="604"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OFd-x3-i2s">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="gNq-C4-wOz" firstAttribute="top" secondItem="Nn1-qO-8Fe" secondAttribute="bottom" constant="20" id="07i-hw-Ejo"/>
+                <constraint firstItem="rpE-y0-tos" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Mg-cp-bHr"/>
+                <constraint firstAttribute="bottom" secondItem="rpE-y0-tos" secondAttribute="bottom" id="JiU-4l-Xpn"/>
+                <constraint firstAttribute="trailing" secondItem="rpE-y0-tos" secondAttribute="trailing" id="Ru5-wG-N4S"/>
+                <constraint firstItem="gNq-C4-wOz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TrC-vg-rn7"/>
+                <constraint firstItem="Nn1-qO-8Fe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="fF0-XG-Ogw"/>
+                <constraint firstItem="Nn1-qO-8Fe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="j4s-AC-3hn"/>
+                <constraint firstAttribute="bottom" secondItem="gNq-C4-wOz" secondAttribute="bottom" id="ple-BG-el2"/>
+                <constraint firstItem="rpE-y0-tos" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tbR-sp-6DT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nn1-qO-8Fe" secondAttribute="trailing" constant="21" id="uVJ-tc-B8v"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gNq-C4-wOz" secondAttribute="trailing" id="wH4-Co-u1g"/>
+            </constraints>
+            <point key="canvasLocation" x="37" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dallar_bg" width="341" height="90"/>
+        <image name="home_bg" width="375" height="812"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

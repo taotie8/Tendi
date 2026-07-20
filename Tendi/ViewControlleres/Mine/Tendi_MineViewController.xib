@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_MineViewController" customModule="Tendi" customModuleProvider="target">
+            <connections>
+                <outlet property="mine_dallar_l" destination="qLY-3b-qgD" id="V2M-xM-HUv"/>
+                <outlet property="mine_follower" destination="kfU-48-7ol" id="rhM-2o-bZq"/>
+                <outlet property="mine_following" destination="QJa-Le-6uM" id="tu7-ZS-8mg"/>
+                <outlet property="mine_h" destination="cVq-bA-hnH" id="aET-xk-36H"/>
+                <outlet property="mine_n" destination="8IR-1L-wFF" id="kaH-Ob-Myy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Ieu-uh-WLP">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="812"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cVq-bA-hnH">
+                    <rect key="frame" x="21" y="130" width="72" height="72"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Maria_the" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IR-1L-wFF">
+                    <rect key="frame" x="105" y="170" width="110.33333333333331" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="985" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfU-48-7ol">
+                    <rect key="frame" x="21" y="214" width="89" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="1.1k Followers">
+                        <color key="titleColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tendi_followingAndfollowerClick:" destination="-1" eventType="touchUpInside" id="9vu-8L-kxX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJa-Le-6uM">
+                    <rect key="frame" x="126" y="214" width="89" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="1.1k Following">
+                        <color key="titleColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tendi_followingAndfollowerClick:" destination="-1" eventType="touchUpInside" id="Ulh-cc-8Yn"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In the act of swinging the racket, there is always passion and determination." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-eM-QjB">
+                    <rect key="frame" x="21" y="247.99999999999997" width="351" height="33.666666666666657"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYa-Zr-2xU">
+                    <rect key="frame" x="21" y="302.66666666666669" width="351" height="88"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_dallars_bg" translatesAutoresizingMaskIntoConstraints="NO" id="yxb-pC-tLz">
+                            <rect key="frame" x="0.0" y="0.0" width="351" height="88"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLY-3b-qgD">
+                            <rect key="frame" x="119.00000000000001" y="49" width="25.666666666666671" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFM-Lx-pGy">
+                            <rect key="frame" x="0.0" y="0.0" width="351" height="88"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="tendi_dallarsClick:" destination="-1" eventType="touchUpInside" id="DVe-ai-GvK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qLY-3b-qgD" firstAttribute="top" secondItem="ZYa-Zr-2xU" secondAttribute="top" constant="49" id="1IW-ow-ItL"/>
+                        <constraint firstAttribute="height" constant="88" id="7rL-M1-hL9"/>
+                        <constraint firstAttribute="bottom" secondItem="yxb-pC-tLz" secondAttribute="bottom" id="CiB-wv-Ohq"/>
+                        <constraint firstItem="EFM-Lx-pGy" firstAttribute="leading" secondItem="ZYa-Zr-2xU" secondAttribute="leading" id="E1T-hl-7xs"/>
+                        <constraint firstItem="qLY-3b-qgD" firstAttribute="leading" secondItem="ZYa-Zr-2xU" secondAttribute="leading" constant="119" id="J2a-ib-keQ"/>
+                        <constraint firstAttribute="bottom" secondItem="EFM-Lx-pGy" secondAttribute="bottom" id="K8Y-5E-UVQ"/>
+                        <constraint firstItem="yxb-pC-tLz" firstAttribute="top" secondItem="ZYa-Zr-2xU" secondAttribute="top" id="LBF-NG-E7B"/>
+                        <constraint firstAttribute="trailing" secondItem="EFM-Lx-pGy" secondAttribute="trailing" id="b59-bs-z3o"/>
+                        <constraint firstAttribute="trailing" secondItem="yxb-pC-tLz" secondAttribute="trailing" id="bdD-bQ-UCn"/>
+                        <constraint firstItem="yxb-pC-tLz" firstAttribute="leading" secondItem="ZYa-Zr-2xU" secondAttribute="leading" id="brt-Ar-6BD"/>
+                        <constraint firstItem="EFM-Lx-pGy" firstAttribute="top" secondItem="ZYa-Zr-2xU" secondAttribute="top" id="gVE-4U-byk"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tD-bn-7pw">
+                    <rect key="frame" x="21.000000000000004" y="415.66666666666669" width="40.333333333333343" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="QJa-Le-6uM" firstAttribute="top" secondItem="cVq-bA-hnH" secondAttribute="bottom" constant="12" id="58C-KU-3SB"/>
+                <constraint firstItem="QJa-Le-6uM" firstAttribute="leading" secondItem="kfU-48-7ol" secondAttribute="trailing" constant="16" id="I9H-vb-agh"/>
+                <constraint firstItem="kfU-48-7ol" firstAttribute="top" secondItem="cVq-bA-hnH" secondAttribute="bottom" constant="12" id="K8e-iN-Mwh"/>
+                <constraint firstItem="cVq-bA-hnH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="Khu-0j-Qwc"/>
+                <constraint firstItem="hcM-eM-QjB" firstAttribute="top" secondItem="kfU-48-7ol" secondAttribute="bottom" constant="5" id="OsD-hL-y4f"/>
+                <constraint firstItem="ZYa-Zr-2xU" firstAttribute="top" secondItem="hcM-eM-QjB" secondAttribute="bottom" constant="21" id="Vvg-4Z-v9J"/>
+                <constraint firstItem="Ieu-uh-WLP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a27-fb-cTm"/>
+                <constraint firstItem="hcM-eM-QjB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="bZP-bn-z2c"/>
+                <constraint firstItem="8IR-1L-wFF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="170" id="bvH-gK-T4V"/>
+                <constraint firstItem="kfU-48-7ol" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="d29-6x-yaN"/>
+                <constraint firstItem="Ieu-uh-WLP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gjC-L1-g4o"/>
+                <constraint firstItem="ZYa-Zr-2xU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="lVn-vv-jSQ"/>
+                <constraint firstAttribute="trailing" secondItem="Ieu-uh-WLP" secondAttribute="trailing" id="okw-D2-UUc"/>
+                <constraint firstItem="8tD-bn-7pw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="p9W-YK-PiX"/>
+                <constraint firstItem="8tD-bn-7pw" firstAttribute="top" secondItem="ZYa-Zr-2xU" secondAttribute="bottom" constant="25" id="pPx-4G-k3j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hcM-eM-QjB" secondAttribute="trailing" constant="21" id="qDC-MP-7ag"/>
+                <constraint firstItem="cVq-bA-hnH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="sUV-V9-x9D"/>
+                <constraint firstItem="8IR-1L-wFF" firstAttribute="leading" secondItem="cVq-bA-hnH" secondAttribute="trailing" constant="12" id="xiq-qd-vml"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZYa-Zr-2xU" secondAttribute="trailing" constant="21" id="yEd-MY-soN"/>
+            </constraints>
+            <point key="canvasLocation" x="-63.358778625954194" y="105.63380281690141"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mine_bg" width="375" height="812"/>
+        <image name="mine_dallars_bg" width="341" height="90"/>
+        <image name="tendi_avatar" width="72" height="72"/>
+    </resources>
+</document>

@@ -206,6 +206,10 @@ private final class TendiPromptView: UIView {
     }
     
     private func setup(title: String, message: String, primaryTitle: String, secondaryTitle: String?) {
+        let normalizedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let hasTitle = normalizedTitle.isEmpty == false
+        let contentHeight: CGFloat = hasTitle ? 195 : 245
+        
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.clipsToBounds = true
@@ -218,10 +222,11 @@ private final class TendiPromptView: UIView {
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = title
+        titleLabel.text = normalizedTitle
         titleLabel.textColor = UIColor(red: 28 / 255.0, green: 28 / 255.0, blue: 30 / 255.0, alpha: 1)
         titleLabel.font = TendiFont.custom("MiSansLatin-Heavy", size: 20, fallbackWeight: .heavy)
         titleLabel.textAlignment = .center
+        titleLabel.isHidden = !hasTitle
         contentView.addSubview(titleLabel)
         
         let messageLabel = UILabel()
@@ -265,11 +270,15 @@ private final class TendiPromptView: UIView {
             ]
         }
         
+        let messageTopConstraint = hasTitle
+            ? messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12)
+            : messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 42)
+        
         NSLayoutConstraint.activate([
             contentView.centerXAnchor.constraint(equalTo: centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: centerYAnchor),
             contentView.widthAnchor.constraint(equalToConstant: 275),
-            contentView.heightAnchor.constraint(equalToConstant: 195),
+            contentView.heightAnchor.constraint(equalToConstant: contentHeight),
             
             backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -280,9 +289,10 @@ private final class TendiPromptView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            messageTopConstraint,
             messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28)
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
+            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: primaryButton.topAnchor, constant: -14)
         ] + buttonConstraints)
     }
     
