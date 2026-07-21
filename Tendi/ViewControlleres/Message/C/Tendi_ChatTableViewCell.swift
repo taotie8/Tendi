@@ -22,7 +22,7 @@ class Tendi_ChatTableViewCell: UITableViewCell {
 
         tendi_avatar.layer.cornerRadius = 15
         tendi_avatar.layer.masksToBounds = true
-        tendi_bg.layer.cornerRadius = 15
+        tendi_bg.layer.cornerRadius = 122
         tendi_bg.layer.borderWidth = 1
         tendi_bg.layer.borderColor = UIColor.black.cgColor
         tendi_content.numberOfLines = 0
