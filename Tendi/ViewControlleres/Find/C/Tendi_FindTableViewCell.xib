@@ -73,7 +73,7 @@
                             <constraint firstItem="rf1-na-FkG" firstAttribute="centerY" secondItem="OvD-SO-haJ" secondAttribute="centerY" id="y5t-ne-Dr7"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="of3-Mg-7uO">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="of3-Mg-7uO">
                         <rect key="frame" x="37" y="78" width="236" height="207"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="207" id="2B6-Av-nZb"/>
@@ -167,6 +167,18 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="find_comment_button" destination="e0h-0A-WpO" id="Jmy-zb-zbA"/>
+                <outlet property="find_comment_label" destination="Woy-lG-3rI" id="M19-Mq-VY1"/>
+                <outlet property="find_content_label" destination="P53-ot-seq" id="k31-aB-16c"/>
+                <outlet property="find_follow_button" destination="rf1-na-FkG" id="NSv-qQ-0Tg"/>
+                <outlet property="find_header_image" destination="Oce-iA-azG" id="wcg-3J-S2O"/>
+                <outlet property="find_like_button" destination="fdf-ke-HdE" id="JeI-iZ-aeM"/>
+                <outlet property="find_like_label" destination="qQi-1S-SsK" id="Hn9-38-jqt"/>
+                <outlet property="find_more_button" destination="iHY-xy-kcM" id="v0D-kJ-J1V"/>
+                <outlet property="find_post_image" destination="of3-Mg-7uO" id="S2t-SH-VQK"/>
+                <outlet property="find_user_button" destination="U4U-id-0Nq" id="Pdu-QM-dL2"/>
+            </connections>
             <point key="canvasLocation" x="11.450381679389313" y="155.98591549295776"/>
         </tableViewCell>
     </objects>

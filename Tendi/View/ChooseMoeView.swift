@@ -12,13 +12,11 @@ class ChooseMoeView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet private weak var bottomContainerView: UIView!
 
     private static let viewTag = 920_002
-    private var reportAction: (() -> Void)?
-    private var blockAction: (() -> Void)?
+    private weak var navigationController: UINavigationController?
 
     static func show(
         in view: UIView,
-        reportAction: (() -> Void)? = nil,
-        blockAction: (() -> Void)? = nil
+        navigationController: UINavigationController?
     ) {
         guard view.viewWithTag(viewTag) == nil,
               let chooseMoeView = Bundle.main.loadNibNamed("ChooseMoeView", owner: nil)?.first as? ChooseMoeView else {
@@ -26,8 +24,7 @@ class ChooseMoeView: UIView, UIGestureRecognizerDelegate {
         }
 
         chooseMoeView.tag = viewTag
-        chooseMoeView.reportAction = reportAction
-        chooseMoeView.blockAction = blockAction
+        chooseMoeView.navigationController = navigationController
         chooseMoeView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(chooseMoeView)
 
@@ -40,6 +37,16 @@ class ChooseMoeView: UIView, UIGestureRecognizerDelegate {
 
         view.layoutIfNeeded()
         chooseMoeView.show()
+    }
+
+    static func show(from viewController: UIViewController) {
+        let baseView: UIView = viewController.view
+        let containerView = baseView.window
+            ?? viewController.tabBarController?.view
+            ?? viewController.navigationController?.view
+            ?? baseView
+
+        show(in: containerView, navigationController: viewController.navigationController)
     }
 
     override func awakeFromNib() {
@@ -55,17 +62,17 @@ class ChooseMoeView: UIView, UIGestureRecognizerDelegate {
         guard let touchedView = touch.view else { return true }
         return !touchedView.isDescendant(of: bottomContainerView)
     }
-    
+
     @IBAction func chooseMoreClick(_ sender: UIButton) {
-        dismiss { [reportAction, blockAction] in
-            if sender.tag == 985 {
-                reportAction?()
-            } else if sender.tag == 986 {
-                blockAction?()
+        if sender.tag == 985 {
+            dismiss { [weak self] in
+                self?.pushReportDetail()
             }
+        } else {
+            dismiss()
         }
     }
-    
+
     @IBAction func chooseCancelClick(_ sender: Any) {
         dismiss()
     }
@@ -93,5 +100,11 @@ class ChooseMoeView: UIView, UIGestureRecognizerDelegate {
             completion?()
         })
     }
-    
+
+    private func pushReportDetail() {
+        let reportDetailViewController = ReportDetailViewController()
+        reportDetailViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(reportDetailViewController, animated: true)
+    }
+
 }

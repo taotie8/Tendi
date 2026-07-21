@@ -61,6 +61,7 @@
                             <constraint firstItem="ICO-O4-FtV" firstAttribute="top" secondItem="RPD-yo-YTK" secondAttribute="top" constant="10" id="LX0-gy-EiV"/>
                             <constraint firstAttribute="trailing" secondItem="ICO-O4-FtV" secondAttribute="trailing" constant="5" id="NgW-6k-TnW"/>
                             <constraint firstAttribute="trailing" secondItem="41x-TW-FbJ" secondAttribute="trailing" constant="16" id="W1h-9m-0JG"/>
+                            <constraint firstItem="ICO-O4-FtV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mPx-Ba-i5t" secondAttribute="trailing" constant="8" id="Y7h-pB-5nf"/>
                             <constraint firstItem="F5u-6t-4ho" firstAttribute="top" secondItem="RPD-yo-YTK" secondAttribute="top" id="aqO-gs-NGk"/>
                             <constraint firstItem="F5u-6t-4ho" firstAttribute="leading" secondItem="RPD-yo-YTK" secondAttribute="leading" id="beH-t2-1gf"/>
                             <constraint firstItem="41x-TW-FbJ" firstAttribute="leading" secondItem="RPD-yo-YTK" secondAttribute="leading" constant="16" id="czw-rp-iAX"/>
@@ -79,6 +80,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="comment_avatar_image" destination="jC9-P2-bdY" id="v3a-B7-Soz"/>
+                <outlet property="comment_name_label" destination="mPx-Ba-i5t" id="eW8-XY-aJm"/>
+                <outlet property="comment_content_label" destination="41x-TW-FbJ" id="Sq5-Bb-tED"/>
+            </connections>
             <point key="canvasLocation" x="140" y="117"/>
         </tableViewCell>
     </objects>

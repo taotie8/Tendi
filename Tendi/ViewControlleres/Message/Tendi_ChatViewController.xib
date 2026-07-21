@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_ChatViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="inputContainerBottomConstraint" destination="KVw-sb-YnD" id="Y8x-Kd-s7P"/>
                 <outlet property="tableView" destination="JZY-ND-oNu" id="0Me-VR-hpg"/>
                 <outlet property="tendi_textFiled" destination="AJT-aH-eZd" id="VM0-zK-Z7e"/>
                 <outlet property="user_header" destination="la1-mP-Ojh" id="Uho-KW-F3A"/>

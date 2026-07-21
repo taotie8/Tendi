@@ -20,6 +20,9 @@
                 <outlet property="tendi_cover_image" destination="XtU-oS-Isa" id="qCi-yM-wtA"/>
                 <outlet property="tendi_follow_button" destination="KKi-Eu-LOZ" id="dS6-mQ-d3D"/>
                 <outlet property="tendi_header" destination="MOC-4h-HYJ" id="fSI-tW-bXY"/>
+                <outlet property="tendi_comment_label" destination="tZo-wK-YWX" id="oTc-Mb-pR6"/>
+                <outlet property="tendi_like_button" destination="y6Y-h3-QNL" id="pQr-Lz-bX8"/>
+                <outlet property="tendi_like_label" destination="O3J-WT-hTg" id="mQa-Sk-cF9"/>
                 <outlet property="tendi_name_label" destination="RIf-fF-Krd" id="jwC-Ho-Zik"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

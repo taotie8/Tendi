@@ -10,6 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_DetailsViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="detail_follow_button" destination="DPB-jP-dQd" id="R4i-Wt-4v7"/>
+                <outlet property="detail_header_image" destination="QZk-9s-We7" id="phu-yv-r3Q"/>
+                <outlet property="detail_name_label" destination="HVS-sb-fkM" id="YxI-VN-kdn"/>
+                <outlet property="detail_text_field" destination="ARn-y5-Hbz" id="xcU-DI-9TU"/>
                 <outlet property="tableView" destination="ipr-ST-1lV" id="jBZ-Ja-Pc1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -52,6 +56,9 @@
                             <rect key="frame" x="155" y="1.6666666666666714" width="95" height="37"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_follow"/>
+                            <connections>
+                                <action selector="detail_followClick:" destination="-1" eventType="touchUpInside" id="skp-ip-XtX"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3e-0Y-nw8">
                             <rect key="frame" x="342" y="0.0" width="41" height="40"/>
@@ -60,6 +67,9 @@
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_more_black"/>
+                            <connections>
+                                <action selector="detail_moreClick:" destination="-1" eventType="touchUpInside" id="V25-BG-Z0l"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-du-VYi">
                             <rect key="frame" x="55" y="0.0" width="75" height="40"/>
@@ -67,6 +77,9 @@
                                 <constraint firstAttribute="width" constant="75" id="eoE-A2-lwx"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="detail_userClick:" destination="-1" eventType="touchUpInside" id="fSp-8B-Kw9"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,6 +127,9 @@
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_send"/>
+                            <connections>
+                                <action selector="detail_sendCommentClick:" destination="-1" eventType="touchUpInside" id="Mq5-xY-t0L"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

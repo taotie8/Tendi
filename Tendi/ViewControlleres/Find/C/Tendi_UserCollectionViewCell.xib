@@ -44,6 +44,10 @@
                 <constraint firstItem="Wm1-P6-FQ8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="crH-FV-aI5"/>
                 <constraint firstAttribute="trailing" secondItem="Wm1-P6-FQ8" secondAttribute="trailing" id="t1P-ER-jVQ"/>
             </constraints>
+            <connections>
+                <outlet property="user_like_button" destination="Wm1-P6-FQ8" id="S1L-Sm-0rb"/>
+                <outlet property="user_video_image" destination="t9o-DS-SRo" id="piI-Fh-IaY"/>
+            </connections>
             <point key="canvasLocation" x="125" y="102"/>
         </collectionViewCell>
     </objects>
