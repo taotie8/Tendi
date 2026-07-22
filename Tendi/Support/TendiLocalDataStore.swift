@@ -309,33 +309,29 @@ final class TendiLocalDataStore {
     }
 
     var chatPreviewItems: [TendiChatPreviewItem] {
-        usersById.values
-            .filter { user in
-                guard let currentUser = currentUser else { return true }
-                return user.id != currentUser.id
+        let lastMessagesByPeerId = Dictionary(
+            localChatMessages.map { ($0.peerUserId, $0) },
+            uniquingKeysWith: { _, latest in latest }
+        )
+
+        return lastMessagesByPeerId.compactMap { peerUserId, lastMessage in
+            guard let user = usersById[peerUserId] else { return nil }
+
+            if let currentUser = currentUser,
+               user.id == currentUser.id {
+                return nil
             }
-            .map { user in
-                let lastMessage = localChatMessages.last { message in
-                    message.peerUserId == user.id
-                }
-                return TendiChatPreviewItem(user: user, lastMessage: lastMessage)
-            }
-            .sorted { firstItem, secondItem in
-                if let firstCreatedAt = firstItem.lastMessage?.createdAt,
-                   let secondCreatedAt = secondItem.lastMessage?.createdAt {
-                    return firstCreatedAt > secondCreatedAt
-                }
 
-                if firstItem.lastMessage != nil {
-                    return true
-                }
-
-                if secondItem.lastMessage != nil {
-                    return false
-                }
-
+            return TendiChatPreviewItem(user: user, lastMessage: lastMessage)
+        }
+        .sorted { firstItem, secondItem in
+            guard let firstCreatedAt = firstItem.lastMessage?.createdAt,
+                  let secondCreatedAt = secondItem.lastMessage?.createdAt else {
                 return firstItem.title.localizedCaseInsensitiveCompare(secondItem.title) == .orderedAscending
             }
+
+            return firstCreatedAt > secondCreatedAt
+        }
     }
 
     func postItems(for user: TendiLocalUser) -> [TendiUserPostItem] {
