@@ -1,7 +1,7 @@
 
 import UIKit
 
-class Tendi_DallarViewController: UIViewController {
+class Tendi_DallarViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dallar_label: UILabel!

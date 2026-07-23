@@ -28,6 +28,10 @@
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tendi_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cVq-bA-hnH">
                     <rect key="frame" x="21" y="130" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="3GP-l9-gJE"/>
+                        <constraint firstAttribute="width" constant="72" id="nIL-hA-Srq"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Maria_the" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IR-1L-wFF">
                     <rect key="frame" x="105" y="170" width="110.33333333333331" height="24"/>

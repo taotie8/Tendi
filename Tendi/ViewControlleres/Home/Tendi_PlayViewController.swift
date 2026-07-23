@@ -6,6 +6,7 @@ class Tendi_PlayViewController: BaseViewController, UIGestureRecognizerDelegate,
 
     @IBOutlet var tendi_commentView: UIView!
     @IBOutlet weak var commentContainerView: UIView!
+    @IBOutlet weak var commentContainerBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var comment_text: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
@@ -44,6 +45,11 @@ class Tendi_PlayViewController: BaseViewController, UIGestureRecognizerDelegate,
         configureVideoItem()
         reloadComments()
         setupVideoPlayer()
+        registerKeyboardNotifications()
+    }
+    
+    @MainActor deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -63,7 +69,9 @@ class Tendi_PlayViewController: BaseViewController, UIGestureRecognizerDelegate,
 
     // 更多
     @objc func navigationRightItemClick() {
-        ChooseMoeView.show(from: self)
+        ChooseMoeView.show(from: self, targetUser: videoItem?.user) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     // 关闭评论
@@ -220,6 +228,7 @@ private extension Tendi_PlayViewController {
         tendi_commentView.removeFromSuperview()
         tendi_commentView.alpha = 0
         comment_text.delegate = self
+        tableView.keyboardDismissMode = .interactive
         commentContainerView.layer.cornerRadius = 26
         commentContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         commentContainerView.layer.masksToBounds = true
@@ -266,6 +275,7 @@ private extension Tendi_PlayViewController {
     func hideCommentView() {
         guard tendi_commentView.superview != nil else { return }
         tendi_commentView.endEditing(true)
+        commentContainerBottomConstraint.constant = 0
 
         UIView.animate(withDuration: 0.2, animations: {
             self.tendi_commentView.alpha = 0
@@ -276,6 +286,24 @@ private extension Tendi_PlayViewController {
             self.tendi_commentView.removeFromSuperview()
         })
     }
+    
+    func dismissCommentViewImmediately() {
+        guard tendi_commentView.superview != nil else { return }
+        tendi_commentView.endEditing(true)
+        commentContainerBottomConstraint.constant = 0
+        commentContainerView.transform = .identity
+        tendi_commentView.alpha = 0
+        NSLayoutConstraint.deactivate(commentViewConstraints)
+        commentViewConstraints.removeAll()
+        tendi_commentView.removeFromSuperview()
+    }
+    
+    func pushReportDetail() {
+        dismissCommentViewImmediately()
+        let reportDetailViewController = ReportDetailViewController()
+        reportDetailViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(reportDetailViewController, animated: true)
+    }
 
     @objc func commentBackgroundTapped() {
         tendi_commentView.endEditing(true)
@@ -284,6 +312,54 @@ private extension Tendi_PlayViewController {
 
     @objc func commentContentTapped() {
         tendi_commentView.endEditing(true)
+    }
+    
+    func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame(_:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        updateCommentKeyboardLayout(with: notification, isHiding: false)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        updateCommentKeyboardLayout(with: notification, isHiding: true)
+    }
+    
+    func updateCommentKeyboardLayout(with notification: Notification, isHiding: Bool) {
+        guard tendi_commentView.superview != nil,
+              let containerView = tendi_commentView.superview else {
+            return
+        }
+        
+        let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveValue = (notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue
+            ?? UInt(UIView.AnimationCurve.easeInOut.rawValue)
+        let options = UIView.AnimationOptions(rawValue: curveValue << 16)
+        
+        if isHiding {
+            commentContainerBottomConstraint.constant = 0
+        } else if let frameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardFrame = containerView.convert(frameValue.cgRectValue, from: nil)
+            commentContainerBottomConstraint.constant = max(0, containerView.bounds.maxY - keyboardFrame.minY)
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: options) {
+            containerView.layoutIfNeeded()
+        } completion: { _ in
+            self.scrollToLatestComment()
+        }
     }
 }
 
@@ -316,6 +392,9 @@ extension Tendi_PlayViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         cell.configure(with: commentItems[indexPath.row])
+        cell.moreButtonClickHandler = { [weak self] in
+            self?.pushReportDetail()
+        }
 
         return cell
     }

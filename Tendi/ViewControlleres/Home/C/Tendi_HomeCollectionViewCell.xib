@@ -45,6 +45,10 @@
                 <constraint firstItem="ecE-g0-f67" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="SMp-BU-36e"/>
                 <constraint firstAttribute="trailing" secondItem="ecE-g0-f67" secondAttribute="trailing" constant="10" id="rO6-29-zc6"/>
             </constraints>
+            <connections>
+                <outlet property="coverImageView" destination="phd-zN-oVh" id="Izo-XS-6ir"/>
+                <outlet property="titleLabel" destination="ecE-g0-f67" id="gr7-99-GFy"/>
+            </connections>
             <point key="canvasLocation" x="38" y="106"/>
         </collectionViewCell>
     </objects>

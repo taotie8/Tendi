@@ -6,6 +6,24 @@ class Tendi_MessageViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     private let dataStore = TendiLocalDataStore.shared
     private var chatPreviewItems: [TendiChatPreviewItem] = []
+    private lazy var emptyStateView: UIView = {
+        let containerView = UIView()
+        containerView.backgroundColor = .clear
+
+        let imageView = UIImageView(image: UIImage(named: "tendi_yet"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        containerView.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: -20),
+            imageView.widthAnchor.constraint(equalToConstant: 153),
+            imageView.heightAnchor.constraint(equalToConstant: 131)
+        ])
+
+        return containerView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,6 +32,7 @@ class Tendi_MessageViewController: BaseViewController {
         tableView.delegate = self
         tableView.rowHeight = 102
         tableView.separatorStyle = .none
+        tableView.backgroundView = emptyStateView
         reloadChatPreviews()
     }
 
@@ -25,6 +44,7 @@ class Tendi_MessageViewController: BaseViewController {
 
     private func reloadChatPreviews() {
         chatPreviewItems = dataStore.chatPreviewItems
+        emptyStateView.isHidden = chatPreviewItems.isEmpty == false
         tableView.reloadData()
     }
 }

@@ -84,6 +84,7 @@
                 <outlet property="comment_avatar_image" destination="jC9-P2-bdY" id="v3a-B7-Soz"/>
                 <outlet property="comment_name_label" destination="mPx-Ba-i5t" id="eW8-XY-aJm"/>
                 <outlet property="comment_content_label" destination="41x-TW-FbJ" id="Sq5-Bb-tED"/>
+                <outlet property="comment_more_button" destination="ICO-O4-FtV" id="gma-W9-BFK"/>
             </connections>
             <point key="canvasLocation" x="140" y="117"/>
         </tableViewCell>

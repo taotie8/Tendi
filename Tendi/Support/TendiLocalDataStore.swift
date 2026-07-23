@@ -96,7 +96,7 @@ struct TendiHomeVideoItem {
     var coverImageName: String { post.videoCoverImageName }
     var videoFileName: String { post.videoFileName }
     var likeCount: Int { post.likeCount }
-    var commentCount: Int { max(post.commentsCount, comments.count) }
+    var commentCount: Int { comments.count }
     var videoURL: URL? {
         TendiLocalDataStore.bundleURL(forFileName: videoFileName, subdirectory: "Video")
     }
@@ -114,7 +114,7 @@ struct TendiFindPostItem {
     var content: String { post.content }
     var imageName: String { post.imageNames.first ?? "cell_bg" }
     var likeCount: Int { post.likeCount }
-    var commentCount: Int { max(post.commentsCount, comments.count) }
+    var commentCount: Int { comments.count }
 }
 
 enum TendiUserPostItem {
@@ -201,20 +201,51 @@ struct TendiChatPreviewItem {
 final class TendiLocalDataStore {
     static let shared = TendiLocalDataStore()
 
-    let videoItems: [TendiHomeVideoItem]
-    let imageItems: [TendiFindPostItem]
-    let userPostItems: [TendiUserPostItem]
+    var videoItems: [TendiHomeVideoItem] {
+        allVideoItems.filter { isBlocked($0.user) == false }
+    }
+
+    var imageItems: [TendiFindPostItem] {
+        allImageItems.filter { isBlocked($0.user) == false }
+    }
+
+    var userPostItems: [TendiUserPostItem] {
+        allUserPostItems.filter { isBlocked($0.user) == false }
+    }
+
+    var blockedUsers: [TendiLocalUser] {
+        sortedUsers(for: blockedUserIds, includesBlockedUsers: true)
+    }
+
+    var currentUserProfile: TendiLocalUser? {
+        currentUser
+    }
+
+    var currentFollowingUsers: [TendiLocalUser] {
+        sortedUsers(for: followedUserIds)
+    }
+
+    var currentFollowerUsers: [TendiLocalUser] {
+        sortedUsers(for: initialFollowerUserIds)
+    }
+
+    private let allVideoItems: [TendiHomeVideoItem]
+    private let allImageItems: [TendiFindPostItem]
+    private let allUserPostItems: [TendiUserPostItem]
     private let currentUser: TendiLocalUser?
     private let usersById: [String: TendiLocalUser]
     private let initialLikedPostIds: Set<String>
     private let initialFollowedUserIds: Set<String>
+    private let initialFollowerUserIds: Set<String>
     private var likedPostIds: Set<String>
     private var followedUserIds: Set<String>
+    private var blockedUserIds: Set<String>
     private var localComments: [TendiLocalComment]
     private var localChatMessages: [TendiLocalChatMessage]
 
     private static let likedPostIdsKey = "TendiLocalDataStore.likedPostIds"
     private static let followedUserIdsKey = "TendiLocalDataStore.followedUserIds"
+    private static let blockedUserIdsKey = "TendiLocalDataStore.blockedUserIds"
     private static let localCommentsKey = "TendiLocalDataStore.localComments"
     private static let localChatMessagesKey = "TendiLocalDataStore.localChatMessages"
 
@@ -274,18 +305,23 @@ final class TendiLocalDataStore {
                 resolvedUserPostItems.append(.image(imageItem))
             }
         }
-        videoItems = resolvedVideoItems
-        imageItems = resolvedImageItems
-        userPostItems = resolvedUserPostItems
+        allVideoItems = resolvedVideoItems
+        allImageItems = resolvedImageItems
+        allUserPostItems = resolvedUserPostItems
         initialLikedPostIds = resolvedInitialLikedPostIds
 
         var resolvedInitialFollowedUserIds: Set<String> = []
+        var resolvedInitialFollowerUserIds: Set<String> = []
         if let currentUserId = resolvedCurrentUserId {
             for follow in follows where follow.userId == currentUserId {
                 resolvedInitialFollowedUserIds.insert(follow.targetUserId)
             }
+            for follow in follows where follow.targetUserId == currentUserId {
+                resolvedInitialFollowerUserIds.insert(follow.userId)
+            }
         }
         initialFollowedUserIds = resolvedInitialFollowedUserIds
+        initialFollowerUserIds = resolvedInitialFollowerUserIds
 
         let hasPersistedLikedPostIds = UserDefaults.standard.object(forKey: TendiLocalDataStore.likedPostIdsKey) != nil
         let persistedLikedPostIds = Set(UserDefaults.standard.stringArray(forKey: TendiLocalDataStore.likedPostIdsKey) ?? [])
@@ -298,6 +334,7 @@ final class TendiLocalDataStore {
         followedUserIds = hasPersistedFollowedUserIds
             ? persistedFollowedUserIds
             : resolvedInitialFollowedUserIds
+        blockedUserIds = Set(UserDefaults.standard.stringArray(forKey: TendiLocalDataStore.blockedUserIdsKey) ?? [])
         localComments = TendiLocalDataStore.loadLocalComments()
         localChatMessages = TendiLocalDataStore.loadLocalChatMessages()
     }
@@ -322,6 +359,10 @@ final class TendiLocalDataStore {
                 return nil
             }
 
+            if isBlocked(user) {
+                return nil
+            }
+
             return TendiChatPreviewItem(user: user, lastMessage: lastMessage)
         }
         .sorted { firstItem, secondItem in
@@ -335,7 +376,9 @@ final class TendiLocalDataStore {
     }
 
     func postItems(for user: TendiLocalUser) -> [TendiUserPostItem] {
-        userPostItems.filter { item in
+        guard isBlocked(user) == false else { return [] }
+
+        return userPostItems.filter { item in
             item.user.id == user.id
         }
     }
@@ -379,24 +422,22 @@ final class TendiLocalDataStore {
         }
         let allComments = baseComments + addedComments
 
-        return allComments.map { comment in
-            TendiPostCommentItem(comment: comment, user: usersById[comment.userId])
+        return allComments.compactMap { comment in
+            let user = usersById[comment.userId]
+            if let user, isBlocked(user) {
+                return nil
+            }
+
+            return TendiPostCommentItem(comment: comment, user: user)
         }
     }
 
     func commentCount(for item: TendiHomeVideoItem) -> Int {
-        commentCount(forPostId: item.id, baseCount: item.commentCount)
+        comments(for: item).count
     }
 
     func commentCount(for item: TendiFindPostItem) -> Int {
-        commentCount(forPostId: item.id, baseCount: item.commentCount)
-    }
-
-    private func commentCount(forPostId postId: String, baseCount: Int) -> Int {
-        let addedCount = localComments.filter { comment in
-            comment.postId == postId
-        }.count
-        return baseCount + addedCount
+        comments(for: item).count
     }
 
     func followState(for item: TendiHomeVideoItem) -> TendiUserFollowState {
@@ -460,6 +501,10 @@ final class TendiLocalDataStore {
             return followState(for: user)
         }
 
+        if isBlocked(user) {
+            return followState(for: user)
+        }
+
         if followedUserIds.contains(user.id) {
             followedUserIds.remove(user.id)
         } else {
@@ -467,6 +512,7 @@ final class TendiLocalDataStore {
         }
 
         persistFollowState()
+        NotificationCenter.default.post(name: .tendiFollowStateDidChange, object: user)
         return followState(for: user)
     }
 
@@ -497,7 +543,9 @@ final class TendiLocalDataStore {
     }
 
     func chatMessages(with user: TendiLocalUser) -> [TendiChatMessageItem] {
-        localChatMessages
+        guard isBlocked(user) == false else { return [] }
+
+        return localChatMessages
             .filter { message in
                 message.peerUserId == user.id
             }
@@ -517,7 +565,7 @@ final class TendiLocalDataStore {
 
     @discardableResult
     func addChatMessage(_ content: String, to user: TendiLocalUser) -> TendiChatMessageItem? {
-        guard let currentUser = currentUser else { return nil }
+        guard let currentUser = currentUser, isBlocked(user) == false else { return nil }
 
         let message = TendiLocalChatMessage(
             id: UUID().uuidString,
@@ -530,6 +578,45 @@ final class TendiLocalDataStore {
         localChatMessages.append(message)
         persistLocalChatMessages()
         return TendiChatMessageItem(message: message, sender: currentUser, isOutgoing: true)
+    }
+
+    func canBlock(_ user: TendiLocalUser) -> Bool {
+        if let currentUser = currentUser, currentUser.id == user.id {
+            return false
+        }
+
+        return true
+    }
+
+    func isBlocked(_ user: TendiLocalUser) -> Bool {
+        blockedUserIds.contains(user.id)
+    }
+
+    @discardableResult
+    func blockUser(_ user: TendiLocalUser) -> Bool {
+        guard canBlock(user) else { return false }
+
+        let inserted = blockedUserIds.insert(user.id).inserted
+        if inserted {
+            let wasFollowed = followedUserIds.remove(user.id) != nil
+            persistBlockedUsers()
+            persistFollowState()
+            NotificationCenter.default.post(name: .tendiBlockedUsersDidChange, object: user)
+            if wasFollowed {
+                NotificationCenter.default.post(name: .tendiFollowStateDidChange, object: user)
+            }
+        }
+
+        return inserted
+    }
+
+    @discardableResult
+    func unblockUser(_ user: TendiLocalUser) -> Bool {
+        guard blockedUserIds.remove(user.id) != nil else { return false }
+
+        persistBlockedUsers()
+        NotificationCenter.default.post(name: .tendiBlockedUsersDidChange, object: user)
+        return true
     }
 
     static func bundleURL(forFileName fileName: String, subdirectory: String? = nil) -> URL? {
@@ -556,6 +643,10 @@ final class TendiLocalDataStore {
         UserDefaults.standard.set(Array(followedUserIds), forKey: TendiLocalDataStore.followedUserIdsKey)
     }
 
+    private func persistBlockedUsers() {
+        UserDefaults.standard.set(Array(blockedUserIds), forKey: TendiLocalDataStore.blockedUserIdsKey)
+    }
+
     private func persistLocalComments() {
         guard let data = try? JSONEncoder().encode(localComments) else { return }
         UserDefaults.standard.set(data, forKey: TendiLocalDataStore.localCommentsKey)
@@ -564,6 +655,21 @@ final class TendiLocalDataStore {
     private func persistLocalChatMessages() {
         guard let data = try? JSONEncoder().encode(localChatMessages) else { return }
         UserDefaults.standard.set(data, forKey: TendiLocalDataStore.localChatMessagesKey)
+    }
+
+    private func sortedUsers(for userIds: Set<String>, includesBlockedUsers: Bool = false) -> [TendiLocalUser] {
+        userIds
+            .compactMap { usersById[$0] }
+            .filter { user in
+                if let currentUser = currentUser, currentUser.id == user.id {
+                    return false
+                }
+
+                return includesBlockedUsers || isBlocked(user) == false
+            }
+            .sorted { firstUser, secondUser in
+                firstUser.nickname.localizedCaseInsensitiveCompare(secondUser.nickname) == .orderedAscending
+            }
     }
 
     private func resolvedLikeCount(for post: TendiLocalPost, isLikedNow: Bool) -> Int {
@@ -651,4 +757,9 @@ private struct TendiConfigPayload: Decodable {
         comments = try container.decodeIfPresent([TendiLocalComment].self, forKey: .comments) ?? []
         posts = try container.decodeIfPresent([TendiLocalPost].self, forKey: .posts) ?? []
     }
+}
+
+extension Notification.Name {
+    static let tendiBlockedUsersDidChange = Notification.Name("tendiBlockedUsersDidChange")
+    static let tendiFollowStateDidChange = Notification.Name("tendiFollowStateDidChange")
 }

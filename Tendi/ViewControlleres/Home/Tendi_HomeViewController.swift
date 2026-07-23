@@ -13,6 +13,9 @@ class Tendi_HomeViewController: BaseViewController {
     private var videoItems: [TendiHomeVideoItem] {
         showingFollowVideos ? dataStore.followedVideoItems : dataStore.videoItems
     }
+    private var recommendationItems: [TendiHomeVideoItem] {
+        Array(dataStore.videoItems.prefix(4))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +41,10 @@ class Tendi_HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        collectionView.reloadData()
         tableView.reloadData()
     }
-
+    
     @IBAction func tap_discoverAndFollowClick(_ sender: UIButton) {
         discover_button.setImage(UIImage(named: "home_discover"), for: .normal)
         follow_button.setImage(UIImage(named: "home_follow"), for: .normal)
@@ -60,18 +64,32 @@ class Tendi_HomeViewController: BaseViewController {
 
 extension Tendi_HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return recommendationItems.count + 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as! Tendi_HomeCollectionViewCell
         cell.backgroundColor = .clear
+        if indexPath.item == 0 {
+            cell.configureAsPostEntry()
+        } else {
+            cell.configure(with: recommendationItems[indexPath.item - 1])
+        }
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item > 0 {
+            let playViewController = Tendi_PlayViewController()
+            playViewController.videoItem = recommendationItems[indexPath.item - 1]
+            playViewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(playViewController, animated: true)
+            return
+        }
+
         let postViewController = Tendi_PostViewController()
+        postViewController.publishMode = .video
         postViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(postViewController, animated: true)
     }
@@ -97,7 +115,7 @@ extension Tendi_HomeViewController: UITableViewDataSource, UITableViewDelegate {
             followState: followState
         )
         cell.moreButtonClickHandler = { [weak self] in
-            self?.showChooseMoeView()
+            self?.showChooseMoeView(for: item.user)
         }
         cell.likeButtonClickHandler = { [weak self, weak cell] in
             guard let self = self else { return }
@@ -127,8 +145,11 @@ extension Tendi_HomeViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    private func showChooseMoeView() {
-        ChooseMoeView.show(from: self)
+    private func showChooseMoeView(for user: TendiLocalUser) {
+        ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
+            self?.collectionView.reloadData()
+            self?.tableView.reloadData()
+        }
     }
 
     private func pushUserPage(with user: TendiLocalUser) {

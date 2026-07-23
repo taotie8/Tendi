@@ -32,6 +32,14 @@ class Tendi_FindViewController: BaseViewController {
         guard let firstItem = imageItems.first else { return }
         pushDetail(with: firstItem)
     }
+    
+    @IBAction func tap_publishTextDynamic(_ sender: Any) {
+        let postViewController = Tendi_PostViewController()
+        postViewController.publishMode = .text
+        postViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
 
 }
 extension Tendi_FindViewController: UITableViewDelegate, UITableViewDataSource {
@@ -51,7 +59,7 @@ extension Tendi_FindViewController: UITableViewDelegate, UITableViewDataSource {
             followState: dataStore.followState(for: item)
         )
         find.moreButtonClickHandler = { [weak self] in
-            self?.showChooseMoeView()
+            self?.showChooseMoeView(for: item.user)
         }
         find.userButtonClickHandler = { [weak self] in
             self?.pushUserPage(with: item.user)
@@ -77,8 +85,10 @@ extension Tendi_FindViewController: UITableViewDelegate, UITableViewDataSource {
         pushDetail(with: imageItems[indexPath.row])
     }
 
-    private func showChooseMoeView() {
-        ChooseMoeView.show(from: self)
+    private func showChooseMoeView(for user: TendiLocalUser) {
+        ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 
     private func pushDetail(with item: TendiFindPostItem) {

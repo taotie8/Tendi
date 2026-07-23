@@ -50,11 +50,34 @@ class Tendi_ChatViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        ChooseMoeView.show(from: self)
+        ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     @IBAction func sendChatMessageVideoChat(_ sender: UIButton) {
+        if sender.tag == 986 {
+            pushVideoChatPage()
+            return
+        }
+
         sendCurrentMessage()
+    }
+
+    private func pushVideoChatPage() {
+        guard let user = user else { return }
+
+        guard dataStore.isBlocked(user) == false else {
+            tendi_textFiled.resignFirstResponder()
+            TendiHUD.showToast("This user is blocked.", in: view)
+            return
+        }
+
+        view.endEditing(true)
+        let videoChatViewController = Tendi_VideoChatViewController()
+        videoChatViewController.user = user
+        videoChatViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(videoChatViewController, animated: true)
     }
 
     private func configureTableView() {
@@ -80,8 +103,17 @@ class Tendi_ChatViewController: UIViewController, UITextFieldDelegate {
             return false
         }
 
-        guard let user = user,
-              dataStore.addChatMessage(message, to: user) != nil else {
+        guard let user = user else {
+            return false
+        }
+
+        guard dataStore.isBlocked(user) == false else {
+            tendi_textFiled.resignFirstResponder()
+            TendiHUD.showToast("This user is blocked.", in: view)
+            return false
+        }
+
+        guard dataStore.addChatMessage(message, to: user) != nil else {
             return false
         }
 

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_PlayViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
                 <outlet property="commentContainerView" destination="iye-sf-zQk" id="rQk-zJ-ckv"/>
+                <outlet property="commentContainerBottomConstraint" destination="h1a-Gu-8rJ" id="u3m-ck-yuy"/>
                 <outlet property="comment_text" destination="jw9-z2-NOO" id="H5B-mm-7FX"/>
                 <outlet property="pay_pause_button" destination="CXF-bx-1cn" id="LpW-Md-jZq"/>
                 <outlet property="playView" destination="0fR-d0-Kyc" id="h7S-Dy-H9F"/>

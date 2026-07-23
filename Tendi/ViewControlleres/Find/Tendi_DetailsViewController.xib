@@ -14,7 +14,10 @@
                 <outlet property="detail_header_image" destination="QZk-9s-We7" id="phu-yv-r3Q"/>
                 <outlet property="detail_name_label" destination="HVS-sb-fkM" id="YxI-VN-kdn"/>
                 <outlet property="detail_text_field" destination="ARn-y5-Hbz" id="xcU-DI-9TU"/>
+                <outlet property="inputContainerBottomConstraint" destination="MeA-qu-9Z1" id="bKN-2W-xAj"/>
+                <outlet property="inputContainerView" destination="P7x-Zr-Yh5" id="FwY-jc-Wix"/>
                 <outlet property="tableView" destination="ipr-ST-1lV" id="jBZ-Ja-Pc1"/>
+                <outlet property="tableViewBottomConstraint" destination="TSf-Ki-a5J" id="T8n-Ur-W5e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

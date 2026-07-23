@@ -5,7 +5,8 @@ class ReportDetailViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var cell_items = [String]()
-    var cell_idx = 0
+    var cell_idx: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Report"
@@ -17,7 +18,20 @@ class ReportDetailViewController: BaseViewController {
     }
 
     @IBAction func tendi_submitedClick(_ sender: UIButton) {
+        guard cell_idx != nil else {
+            TendiHUD.showToast("Please select a reason.", in: view)
+            return
+        }
         
+        TendiHUD.showPrompt(
+            in: view,
+            title: "Report Submitted",
+            message: "We have received your report and will review it as soon as possible.",
+            primaryTitle: "OK",
+            primaryAction: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+        )
     }
 }
 

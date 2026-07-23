@@ -50,7 +50,9 @@ class Tendi_UserViewController: BaseViewController {
 
     // 更多
     @objc func navigationRightItemClick() {
-        ChooseMoeView.show(from: self)
+        ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     @IBAction func tendi_followStatusChatClick(_ sender: UIButton) {

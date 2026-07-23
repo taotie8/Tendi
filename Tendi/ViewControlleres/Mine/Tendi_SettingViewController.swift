@@ -1,9 +1,3 @@
-//
-//  Tendi_SettingViewController.swift
-//  Tendi
-//
-//  Created by JIAO on 2026/7/20.
-//
 
 import UIKit
 
@@ -23,6 +17,7 @@ class Tendi_SettingViewController: BaseViewController {
     
     @IBAction private func blacklistButtonTapped(_ sender: UIButton) {
         let person = Tendi_PersonViewController()
+        person.mode = .blacklist
         person.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(person, animated: true)
     }

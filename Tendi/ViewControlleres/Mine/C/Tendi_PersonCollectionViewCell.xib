@@ -25,8 +25,8 @@
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="tendi_close"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00v-DY-yU9">
-                        <rect key="frame" x="33" y="56" width="41.333333333333343" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00v-DY-yU9">
+                        <rect key="frame" x="8" y="56" width="91" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="j5F-eK-Rps"/>
                         </constraints>
@@ -49,13 +49,19 @@
                 <constraint firstItem="Xe2-du-I8m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="8Pn-Gz-0Mb"/>
                 <constraint firstItem="gp5-yj-fIQ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8av-zy-ztu"/>
                 <constraint firstAttribute="bottom" secondItem="gp5-yj-fIQ" secondAttribute="bottom" constant="8" id="GqS-R7-tAT"/>
-                <constraint firstItem="00v-DY-yU9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="T50-Yt-dxd"/>
+                <constraint firstItem="00v-DY-yU9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="T50-Yt-dxd"/>
                 <constraint firstAttribute="trailing" secondItem="Sc4-7Z-ZyT" secondAttribute="trailing" id="aMq-f2-EOH"/>
                 <constraint firstAttribute="bottom" secondItem="Sc4-7Z-ZyT" secondAttribute="bottom" id="aVt-7g-D3z"/>
                 <constraint firstItem="Xe2-du-I8m" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ewf-Hg-rnu"/>
+                <constraint firstAttribute="trailing" secondItem="00v-DY-yU9" secondAttribute="trailing" constant="8" id="nbF-Cm-Fvl"/>
                 <constraint firstItem="Sc4-7Z-ZyT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tOh-jU-hq1"/>
                 <constraint firstItem="gp5-yj-fIQ" firstAttribute="top" secondItem="00v-DY-yU9" secondAttribute="bottom" constant="8" id="tXx-N5-XTL"/>
             </constraints>
+            <connections>
+                <outlet property="avatarImageView" destination="Xe2-du-I8m" id="kGd-CQ-Ahr"/>
+                <outlet property="nicknameLabel" destination="00v-DY-yU9" id="tWW-XM-njK"/>
+                <outlet property="removeButton" destination="gp5-yj-fIQ" id="Uzm-4U-lOJ"/>
+            </connections>
             <point key="canvasLocation" x="38" y="106"/>
         </collectionViewCell>
     </objects>

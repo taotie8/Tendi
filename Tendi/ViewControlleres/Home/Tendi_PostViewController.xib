@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_PostViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="contentPlaceholderLabel" destination="amo-1G-DwB" id="PmL-KR-oze"/>
+                <outlet property="contentTextView" destination="xfT-10-GEu" id="P1s-T0-EF7"/>
+                <outlet property="mediaCloseButton" destination="eEI-8X-Jqe" id="YTa-x5-iYE"/>
+                <outlet property="mediaPreviewImageView" destination="TUM-AS-3xC" id="W4w-X1-MgV"/>
+                <outlet property="mediaTitleLabel" destination="Itw-EK-sj1" id="XJ8-S8-vcS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,7 +50,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="136" id="fxF-l1-VxW"/>
                     </constraints>
-                    <color key="textColor" systemColor="labelColor"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -60,12 +64,65 @@
                     <rect key="frame" x="28" y="759" width="337" height="48"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="upload_tap"/>
+                    <connections>
+                        <action selector="publishButtonTapped:" destination="-1" eventType="touchUpInside" id="KFK-Yl-g7r"/>
+                    </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14A-BH-akR">
+                    <rect key="frame" x="21" y="418" width="124" height="124"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_add" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-AS-3xC">
+                            <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="24"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh3-LC-kKK">
+                            <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="addMediaButtonTapped:" destination="-1" eventType="touchUpInside" id="oI3-Ba-eyF"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEI-8X-Jqe">
+                            <rect key="frame" x="94" y="0.0" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="7XO-av-LON"/>
+                                <constraint firstAttribute="width" constant="30" id="fYI-xq-RdG"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="upload_end"/>
+                            <connections>
+                                <action selector="mediaCloseButtonTapped:" destination="-1" eventType="touchUpInside" id="Geb-uA-Du3"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="TUM-AS-3xC" firstAttribute="top" secondItem="14A-BH-akR" secondAttribute="top" id="0gf-6X-hol"/>
+                        <constraint firstAttribute="trailing" secondItem="eEI-8X-Jqe" secondAttribute="trailing" id="4XP-Mt-Hwt"/>
+                        <constraint firstItem="Dh3-LC-kKK" firstAttribute="leading" secondItem="14A-BH-akR" secondAttribute="leading" id="CBG-Cz-P7a"/>
+                        <constraint firstItem="TUM-AS-3xC" firstAttribute="leading" secondItem="14A-BH-akR" secondAttribute="leading" id="FPe-lJ-ewg"/>
+                        <constraint firstAttribute="bottom" secondItem="Dh3-LC-kKK" secondAttribute="bottom" id="Fcb-lR-iwb"/>
+                        <constraint firstAttribute="trailing" secondItem="Dh3-LC-kKK" secondAttribute="trailing" id="J0L-CX-RG7"/>
+                        <constraint firstAttribute="trailing" secondItem="eEI-8X-Jqe" secondAttribute="trailing" id="TIg-7t-lHb"/>
+                        <constraint firstItem="Dh3-LC-kKK" firstAttribute="top" secondItem="14A-BH-akR" secondAttribute="top" id="XWb-zh-amm"/>
+                        <constraint firstAttribute="width" constant="124" id="cvj-Rd-0ed"/>
+                        <constraint firstItem="eEI-8X-Jqe" firstAttribute="top" secondItem="14A-BH-akR" secondAttribute="top" id="ohR-Og-LO3"/>
+                        <constraint firstAttribute="height" constant="124" id="sbZ-n2-xOo"/>
+                        <constraint firstItem="eEI-8X-Jqe" firstAttribute="top" secondItem="14A-BH-akR" secondAttribute="top" id="vVi-6m-Mau"/>
+                        <constraint firstAttribute="trailing" secondItem="TUM-AS-3xC" secondAttribute="trailing" id="wRR-23-wSq"/>
+                        <constraint firstAttribute="bottom" secondItem="TUM-AS-3xC" secondAttribute="bottom" id="zHl-k8-ytB"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="amo-1G-DwB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="34" id="7kb-Y9-s0E"/>
+                <constraint firstItem="14A-BH-akR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="L1J-1L-Ka0"/>
                 <constraint firstItem="Lf4-oJ-907" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MvB-VU-Gz8"/>
                 <constraint firstItem="whr-qD-arE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="RQd-Mi-OoX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="whr-qD-arE" secondAttribute="trailing" constant="28" id="U24-oS-Yba"/>
@@ -81,6 +138,7 @@
                 <constraint firstItem="Lf4-oJ-907" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hoq-ho-eri"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P4h-vc-Otg" secondAttribute="trailing" constant="21" id="nB6-YS-1nT"/>
                 <constraint firstItem="xfT-10-GEu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="nIr-1e-Mdf"/>
+                <constraint firstItem="14A-BH-akR" firstAttribute="top" secondItem="Itw-EK-sj1" secondAttribute="bottom" constant="21" id="qDL-SU-QZh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xfT-10-GEu" secondAttribute="trailing" constant="28" id="qMd-OE-h8C"/>
                 <constraint firstAttribute="bottom" secondItem="Lf4-oJ-907" secondAttribute="bottom" id="ubu-YL-i79"/>
                 <constraint firstItem="amo-1G-DwB" firstAttribute="top" secondItem="X4j-0e-JCE" secondAttribute="bottom" constant="28" id="zSw-Nr-Hor"/>
@@ -89,11 +147,10 @@
         </view>
     </objects>
     <resources>
+        <image name="upload_add" width="124" height="124"/>
         <image name="upload_bg" width="375" height="812"/>
+        <image name="upload_end" width="24" height="24"/>
         <image name="upload_input" width="341" height="161"/>
         <image name="upload_tap" width="326" height="48"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

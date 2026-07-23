@@ -73,11 +73,25 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
     }
     
     @IBAction private func birthdayButtonTapped(_ sender: UIButton) {
-        BirthdayPickerView.show(in: view, selectedDate: selectedBirthday) { [weak self] date in
-            self?.selectedBirthday = date
-            self?.birthdayLabel.text = self?.birthdayFormatter.string(from: date)
+        dismissCurrentKeyboard()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) { [weak self] in
+            guard let self else { return }
+            BirthdayPickerView.show(in: self.view, selectedDate: self.selectedBirthday) { [weak self] date in
+                self?.selectedBirthday = date
+                self?.birthdayLabel.text = self?.birthdayFormatter.string(from: date)
+            }
         }
     }
 
+    private func dismissCurrentKeyboard() {
+        view.endEditing(true)
+        view.window?.endEditing(true)
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+    }
 
 }
