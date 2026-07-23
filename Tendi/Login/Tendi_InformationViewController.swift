@@ -19,6 +19,7 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
         navigationItem.title = "Information"
         avatarImageView.layer.cornerRadius = 36
         selectedBirthday = birthdayFormatter.date(from: birthdayLabel.text ?? "")
+        configureKeyboardDismissGesture()
     }
     
     @IBAction private func avatarButtonTapped(_ sender: UIButton) {
@@ -92,6 +93,16 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
             from: nil,
             for: nil
         )
+    }
+
+    private func configureKeyboardDismissGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blankAreaTapped))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func blankAreaTapped() {
+        dismissCurrentKeyboard()
     }
 
 }
