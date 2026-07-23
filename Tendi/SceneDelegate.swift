@@ -16,16 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = self.window ?? UIWindow(windowScene: windowScene)
-        let rootViewController = (window.rootViewController as? AuthMainViewController) ?? AuthMainViewController()
-        
-        let navigationController = UINavigationController(rootViewController: BaseTabbarController())
-        navigationController.setNavigationBarHidden(true, animated: false)
-
-        window.rootViewController = navigationController
+        window.rootViewController = TendiAuthSession.makeInitialRootViewController()
         window.makeKeyAndVisible()
         self.window = window
         
     }
 
 }
-

@@ -8,8 +8,27 @@ class Tendi_MineViewController: BaseViewController {
     @IBOutlet weak var mine_follower: UIButton!
     @IBOutlet weak var mine_following: UIButton!
     @IBOutlet weak var mine_dallar_l: UILabel!
-
+    @IBOutlet weak var tableView: UITableView!
+    
     private let dataStore = TendiLocalDataStore.shared
+    private lazy var postPlaceholderView: UIView = {
+        let containerView = UIView()
+        containerView.backgroundColor = .clear
+
+        let imageView = UIImageView(image: UIImage(named: "tendi_yet"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        containerView.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 26),
+            imageView.widthAnchor.constraint(equalToConstant: 153),
+            imageView.heightAnchor.constraint(equalToConstant: 131)
+        ])
+
+        return containerView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +36,24 @@ class Tendi_MineViewController: BaseViewController {
         navigationItem.rightBarButtonItem = right_item
         mine_h.layer.cornerRadius = 36
         mine_h.layer.masksToBounds = true
+        configurePostPlaceholder()
         configureProfile()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(coinBalanceDidChange),
+            name: .tendiCoinBalanceDidChange,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currentUserProfileDidChange),
+            name: .tendiCurrentUserProfileDidChange,
+            object: nil
+        )
+    }
+
+    @MainActor deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +93,21 @@ class Tendi_MineViewController: BaseViewController {
 
         mine_follower.setTitle("\(dataStore.currentFollowerUsers.count) Followers", for: .normal)
         mine_following.setTitle("\(dataStore.currentFollowingUsers.count) Following", for: .normal)
+        mine_dallar_l.text = "\(dataStore.currentCoinBalance)"
+    }
+
+    private func configurePostPlaceholder() {
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.backgroundView = postPlaceholderView
+    }
+
+    @objc private func coinBalanceDidChange() {
+        configureProfile()
+    }
+
+    @objc private func currentUserProfileDidChange() {
+        configureProfile()
     }
 
 }

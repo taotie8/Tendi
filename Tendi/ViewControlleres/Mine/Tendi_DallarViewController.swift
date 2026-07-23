@@ -5,6 +5,9 @@ class Tendi_DallarViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dallar_label: UILabel!
+
+    private let dataStore = TendiLocalDataStore.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout = UICollectionViewFlowLayout()
@@ -19,7 +22,30 @@ class Tendi_DallarViewController: BaseViewController {
         collectionView.backgroundColor = .clear
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: "Tendi_DallarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "item")
-        
+        configureCoinBalance()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(coinBalanceDidChange),
+            name: .tendiCoinBalanceDidChange,
+            object: nil
+        )
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureCoinBalance()
+    }
+
+    @MainActor deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    private func configureCoinBalance() {
+        dallar_label.text = "\(dataStore.currentCoinBalance)"
+    }
+
+    @objc private func coinBalanceDidChange() {
+        configureCoinBalance()
     }
 
 }
@@ -55,4 +81,3 @@ extension Tendi_DallarViewController: UICollectionViewDataSource, UICollectionVi
     }
     
 }
-

@@ -6,8 +6,32 @@ struct TendiLocalUser: Decodable {
     let avatarImageName: String
     let isTestUser: Bool
     let bio: String
+    let birthdayRawValue: String
     let followerCount: Int
     let followingCount: Int
+    let coinBalance: Int
+
+    init(
+        id: String,
+        nickname: String,
+        avatarImageName: String,
+        isTestUser: Bool,
+        bio: String,
+        birthdayRawValue: String,
+        followerCount: Int,
+        followingCount: Int,
+        coinBalance: Int
+    ) {
+        self.id = id
+        self.nickname = nickname
+        self.avatarImageName = avatarImageName
+        self.isTestUser = isTestUser
+        self.bio = bio
+        self.birthdayRawValue = birthdayRawValue
+        self.followerCount = followerCount
+        self.followingCount = followingCount
+        self.coinBalance = coinBalance
+    }
 
     private enum CodingKeys: String, CodingKey {
         case id = "xL4c"
@@ -15,8 +39,10 @@ struct TendiLocalUser: Decodable {
         case avatarImageName = "aV9k"
         case isTestUser = "nQ6z"
         case bio = "bT5w"
+        case birthdayRawValue = "yK3f"
         case followerCount = "fC8n"
         case followingCount = "pX2d"
+        case coinBalance = "sE9a"
     }
 
     init(from decoder: Decoder) throws {
@@ -26,9 +52,31 @@ struct TendiLocalUser: Decodable {
         avatarImageName = try container.decodeIfPresent(String.self, forKey: .avatarImageName) ?? "tendi_avatar"
         isTestUser = try container.decodeIfPresent(Bool.self, forKey: .isTestUser) ?? false
         bio = try container.decodeIfPresent(String.self, forKey: .bio) ?? ""
+        birthdayRawValue = try container.decodeIfPresent(String.self, forKey: .birthdayRawValue) ?? ""
         followerCount = try container.decodeIfPresent(Int.self, forKey: .followerCount) ?? 0
         followingCount = try container.decodeIfPresent(Int.self, forKey: .followingCount) ?? 0
+        coinBalance = try container.decodeIfPresent(Int.self, forKey: .coinBalance) ?? 0
     }
+
+    func updating(nickname: String, bio: String, birthdayRawValue: String) -> TendiLocalUser {
+        TendiLocalUser(
+            id: id,
+            nickname: nickname,
+            avatarImageName: avatarImageName,
+            isTestUser: isTestUser,
+            bio: bio,
+            birthdayRawValue: birthdayRawValue,
+            followerCount: followerCount,
+            followingCount: followingCount,
+            coinBalance: coinBalance
+        )
+    }
+}
+
+private struct TendiLocalProfileOverride: Codable {
+    let nickname: String
+    let bio: String
+    let birthdayRawValue: String
 }
 
 struct TendiLocalPost: Decodable {
@@ -218,7 +266,18 @@ final class TendiLocalDataStore {
     }
 
     var currentUserProfile: TendiLocalUser? {
-        currentUser
+        guard let currentUser else { return nil }
+        guard let currentProfileOverride else { return currentUser }
+
+        return currentUser.updating(
+            nickname: currentProfileOverride.nickname,
+            bio: currentProfileOverride.bio,
+            birthdayRawValue: currentProfileOverride.birthdayRawValue
+        )
+    }
+
+    var currentCoinBalance: Int {
+        currentCoinBalanceValue
     }
 
     var currentFollowingUsers: [TendiLocalUser] {
@@ -242,12 +301,16 @@ final class TendiLocalDataStore {
     private var blockedUserIds: Set<String>
     private var localComments: [TendiLocalComment]
     private var localChatMessages: [TendiLocalChatMessage]
+    private var currentCoinBalanceValue: Int
+    private var currentProfileOverride: TendiLocalProfileOverride?
 
     private static let likedPostIdsKey = "TendiLocalDataStore.likedPostIds"
     private static let followedUserIdsKey = "TendiLocalDataStore.followedUserIds"
     private static let blockedUserIdsKey = "TendiLocalDataStore.blockedUserIds"
     private static let localCommentsKey = "TendiLocalDataStore.localComments"
     private static let localChatMessagesKey = "TendiLocalDataStore.localChatMessages"
+    private static let currentCoinBalanceKeyPrefix = "TendiLocalDataStore.currentCoinBalance"
+    private static let currentProfileOverrideKeyPrefix = "TendiLocalDataStore.currentProfileOverride"
 
     private init() {
         let loadedPayload = TendiLocalDataStore.loadPayload()
@@ -255,11 +318,13 @@ final class TendiLocalDataStore {
 
         let resolvedUsersById = Dictionary(uniqueKeysWithValues: loadedPayload.users.map { ($0.id, $0) })
         usersById = resolvedUsersById
+        let resolvedCurrentUser: TendiLocalUser?
         if let currentUserId = resolvedCurrentUserId {
-            currentUser = resolvedUsersById[currentUserId]
+            resolvedCurrentUser = resolvedUsersById[currentUserId]
         } else {
-            currentUser = nil
+            resolvedCurrentUser = nil
         }
+        currentUser = resolvedCurrentUser
 
         let follows = loadedPayload.follows
         let comments = loadedPayload.comments
@@ -337,6 +402,13 @@ final class TendiLocalDataStore {
         blockedUserIds = Set(UserDefaults.standard.stringArray(forKey: TendiLocalDataStore.blockedUserIdsKey) ?? [])
         localComments = TendiLocalDataStore.loadLocalComments()
         localChatMessages = TendiLocalDataStore.loadLocalChatMessages()
+        currentProfileOverride = TendiLocalDataStore.loadCurrentProfileOverride(for: resolvedCurrentUser?.id)
+
+        let coinBalanceKey = TendiLocalDataStore.coinBalanceKey(for: resolvedCurrentUser?.id)
+        let hasPersistedCoinBalance = UserDefaults.standard.object(forKey: coinBalanceKey) != nil
+        currentCoinBalanceValue = hasPersistedCoinBalance
+            ? UserDefaults.standard.integer(forKey: coinBalanceKey)
+            : (resolvedCurrentUser?.coinBalance ?? 0)
     }
 
     var followedVideoItems: [TendiHomeVideoItem] {
@@ -381,6 +453,33 @@ final class TendiLocalDataStore {
         return userPostItems.filter { item in
             item.user.id == user.id
         }
+    }
+
+    func canSpendCoins(_ amount: Int) -> Bool {
+        guard amount > 0 else { return true }
+        return currentCoinBalanceValue >= amount
+    }
+
+    func updateCurrentUserProfile(nickname: String, bio: String, birthdayRawValue: String) {
+        currentProfileOverride = TendiLocalProfileOverride(
+            nickname: nickname,
+            bio: bio,
+            birthdayRawValue: birthdayRawValue
+        )
+        persistCurrentProfileOverride()
+        NotificationCenter.default.post(name: .tendiCurrentUserProfileDidChange, object: currentUserProfile)
+    }
+
+    @discardableResult
+    func spendCoins(_ amount: Int) -> Bool {
+        guard amount > 0, currentCoinBalanceValue >= amount else {
+            return false
+        }
+
+        currentCoinBalanceValue -= amount
+        persistCurrentCoinBalance()
+        NotificationCenter.default.post(name: .tendiCoinBalanceDidChange, object: nil)
+        return true
     }
 
     func likeState(for item: TendiHomeVideoItem) -> TendiPostLikeState {
@@ -460,6 +559,18 @@ final class TendiLocalDataStore {
             canFollow: isCurrentUser == false,
             followerCount: resolvedFollowerCount(for: user, isFollowedNow: isFollowedNow)
         )
+    }
+
+    func isMutuallyFollowing(_ user: TendiLocalUser) -> Bool {
+        if let currentUser = currentUser, currentUser.id == user.id {
+            return true
+        }
+
+        guard isBlocked(user) == false else {
+            return false
+        }
+
+        return followedUserIds.contains(user.id) && initialFollowerUserIds.contains(user.id)
     }
 
     @discardableResult
@@ -657,6 +768,43 @@ final class TendiLocalDataStore {
         UserDefaults.standard.set(data, forKey: TendiLocalDataStore.localChatMessagesKey)
     }
 
+    private func persistCurrentCoinBalance() {
+        UserDefaults.standard.set(currentCoinBalanceValue, forKey: currentCoinBalanceKey)
+    }
+
+    private func persistCurrentProfileOverride() {
+        guard let currentProfileOverride,
+              let data = try? JSONEncoder().encode(currentProfileOverride) else {
+            return
+        }
+
+        UserDefaults.standard.set(data, forKey: currentProfileOverrideKey)
+    }
+
+    private var currentCoinBalanceKey: String {
+        TendiLocalDataStore.coinBalanceKey(for: currentUser?.id)
+    }
+
+    private var currentProfileOverrideKey: String {
+        TendiLocalDataStore.profileOverrideKey(for: currentUser?.id)
+    }
+
+    private static func coinBalanceKey(for userId: String?) -> String {
+        guard let userId, userId.isEmpty == false else {
+            return currentCoinBalanceKeyPrefix
+        }
+
+        return "\(currentCoinBalanceKeyPrefix).\(userId)"
+    }
+
+    private static func profileOverrideKey(for userId: String?) -> String {
+        guard let userId, userId.isEmpty == false else {
+            return currentProfileOverrideKeyPrefix
+        }
+
+        return "\(currentProfileOverrideKeyPrefix).\(userId)"
+    }
+
     private func sortedUsers(for userIds: Set<String>, includesBlockedUsers: Bool = false) -> [TendiLocalUser] {
         userIds
             .compactMap { usersById[$0] }
@@ -716,6 +864,12 @@ final class TendiLocalDataStore {
         return messages
     }
 
+    private static func loadCurrentProfileOverride(for userId: String?) -> TendiLocalProfileOverride? {
+        let key = profileOverrideKey(for: userId)
+        guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        return try? JSONDecoder().decode(TendiLocalProfileOverride.self, from: data)
+    }
+
     private static func loadPayload() -> TendiConfigPayload {
         let configURL = Bundle.main.url(forResource: "tendi_config", withExtension: "json", subdirectory: "Support")
             ?? Bundle.main.url(forResource: "tendi_config", withExtension: "json")
@@ -762,4 +916,6 @@ private struct TendiConfigPayload: Decodable {
 extension Notification.Name {
     static let tendiBlockedUsersDidChange = Notification.Name("tendiBlockedUsersDidChange")
     static let tendiFollowStateDidChange = Notification.Name("tendiFollowStateDidChange")
+    static let tendiCoinBalanceDidChange = Notification.Name("tendiCoinBalanceDidChange")
+    static let tendiCurrentUserProfileDidChange = Notification.Name("tendiCurrentUserProfileDidChange")
 }

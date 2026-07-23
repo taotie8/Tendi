@@ -4,11 +4,24 @@ import UIKit
 class Tendi_InformationViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var usernameTextField: UITextField!
+    @IBOutlet private weak var bioTextField: UITextField!
     @IBOutlet private weak var birthdayLabel: UILabel!
+
+    var completesLoginOnNext = false
+    var profileUser: TendiLocalUser?
+
+    private let dataStore = TendiLocalDataStore.shared
     
     private let birthdayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
+        return formatter
+    }()
+
+    private let payloadBirthdayFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return formatter
     }()
     
@@ -16,10 +29,29 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Information"
+        navigationItem.title = profileUser == nil ? "Information" : "Edit Profile"
         avatarImageView.layer.cornerRadius = 36
-        selectedBirthday = birthdayFormatter.date(from: birthdayLabel.text ?? "")
+        avatarImageView.layer.masksToBounds = true
+        configureProfileInfo()
         configureKeyboardDismissGesture()
+    }
+
+    private func configureProfileInfo() {
+        guard let profileUser else {
+            selectedBirthday = birthdayFormatter.date(from: birthdayLabel.text ?? "")
+            return
+        }
+
+        usernameTextField.text = profileUser.nickname
+        bioTextField.text = profileUser.bio
+        avatarImageView.image = UIImage(named: profileUser.avatarImageName) ?? UIImage(named: "tendi_avatar")
+
+        if let birthday = payloadBirthdayFormatter.date(from: profileUser.birthdayRawValue) {
+            selectedBirthday = birthday
+            birthdayLabel.text = birthdayFormatter.string(from: birthday)
+        } else {
+            selectedBirthday = birthdayFormatter.date(from: birthdayLabel.text ?? "")
+        }
     }
     
     @IBAction private func avatarButtonTapped(_ sender: UIButton) {
@@ -82,6 +114,59 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
                 self?.birthdayLabel.text = self?.birthdayFormatter.string(from: date)
             }
         }
+    }
+
+    @IBAction private func nextButtonTapped(_ sender: UIButton) {
+        dismissCurrentKeyboard()
+
+        guard validateProfileInfo() else {
+            return
+        }
+
+        saveProfileInfo()
+
+        if completesLoginOnNext {
+            TendiAuthSession.switchToMain(from: view)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
+    private func validateProfileInfo() -> Bool {
+        guard currentUsername.isEmpty == false else {
+            TendiHUD.showToast("Please enter username.", in: view)
+            return false
+        }
+
+        guard currentBio.isEmpty == false else {
+            TendiHUD.showToast("Please write your bio.", in: view)
+            return false
+        }
+
+        guard selectedBirthday != nil else {
+            TendiHUD.showToast("Please select birthday.", in: view)
+            return false
+        }
+
+        return true
+    }
+
+    private func saveProfileInfo() {
+        guard let selectedBirthday else { return }
+
+        dataStore.updateCurrentUserProfile(
+            nickname: currentUsername,
+            bio: currentBio,
+            birthdayRawValue: payloadBirthdayFormatter.string(from: selectedBirthday)
+        )
+    }
+
+    private var currentUsername: String {
+        usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    }
+
+    private var currentBio: String {
+        bioTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     }
 
     private func dismissCurrentKeyboard() {

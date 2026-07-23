@@ -57,8 +57,8 @@ class Tendi_LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureForMode()
-        emailTextField.text = "tendi666@gmail.com"
-        passwordTextField.text = "666666"
+        emailTextField.text = "jeanne@gmail.com"
+        passwordTextField.text = "123456"
     }
     
     @IBAction private func submitButtonTapped(_ sender: UIButton) {
@@ -79,15 +79,22 @@ class Tendi_LoginViewController: BaseViewController {
     }
     
     private func signIn(email: String, password: String) {
-        enterInformationPage()
+        enterInformationPage(prefillsCurrentUser: true)
     }
     
     private func signUp(email: String, password: String) {
-        enterInformationPage()
+        enterInformationPage(prefillsCurrentUser: false)
     }
     
-    private func enterInformationPage() {
-        navigationController?.pushViewController(Tendi_InformationViewController(), animated: true)
+    private func enterInformationPage(prefillsCurrentUser: Bool) {
+        TendiAuthSession.markProfileCompletionRequired()
+
+        let informationViewController = Tendi_InformationViewController()
+        informationViewController.completesLoginOnNext = true
+        if prefillsCurrentUser {
+            informationViewController.profileUser = TendiLocalDataStore.shared.currentUserProfile
+        }
+        navigationController?.pushViewController(informationViewController, animated: true)
     }
     
     private func configureForMode() {

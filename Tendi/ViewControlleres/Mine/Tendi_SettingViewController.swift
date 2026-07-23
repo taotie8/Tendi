@@ -11,6 +11,7 @@ class Tendi_SettingViewController: BaseViewController {
     
     @IBAction private func editProfileButtonTapped(_ sender: UIButton) {
         let informationViewController = Tendi_InformationViewController()
+        informationViewController.profileUser = TendiLocalDataStore.shared.currentUserProfile
         informationViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(informationViewController, animated: true)
     }
@@ -66,14 +67,7 @@ class Tendi_SettingViewController: BaseViewController {
     }
     
     private func returnToAuthPage() {
-        guard let window = view.window else { return }
-        
-        let navigationController = UINavigationController(rootViewController: AuthMainViewController())
-        navigationController.setNavigationBarHidden(true, animated: false)
-        
-        UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve) {
-            window.rootViewController = navigationController
-        }
+        TendiAuthSession.switchToAuth(from: view)
     }
 
 

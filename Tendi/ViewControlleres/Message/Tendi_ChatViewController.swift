@@ -51,7 +51,7 @@ class Tendi_ChatViewController: UIViewController, UITextFieldDelegate {
         }
 
         ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popToRootViewController(animated: true)
         }
     }
 

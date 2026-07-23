@@ -39,6 +39,7 @@ class Tendi_UserViewController: BaseViewController {
         collectionView.backgroundColor = .clear
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: "Tendi_UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "item")
+        configureMutualFollowPrompt()
         configureUser()
     }
 
@@ -51,7 +52,7 @@ class Tendi_UserViewController: BaseViewController {
     // 更多
     @objc func navigationRightItemClick() {
         ChooseMoeView.show(from: self, targetUser: user) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popToRootViewController(animated: true)
         }
     }
 
@@ -61,6 +62,12 @@ class Tendi_UserViewController: BaseViewController {
             let followState = dataStore.toggleFollow(for: user)
             applyFollowState(followState)
         }else { // 聊天
+            guard let user = user else { return }
+            guard dataStore.isMutuallyFollowing(user) else {
+                showMutualFollowPrompt()
+                return
+            }
+
             let chatViewController = Tendi_ChatViewController()
             chatViewController.user = user
             chatViewController.hidesBottomBarWhenPushed = true
@@ -86,8 +93,53 @@ class Tendi_UserViewController: BaseViewController {
         user_follow_button.isHidden = state.canFollow == false
         user_follow_button.isEnabled = state.canFollow
 
-        let followImageName = state.isFollowed ? "person_followed" : "user_home_follow"
+        let followImageName = state.isFollowed ? "user_home_followed" : "user_home_follow"
         user_follow_button.setImage(UIImage(named: followImageName), for: .normal)
+    }
+
+    private func configureMutualFollowPrompt() {
+        centerView.removeFromSuperview()
+        centerView.alpha = 1
+        addPromptDismissTargets(in: centerView)
+    }
+
+    private func showMutualFollowPrompt() {
+        guard centerView.superview == nil else { return }
+
+        guard let containerView = view.window ?? view else { return }
+        centerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(centerView)
+
+        NSLayoutConstraint.activate([
+            centerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            centerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            centerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            centerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
+
+        centerView.alpha = 0
+        UIView.animate(withDuration: 0.18) {
+            self.centerView.alpha = 1
+        }
+    }
+
+    private func addPromptDismissTargets(in view: UIView) {
+        if let button = view as? UIButton {
+            button.addTarget(self, action: #selector(dismissMutualFollowPrompt), for: .touchUpInside)
+        }
+
+        view.subviews.forEach { subview in
+            addPromptDismissTargets(in: subview)
+        }
+    }
+
+    @objc private func dismissMutualFollowPrompt() {
+        UIView.animate(withDuration: 0.16, animations: {
+            self.centerView.alpha = 0
+        }, completion: { _ in
+            self.centerView.removeFromSuperview()
+            self.centerView.alpha = 1
+        })
     }
 
 }

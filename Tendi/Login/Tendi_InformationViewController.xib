@@ -11,7 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_InformationViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
                 <outlet property="avatarImageView" destination="0md-wt-pjO" id="j55-A2-EGp"/>
+                <outlet property="bioTextField" destination="Uah-Yc-euK" id="xkY-xB-UWs"/>
                 <outlet property="birthdayLabel" destination="yIS-ZE-36M" id="eCe-lp-BsA"/>
+                <outlet property="usernameTextField" destination="N4B-g9-MwV" id="MMd-wm-3x2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -113,6 +115,9 @@
                             <rect key="frame" x="33.666666666666657" y="759" width="326" height="48"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="tendi_next"/>
+                            <connections>
+                                <action selector="nextButtonTapped:" destination="-1" eventType="touchUpInside" id="kRb-vj-QJu"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzh-vP-jMh">
                             <rect key="frame" x="32" y="572" width="329" height="50.333333333333371"/>

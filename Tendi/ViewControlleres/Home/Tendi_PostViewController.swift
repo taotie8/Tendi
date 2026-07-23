@@ -18,6 +18,8 @@ class Tendi_PostViewController: BaseViewController, UIImagePickerControllerDeleg
 
     var publishMode: PublishMode = .video
     
+    private let dataStore = TendiLocalDataStore.shared
+    private let publishCoinCost = 100
     private var selectedImage: UIImage?
     private var selectedVideoURL: URL?
 
@@ -94,7 +96,47 @@ class Tendi_PostViewController: BaseViewController, UIImagePickerControllerDeleg
         guard validatePublishInput() else {
             return
         }
-        
+
+        guard dataStore.canSpendCoins(publishCoinCost) else {
+            showInsufficientCoinsPrompt()
+            return
+        }
+
+        showPublishCostPrompt()
+    }
+
+    private func showPublishCostPrompt() {
+        TendiHUD.showPrompt(
+            in: view,
+            title: "Publish \(publishDisplayName)",
+            message: "Publishing this \(publishSubjectName) costs \(publishCoinCost) coins.\nCurrent balance: \(dataStore.currentCoinBalance).",
+            primaryTitle: "Publish",
+            secondaryTitle: "Cancel",
+            primaryAction: { [weak self] in
+                self?.confirmPaidPublish()
+            }
+        )
+    }
+
+    private func showInsufficientCoinsPrompt() {
+        TendiHUD.showPrompt(
+            in: view,
+            title: "Insufficient Coins",
+            message: "Publishing this \(publishSubjectName) costs \(publishCoinCost) coins.\nCurrent balance: \(dataStore.currentCoinBalance).",
+            primaryTitle: "OK"
+        )
+    }
+
+    private func confirmPaidPublish() {
+        guard dataStore.spendCoins(publishCoinCost) else {
+            showInsufficientCoinsPrompt()
+            return
+        }
+
+        showReviewPrompt()
+    }
+
+    private func showReviewPrompt() {
         TendiHUD.showPrompt(
             in: view,
             title: "Under Review",
@@ -104,6 +146,24 @@ class Tendi_PostViewController: BaseViewController, UIImagePickerControllerDeleg
                 self?.navigationController?.popViewController(animated: true)
             }
         )
+    }
+
+    private var publishDisplayName: String {
+        switch publishMode {
+        case .video:
+            return "Video"
+        case .text:
+            return "Dynamic"
+        }
+    }
+
+    private var publishSubjectName: String {
+        switch publishMode {
+        case .video:
+            return "video"
+        case .text:
+            return "dynamic"
+        }
     }
     
     private func validatePublishInput() -> Bool {

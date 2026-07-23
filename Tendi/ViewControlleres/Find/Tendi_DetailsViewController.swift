@@ -58,7 +58,7 @@ class Tendi_DetailsViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func detail_moreClick(_ sender: Any) {
         ChooseMoeView.show(from: self, targetUser: postItem?.user) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popToRootViewController(animated: true)
         }
     }
     

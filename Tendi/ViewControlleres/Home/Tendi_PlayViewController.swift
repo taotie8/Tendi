@@ -70,7 +70,7 @@ class Tendi_PlayViewController: BaseViewController, UIGestureRecognizerDelegate,
     // 更多
     @objc func navigationRightItemClick() {
         ChooseMoeView.show(from: self, targetUser: videoItem?.user) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popToRootViewController(animated: true)
         }
     }
 
