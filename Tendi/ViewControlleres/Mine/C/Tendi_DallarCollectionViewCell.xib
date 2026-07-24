@@ -57,6 +57,8 @@
             </constraints>
             <connections>
                 <outlet property="cell_bg" destination="DhC-vx-d2k" id="mb8-fV-LlT"/>
+                <outlet property="coinCountLabel" destination="icM-iJ-jWJ" id="K8S-hI-Bx4"/>
+                <outlet property="priceLabel" destination="vTk-ug-JKj" id="tvJ-yu-Rnk"/>
             </connections>
             <point key="canvasLocation" x="38" y="106"/>
         </collectionViewCell>

@@ -10,7 +10,13 @@ import UIKit
 class Tendi_FindViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private var unlockAIView: UIView!
+    @IBOutlet private var insufficientBalanceView: UIView!
+
     private let dataStore = TendiLocalDataStore.shared
+    private let aiFeatureUseCost = TendiLocalDataStore.aiFeatureUseCost
+    private weak var currentPopupView: UIView?
+
     private var imageItems: [TendiFindPostItem] {
         dataStore.imageItems
     }
@@ -29,8 +35,41 @@ class Tendi_FindViewController: BaseViewController {
     }
 
     @IBAction func tendi_bananerClick(_ sender: Any) {
-        guard let firstItem = imageItems.first else { return }
-        pushDetail(with: firstItem)
+        if dataStore.canSpendCoins(aiFeatureUseCost) {
+            showCenterPopup(unlockAIView)
+        } else {
+            showCenterPopup(insufficientBalanceView)
+        }
+    }
+
+    @IBAction func unlockAIConfirmClick(_ sender: Any) {
+        guard dataStore.spendCoins(aiFeatureUseCost) else {
+            dismissCurrentPopup { [weak self] in
+                guard let self else { return }
+                self.showCenterPopup(self.insufficientBalanceView)
+            }
+            return
+        }
+
+        dismissCurrentPopup { [weak self] in
+            self?.pushChatAIPage()
+        }
+    }
+
+    @IBAction func unlockAICloseClick(_ sender: Any) {
+        dismissCurrentPopup()
+    }
+
+    @IBAction func insufficientBalanceRechargeClick(_ sender: Any) {
+        dismissCurrentPopup { [weak self] in
+            let rechargeViewController = Tendi_DallarViewController()
+            rechargeViewController.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(rechargeViewController, animated: true)
+        }
+    }
+
+    @IBAction func insufficientBalanceCloseClick(_ sender: Any) {
+        dismissCurrentPopup()
     }
     
     @IBAction func tap_publishTextDynamic(_ sender: Any) {
@@ -39,7 +78,80 @@ class Tendi_FindViewController: BaseViewController {
         postViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(postViewController, animated: true)
     }
-    
+
+    private func pushChatAIPage() {
+        let vc = Tendi_ChatAiViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func showCenterPopup(_ popupView: UIView) {
+        currentPopupView?.removeFromSuperview()
+
+        let containerView = navigationController?.view ?? view
+        popupView.removeFromSuperview()
+        popupView.frame = containerView?.bounds ?? view.bounds
+        popupView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        popupView.alpha = 0
+
+        let contentViews = popupContentViews(in: popupView)
+        contentViews.forEach { contentView in
+            contentView.alpha = 0
+            contentView.transform = CGAffineTransform(scaleX: 0.72, y: 0.72)
+        }
+
+        containerView?.addSubview(popupView)
+        currentPopupView = popupView
+
+        UIView.animate(withDuration: 0.16) {
+            popupView.alpha = 1
+        }
+
+        UIView.animate(
+            withDuration: 0.34,
+            delay: 0,
+            usingSpringWithDamping: 0.72,
+            initialSpringVelocity: 0.35,
+            options: [.curveEaseOut]
+        ) {
+            contentViews.forEach { contentView in
+                contentView.alpha = 1
+                contentView.transform = .identity
+            }
+        }
+    }
+
+    private func dismissCurrentPopup(completion: (() -> Void)? = nil) {
+        guard let popupView = currentPopupView else {
+            completion?()
+            return
+        }
+
+        currentPopupView = nil
+        let contentViews = popupContentViews(in: popupView)
+        UIView.animate(
+            withDuration: 0.16,
+            animations: {
+                popupView.alpha = 0
+                contentViews.forEach { contentView in
+                    contentView.alpha = 0
+                    contentView.transform = CGAffineTransform(scaleX: 0.86, y: 0.86)
+                }
+            },
+            completion: { _ in
+                contentViews.forEach { contentView in
+                    contentView.alpha = 1
+                    contentView.transform = .identity
+                }
+                popupView.removeFromSuperview()
+                completion?()
+            }
+        )
+    }
+
+    private func popupContentViews(in popupView: UIView) -> [UIView] {
+        Array(popupView.subviews.dropFirst())
+    }
 
 }
 extension Tendi_FindViewController: UITableViewDelegate, UITableViewDataSource {

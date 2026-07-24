@@ -34,6 +34,11 @@ class Tendi_MessageViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.backgroundView = emptyStateView
         reloadChatPreviews()
+        registerRelationshipNotifications()
+    }
+
+    @MainActor deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +51,25 @@ class Tendi_MessageViewController: BaseViewController {
         chatPreviewItems = dataStore.chatPreviewItems
         emptyStateView.isHidden = chatPreviewItems.isEmpty == false
         tableView.reloadData()
+    }
+
+    private func registerRelationshipNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(relationshipsDidChange),
+            name: .tendiFollowStateDidChange,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(relationshipsDidChange),
+            name: .tendiBlockedUsersDidChange,
+            object: nil
+        )
+    }
+
+    @objc private func relationshipsDidChange() {
+        reloadChatPreviews()
     }
 }
 

@@ -14,6 +14,7 @@ class Tendi_VideoChatViewController: UIViewController {
     private let localAvatarImageView = TendiVideoRoundImageView()
     private let localNameLabel = UILabel()
     private let endButton = UIButton(type: .custom)
+    private let endButtonShakeAnimationKey = "Tendi.endButtonShakeAnimation"
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -28,6 +29,16 @@ class Tendi_VideoChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        startEndButtonShakeAnimation()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopEndButtonShakeAnimation()
     }
 
     override func viewDidLayoutSubviews() {
@@ -167,6 +178,24 @@ class Tendi_VideoChatViewController: UIViewController {
             endButton.widthAnchor.constraint(equalToConstant: 72),
             endButton.heightAnchor.constraint(equalTo: endButton.widthAnchor)
         ])
+    }
+
+    private func startEndButtonShakeAnimation() {
+        guard endButton.layer.animation(forKey: endButtonShakeAnimationKey) == nil else { return }
+
+        let shakeAnimation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        shakeAnimation.values = [0, -4, 4, -3, 3, -2, 2, 0]
+        shakeAnimation.keyTimes = [0, 0.12, 0.26, 0.4, 0.54, 0.68, 0.82, 1]
+        shakeAnimation.duration = 0.82
+        shakeAnimation.repeatCount = .infinity
+        shakeAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        shakeAnimation.isRemovedOnCompletion = false
+
+        endButton.layer.add(shakeAnimation, forKey: endButtonShakeAnimationKey)
+    }
+
+    private func stopEndButtonShakeAnimation() {
+        endButton.layer.removeAnimation(forKey: endButtonShakeAnimationKey)
     }
 
     private func configureUsers() {

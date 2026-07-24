@@ -39,4 +39,9 @@ class Tendi_ChatTableViewCell: UITableViewCell {
         tendi_content.text = item.content
     }
 
+    func configure(content: String, avatarImageName: String) {
+        tendi_avatar.image = UIImage(named: avatarImageName) ?? UIImage(named: "tendi_avatar")
+        tendi_content.text = content
+    }
+
 }

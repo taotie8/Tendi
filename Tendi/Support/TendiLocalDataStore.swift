@@ -225,6 +225,20 @@ struct TendiLocalChatMessage: Codable {
     }
 }
 
+struct TendiLocalAiChatMessage: Codable {
+    let id: String
+    let content: String
+    let isOutgoing: Bool
+    let createdAt: String
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "xL4c"
+        case content = "rM2h"
+        case isOutgoing = "oG7n"
+        case createdAt = "dR8p"
+    }
+}
+
 struct TendiChatMessageItem {
     let message: TendiLocalChatMessage
     let sender: TendiLocalUser?
@@ -233,6 +247,15 @@ struct TendiChatMessageItem {
     var id: String { message.id }
     var content: String { message.content }
     var avatarImageName: String { sender?.avatarImageName ?? "tendi_avatar" }
+}
+
+struct TendiAiChatMessageItem {
+    let message: TendiLocalAiChatMessage
+    let avatarImageName: String
+
+    var id: String { message.id }
+    var content: String { message.content }
+    var isOutgoing: Bool { message.isOutgoing }
 }
 
 struct TendiChatPreviewItem {
@@ -248,6 +271,7 @@ struct TendiChatPreviewItem {
 
 final class TendiLocalDataStore {
     static let shared = TendiLocalDataStore()
+    static let aiFeatureUseCost = 200
 
     var videoItems: [TendiHomeVideoItem] {
         allVideoItems.filter { isBlocked($0.user) == false }
@@ -301,6 +325,7 @@ final class TendiLocalDataStore {
     private var blockedUserIds: Set<String>
     private var localComments: [TendiLocalComment]
     private var localChatMessages: [TendiLocalChatMessage]
+    private var localAiChatMessages: [TendiLocalAiChatMessage]
     private var currentCoinBalanceValue: Int
     private var currentProfileOverride: TendiLocalProfileOverride?
 
@@ -309,6 +334,7 @@ final class TendiLocalDataStore {
     private static let blockedUserIdsKey = "TendiLocalDataStore.blockedUserIds"
     private static let localCommentsKey = "TendiLocalDataStore.localComments"
     private static let localChatMessagesKey = "TendiLocalDataStore.localChatMessages"
+    private static let localAiChatMessagesKey = "TendiLocalDataStore.localAiChatMessages"
     private static let currentCoinBalanceKeyPrefix = "TendiLocalDataStore.currentCoinBalance"
     private static let currentProfileOverrideKeyPrefix = "TendiLocalDataStore.currentProfileOverride"
 
@@ -402,6 +428,7 @@ final class TendiLocalDataStore {
         blockedUserIds = Set(UserDefaults.standard.stringArray(forKey: TendiLocalDataStore.blockedUserIdsKey) ?? [])
         localComments = TendiLocalDataStore.loadLocalComments()
         localChatMessages = TendiLocalDataStore.loadLocalChatMessages()
+        localAiChatMessages = TendiLocalDataStore.loadLocalAiChatMessages()
         currentProfileOverride = TendiLocalDataStore.loadCurrentProfileOverride(for: resolvedCurrentUser?.id)
 
         let coinBalanceKey = TendiLocalDataStore.coinBalanceKey(for: resolvedCurrentUser?.id)
@@ -432,6 +459,10 @@ final class TendiLocalDataStore {
             }
 
             if isBlocked(user) {
+                return nil
+            }
+
+            guard isMutuallyFollowing(user) else {
                 return nil
             }
 
@@ -477,6 +508,18 @@ final class TendiLocalDataStore {
         }
 
         currentCoinBalanceValue -= amount
+        persistCurrentCoinBalance()
+        NotificationCenter.default.post(name: .tendiCoinBalanceDidChange, object: nil)
+        return true
+    }
+
+    @discardableResult
+    func addCoins(_ amount: Int) -> Bool {
+        guard amount > 0 else {
+            return false
+        }
+
+        currentCoinBalanceValue += amount
         persistCurrentCoinBalance()
         NotificationCenter.default.post(name: .tendiCoinBalanceDidChange, object: nil)
         return true
@@ -583,6 +626,16 @@ final class TendiLocalDataStore {
         toggleLike(for: item.post)
     }
 
+    @discardableResult
+    func toggleLike(for item: TendiUserPostItem) -> TendiPostLikeState {
+        switch item {
+        case .video(let videoItem):
+            return toggleLike(for: videoItem)
+        case .image(let imageItem):
+            return toggleLike(for: imageItem)
+        }
+    }
+
     private func toggleLike(for post: TendiLocalPost) -> TendiPostLikeState {
         let nextIsLiked = likedPostIds.contains(post.id) == false
 
@@ -674,6 +727,17 @@ final class TendiLocalDataStore {
             }
     }
 
+    func aiChatMessages() -> [TendiAiChatMessageItem] {
+        let currentAvatarImageName = currentUserProfile?.avatarImageName ?? "tendi_avatar"
+
+        return localAiChatMessages.map { message in
+            TendiAiChatMessageItem(
+                message: message,
+                avatarImageName: message.isOutgoing ? currentAvatarImageName : "ai_header"
+            )
+        }
+    }
+
     @discardableResult
     func addChatMessage(_ content: String, to user: TendiLocalUser) -> TendiChatMessageItem? {
         guard let currentUser = currentUser, isBlocked(user) == false else { return nil }
@@ -689,6 +753,25 @@ final class TendiLocalDataStore {
         localChatMessages.append(message)
         persistLocalChatMessages()
         return TendiChatMessageItem(message: message, sender: currentUser, isOutgoing: true)
+    }
+
+    @discardableResult
+    func addAiChatMessage(_ content: String, isOutgoing: Bool) -> TendiAiChatMessageItem? {
+        let normalizedContent = content.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard normalizedContent.isEmpty == false else { return nil }
+
+        let message = TendiLocalAiChatMessage(
+            id: UUID().uuidString,
+            content: normalizedContent,
+            isOutgoing: isOutgoing,
+            createdAt: ISO8601DateFormatter().string(from: Date())
+        )
+
+        localAiChatMessages.append(message)
+        persistLocalAiChatMessages()
+
+        let avatarImageName = isOutgoing ? (currentUserProfile?.avatarImageName ?? "tendi_avatar") : "ai_header"
+        return TendiAiChatMessageItem(message: message, avatarImageName: avatarImageName)
     }
 
     func canBlock(_ user: TendiLocalUser) -> Bool {
@@ -766,6 +849,11 @@ final class TendiLocalDataStore {
     private func persistLocalChatMessages() {
         guard let data = try? JSONEncoder().encode(localChatMessages) else { return }
         UserDefaults.standard.set(data, forKey: TendiLocalDataStore.localChatMessagesKey)
+    }
+
+    private func persistLocalAiChatMessages() {
+        guard let data = try? JSONEncoder().encode(localAiChatMessages) else { return }
+        UserDefaults.standard.set(data, forKey: TendiLocalDataStore.localAiChatMessagesKey)
     }
 
     private func persistCurrentCoinBalance() {
@@ -858,6 +946,15 @@ final class TendiLocalDataStore {
     private static func loadLocalChatMessages() -> [TendiLocalChatMessage] {
         guard let data = UserDefaults.standard.data(forKey: localChatMessagesKey),
               let messages = try? JSONDecoder().decode([TendiLocalChatMessage].self, from: data) else {
+            return []
+        }
+
+        return messages
+    }
+
+    private static func loadLocalAiChatMessages() -> [TendiLocalAiChatMessage] {
+        guard let data = UserDefaults.standard.data(forKey: localAiChatMessagesKey),
+              let messages = try? JSONDecoder().decode([TendiLocalAiChatMessage].self, from: data) else {
             return []
         }
 

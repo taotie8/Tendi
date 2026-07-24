@@ -32,6 +32,7 @@ class Tendi_MineViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         let right_item = UIBarButtonItem(image: UIImage(named: "tendi_more")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(navigationRightItemClick))
         navigationItem.rightBarButtonItem = right_item
         mine_h.layer.cornerRadius = 36

@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tendi_FindViewController" customModule="Tendi" customModuleProvider="target">
             <connections>
+                <outlet property="insufficientBalanceView" destination="QBd-nD-bfK" id="m3E-nE-XQI"/>
                 <outlet property="tableView" destination="8Gq-Wx-FsW" id="vxl-ER-JAy"/>
+                <outlet property="unlockAIView" destination="jDk-Gt-dXt" id="jbg-Tn-HAr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,6 +54,9 @@
                         <action selector="tap_publishTextDynamic:" destination="-1" eventType="touchUpInside" id="CNJ-3c-8dq"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="find_icons" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-hB-TJM">
+                    <rect key="frame" x="40" y="292" width="95" height="41"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,21 +73,117 @@
                 <constraint firstAttribute="bottom" secondItem="8Gq-Wx-FsW" secondAttribute="bottom" constant="87" id="enp-eG-qML"/>
                 <constraint firstItem="ecM-P0-iba" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="28" id="g99-Gf-TVL"/>
                 <constraint firstItem="deD-QC-AJE" firstAttribute="top" secondItem="ecM-P0-iba" secondAttribute="bottom" constant="24" id="hj3-H6-xka"/>
+                <constraint firstItem="jqd-hB-TJM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="174" id="iNH-Tu-Mhi"/>
                 <constraint firstItem="uk6-dk-YJz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="l8W-di-H3c"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t8H-aa-Xj2" secondAttribute="trailing" constant="21" id="mcM-bg-Atf"/>
                 <constraint firstItem="8Gq-Wx-FsW" firstAttribute="top" secondItem="deD-QC-AJE" secondAttribute="bottom" constant="6" id="noq-Mv-42b"/>
                 <constraint firstItem="uk6-dk-YJz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="uKy-Sz-bNh"/>
                 <constraint firstAttribute="bottom" secondItem="V4r-OF-oGa" secondAttribute="bottom" id="vxf-xh-RHH"/>
+                <constraint firstItem="jqd-hB-TJM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="zdf-F2-aJi"/>
             </constraints>
             <point key="canvasLocation" x="22" y="105"/>
+        </view>
+        <view contentMode="scaleToFill" id="jDk-Gt-dXt">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oKr-3D-wGj">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlock_ai" translatesAutoresizingMaskIntoConstraints="NO" id="ryi-pB-jsX">
+                    <rect key="frame" x="48" y="196" width="297.33333333333331" height="390"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQn-FZ-5wF">
+                    <rect key="frame" x="79" y="522" width="255" height="48"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="Sure"/>
+                    <connections>
+                        <action selector="unlockAIConfirmClick:" destination="-1" eventType="touchUpInside" id="wbq-45-mFi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-pq-U6b">
+                    <rect key="frame" x="177.66666666666666" y="602" width="58" height="42"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="user_close"/>
+                    <connections>
+                        <action selector="unlockAICloseClick:" destination="-1" eventType="touchUpInside" id="7i0-Ug-ERF"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="ewn-RR-a7L"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="oKr-3D-wGj" firstAttribute="leading" secondItem="ewn-RR-a7L" secondAttribute="leading" id="2ZB-Sv-Dnn"/>
+                <constraint firstItem="gMF-pq-U6b" firstAttribute="top" secondItem="JQn-FZ-5wF" secondAttribute="bottom" constant="32" id="65f-hh-EyX"/>
+                <constraint firstItem="gMF-pq-U6b" firstAttribute="centerX" secondItem="jDk-Gt-dXt" secondAttribute="centerX" constant="10" id="HIN-70-IkC"/>
+                <constraint firstItem="ryi-pB-jsX" firstAttribute="centerX" secondItem="jDk-Gt-dXt" secondAttribute="centerX" id="Idu-mc-0YY"/>
+                <constraint firstItem="gMF-pq-U6b" firstAttribute="top" secondItem="ryi-pB-jsX" secondAttribute="bottom" constant="16" id="JSo-cC-hD8"/>
+                <constraint firstAttribute="bottom" secondItem="oKr-3D-wGj" secondAttribute="bottom" id="Nqy-2C-9Ba"/>
+                <constraint firstItem="ryi-pB-jsX" firstAttribute="centerY" secondItem="jDk-Gt-dXt" secondAttribute="centerY" constant="-35" id="Xhr-Jq-57o"/>
+                <constraint firstItem="ewn-RR-a7L" firstAttribute="trailing" secondItem="oKr-3D-wGj" secondAttribute="trailing" id="YGe-6f-qpc"/>
+                <constraint firstItem="JQn-FZ-5wF" firstAttribute="centerX" secondItem="jDk-Gt-dXt" secondAttribute="centerX" constant="10" id="gPS-mt-MlD"/>
+                <constraint firstItem="oKr-3D-wGj" firstAttribute="top" secondItem="jDk-Gt-dXt" secondAttribute="top" id="nQc-Ad-G8l"/>
+            </constraints>
+            <point key="canvasLocation" x="871" y="104"/>
+        </view>
+        <view contentMode="scaleToFill" id="QBd-nD-bfK">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nbc-mt-4fn">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Insufficient_balance" translatesAutoresizingMaskIntoConstraints="NO" id="Q1U-uu-DNU">
+                    <rect key="frame" x="59" y="252.66666666666663" width="275" height="297"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT6-BF-ASm">
+                    <rect key="frame" x="69" y="485.66666666666669" width="255" height="48.000000000000057"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="Recharge"/>
+                    <connections>
+                        <action selector="insufficientBalanceRechargeClick:" destination="-1" eventType="touchUpInside" id="Zwq-nr-clF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Set-47-Dxv">
+                    <rect key="frame" x="167.66666666666666" y="565.66666666666663" width="58" height="42"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="user_close"/>
+                    <connections>
+                        <action selector="insufficientBalanceCloseClick:" destination="-1" eventType="touchUpInside" id="bKn-jU-xQ2"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="wcU-Kb-Ean"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Set-47-Dxv" firstAttribute="centerX" secondItem="QBd-nD-bfK" secondAttribute="centerX" id="7zh-B9-YxQ"/>
+                <constraint firstItem="wcU-Kb-Ean" firstAttribute="trailing" secondItem="nbc-mt-4fn" secondAttribute="trailing" id="8zr-SP-FLS"/>
+                <constraint firstItem="nbc-mt-4fn" firstAttribute="top" secondItem="QBd-nD-bfK" secondAttribute="top" id="Ap6-XM-fzb"/>
+                <constraint firstItem="Q1U-uu-DNU" firstAttribute="centerY" secondItem="QBd-nD-bfK" secondAttribute="centerY" constant="-25" id="Gpy-It-tJQ"/>
+                <constraint firstAttribute="bottom" secondItem="nbc-mt-4fn" secondAttribute="bottom" id="Igb-Li-w8c"/>
+                <constraint firstItem="Q1U-uu-DNU" firstAttribute="centerX" secondItem="QBd-nD-bfK" secondAttribute="centerX" id="Izj-6o-x8d"/>
+                <constraint firstItem="Set-47-Dxv" firstAttribute="top" secondItem="Q1U-uu-DNU" secondAttribute="bottom" constant="16" id="Mw1-YE-i1b"/>
+                <constraint firstItem="nbc-mt-4fn" firstAttribute="leading" secondItem="wcU-Kb-Ean" secondAttribute="leading" id="Qv5-UV-8hN"/>
+                <constraint firstItem="dT6-BF-ASm" firstAttribute="centerX" secondItem="QBd-nD-bfK" secondAttribute="centerX" id="SbL-c7-PtE"/>
+                <constraint firstItem="Set-47-Dxv" firstAttribute="top" secondItem="dT6-BF-ASm" secondAttribute="bottom" constant="32" id="oDv-IW-1YG"/>
+            </constraints>
+            <point key="canvasLocation" x="1645" y="104"/>
         </view>
     </objects>
     <resources>
         <image name="Find" width="77.333335876464844" height="48"/>
         <image name="For You" width="75" height="24"/>
+        <image name="Insufficient_balance" width="275" height="297"/>
+        <image name="Recharge" width="255" height="48"/>
+        <image name="Sure" width="255" height="48"/>
         <image name="find_bananer" width="335.33334350585938" height="195"/>
+        <image name="find_icons" width="95" height="41"/>
         <image name="find_publish" width="46" height="46"/>
         <image name="home_bg" width="375" height="812"/>
+        <image name="unlock_ai" width="297.33334350585938" height="390"/>
+        <image name="user_close" width="58" height="42"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

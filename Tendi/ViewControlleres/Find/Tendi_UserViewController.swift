@@ -154,6 +154,11 @@ extension Tendi_UserViewController: UICollectionViewDataSource, UICollectionView
         let item = userPostItems[indexPath.item]
         cell.backgroundColor = .clear
         cell.configure(with: item, likeState: dataStore.likeState(for: item))
+        cell.likeButtonClickHandler = { [weak self, weak cell] in
+            guard let self else { return }
+            let likeState = self.dataStore.toggleLike(for: item)
+            cell?.applyLikeState(likeState)
+        }
 
         return cell
     }
