@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="confirmPasswordTextField" destination="fxe-qg-hQ0" id="K42-Ib-qB7"/>
                 <outlet property="confirmPasswordView" destination="v6E-86-1Yw" id="OsS-uW-PN7"/>
+                <outlet property="contentView" destination="NHP-N9-eef" id="W2c-oH-y5x"/>
                 <outlet property="emailTextField" destination="P72-09-H6P" id="zYx-WL-3Ug"/>
                 <outlet property="passwordTextField" destination="6Sm-9z-piF" id="am9-fM-yEu"/>
                 <outlet property="submitButton" destination="gyO-b1-cY6" id="Pob-83-ZVm"/>

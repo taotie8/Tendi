@@ -2,7 +2,7 @@
 
 import UIKit
 
-class Tendi_LoginViewController: BaseViewController {
+class Tendi_LoginViewController: BaseViewController, UITextFieldDelegate {
     
     enum Mode {
         case signIn
@@ -41,8 +41,12 @@ class Tendi_LoginViewController: BaseViewController {
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
     @IBOutlet private weak var confirmPasswordView: UIView!
     @IBOutlet private weak var submitButton: UIButton!
+    @IBOutlet private weak var contentView: UIView!
     
     private let mode: Mode
+    private weak var activeTextField: UITextField?
+    private var keyboardFrameInView: CGRect?
+    private let keyboardInputSpacing: CGFloat = 16
     
     init(mode: Mode = .signIn) {
         self.mode = mode
@@ -60,7 +64,19 @@ class Tendi_LoginViewController: BaseViewController {
         emailTextField.text = "jeanne@gmail.com"
         passwordTextField.text = "123456"
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+        keyboardFrameInView = nil
+        contentView.transform = .identity
+    }
+
     @IBAction private func submitButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
         
@@ -113,6 +129,13 @@ class Tendi_LoginViewController: BaseViewController {
         
         confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.clearButtonMode = .whileEditing
+
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+        emailTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = mode.showsConfirmPassword ? .next : .done
+        confirmPasswordTextField.returnKeyType = .done
     }
     
     private func validatedEmail() -> String? {
@@ -162,6 +185,88 @@ class Tendi_LoginViewController: BaseViewController {
         TendiHUD.showToast(message, in: view)
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        updateContentPosition(duration: 0.25, options: .curveEaseInOut)
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if activeTextField === textField {
+            activeTextField = nil
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField === passwordTextField, mode.showsConfirmPassword {
+            confirmPasswordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            submitButtonTapped(submitButton)
+        }
+        return true
+    }
+
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame(_:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let frameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+
+        let keyboardFrame = view.convert(frameValue.cgRectValue, from: nil)
+        keyboardFrameInView = keyboardFrame.intersects(view.bounds) ? keyboardFrame : nil
+        updateContentPosition(with: notification)
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        keyboardFrameInView = nil
+        updateContentPosition(with: notification)
+    }
+
+    private func updateContentPosition(with notification: Notification) {
+        let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveValue = (notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue
+            ?? UInt(UIView.AnimationCurve.easeInOut.rawValue)
+        let options = UIView.AnimationOptions(rawValue: curveValue << 16)
+
+        updateContentPosition(duration: duration, options: options)
+    }
+
+    private func updateContentPosition(duration: TimeInterval, options: UIView.AnimationOptions) {
+        let offset = requiredContentOffset()
+
+        UIView.animate(withDuration: duration, delay: 0, options: options) {
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: -offset)
+        }
+    }
+
+    private func requiredContentOffset() -> CGFloat {
+        guard let activeTextField,
+              let keyboardFrameInView else {
+            return 0
+        }
+
+        let textFieldFrame = activeTextField.convert(activeTextField.bounds, to: view)
+        return max(0, textFieldFrame.maxY + keyboardInputSpacing - keyboardFrameInView.minY)
+    }
 
 }

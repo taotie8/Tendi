@@ -1,17 +1,22 @@
 
 import UIKit
 
-class Tendi_InformationViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class Tendi_InformationViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var bioTextField: UITextField!
     @IBOutlet private weak var birthdayLabel: UILabel!
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var completesLoginOnNext = false
     var profileUser: TendiLocalUser?
 
     private let dataStore = TendiLocalDataStore.shared
+    private weak var activeTextField: UITextField?
+    private var originalContentInset: UIEdgeInsets = .zero
+    private var originalVerticalScrollIndicatorInsets: UIEdgeInsets = .zero
+    private let keyboardInputSpacing: CGFloat = 16
     
     private let birthdayFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -29,11 +34,33 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentInsetAdjustmentBehavior = .never
+        originalContentInset = scrollView.contentInset
+        originalVerticalScrollIndicatorInsets = scrollView.verticalScrollIndicatorInsets
         navigationItem.title = profileUser == nil ? "Information" : "Edit Profile"
         avatarImageView.layer.cornerRadius = 36
         avatarImageView.layer.masksToBounds = true
+        configureTextFields()
         configureProfileInfo()
         configureKeyboardDismissGesture()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+        resetScrollViewInsets()
+    }
+
+    private func configureTextFields() {
+        usernameTextField.delegate = self
+        bioTextField.delegate = self
+        usernameTextField.returnKeyType = .next
+        bioTextField.returnKeyType = .done
     }
 
     private func configureProfileInfo() {
@@ -188,6 +215,99 @@ class Tendi_InformationViewController: BaseViewController, UIImagePickerControll
 
     @objc private func blankAreaTapped() {
         dismissCurrentKeyboard()
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        scrollActiveTextFieldIntoView()
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if activeTextField === textField {
+            activeTextField = nil
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === usernameTextField {
+            bioTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame(_:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        updateKeyboardLayout(with: notification, isHiding: false)
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        updateKeyboardLayout(with: notification, isHiding: true)
+    }
+
+    private func updateKeyboardLayout(with notification: Notification, isHiding: Bool) {
+        let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveValue = (notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue
+            ?? UInt(UIView.AnimationCurve.easeInOut.rawValue)
+        let options = UIView.AnimationOptions(rawValue: curveValue << 16)
+
+        let keyboardOverlap: CGFloat
+        if isHiding {
+            keyboardOverlap = 0
+        } else if let frameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardFrame = scrollView.convert(frameValue.cgRectValue, from: nil)
+            keyboardOverlap = max(0, scrollView.bounds.maxY - keyboardFrame.minY)
+        } else {
+            keyboardOverlap = 0
+        }
+
+        UIView.animate(withDuration: duration, delay: 0, options: options) {
+            self.applyKeyboardOverlap(keyboardOverlap)
+        } completion: { _ in
+            if isHiding == false {
+                self.scrollActiveTextFieldIntoView()
+            }
+        }
+    }
+
+    private func applyKeyboardOverlap(_ keyboardOverlap: CGFloat) {
+        var contentInset = originalContentInset
+        contentInset.bottom += keyboardOverlap
+        scrollView.contentInset = contentInset
+
+        var verticalIndicatorInsets = originalVerticalScrollIndicatorInsets
+        verticalIndicatorInsets.bottom += keyboardOverlap
+        scrollView.verticalScrollIndicatorInsets = verticalIndicatorInsets
+    }
+
+    private func resetScrollViewInsets() {
+        activeTextField = nil
+        scrollView.contentInset = originalContentInset
+        scrollView.verticalScrollIndicatorInsets = originalVerticalScrollIndicatorInsets
+    }
+
+    private func scrollActiveTextFieldIntoView() {
+        guard let activeTextField else { return }
+
+        let textFieldFrame = activeTextField.convert(activeTextField.bounds, to: scrollView)
+        let visibleRect = textFieldFrame.insetBy(dx: 0, dy: -keyboardInputSpacing)
+        scrollView.scrollRectToVisible(visibleRect, animated: true)
     }
 
 }

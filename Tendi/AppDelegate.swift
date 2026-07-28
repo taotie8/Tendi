@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TendiFont.registerBundledFonts()
         return true
     }
+    
+    /**
+  
+     1.没弹Eula
+     2.注册页面自动有账号密码填充
+     3.注册页面输入完之后无法收回键盘
+     
+     */
 
     // MARK: UISceneSession Lifecycle
 
