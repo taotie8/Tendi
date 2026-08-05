@@ -24,11 +24,11 @@ class Tendi_SettingViewController: BaseViewController {
     }
     
     @IBAction private func userAgreementButtonTapped(_ sender: UIButton) {
-        showAgreementPlaceholder(title: "User Agreement")
+        presentTendiUserAgreement()
     }
     
     @IBAction private func privacyAgreementButtonTapped(_ sender: UIButton) {
-        showAgreementPlaceholder(title: "Privacy Agreement")
+        presentTendiPrivacyAgreement()
     }
     
     @IBAction private func deleteAccountButtonTapped(_ sender: UIButton) {
@@ -54,15 +54,6 @@ class Tendi_SettingViewController: BaseViewController {
             primaryAction: { [weak self] in
                 self?.returnToAuthPage()
             }
-        )
-    }
-    
-    private func showAgreementPlaceholder(title: String) {
-        TendiHUD.showPrompt(
-            in: view,
-            title: title,
-            message: "This document is not configured yet.",
-            primaryTitle: "OK"
         )
     }
     

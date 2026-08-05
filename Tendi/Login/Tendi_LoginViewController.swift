@@ -61,8 +61,7 @@ class Tendi_LoginViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureForMode()
-        emailTextField.text = "jeanne@gmail.com"
-        passwordTextField.text = "123456"
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +98,7 @@ class Tendi_LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     private func signUp(email: String, password: String) {
+        TendiLocalDataStore.shared.prepareNewLocalAccount(email: email)
         enterInformationPage(prefillsCurrentUser: false)
     }
     

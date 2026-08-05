@@ -56,14 +56,25 @@
                     <rect key="frame" x="84" y="775" width="259" height="17"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYD-mp-uTJ">
-                    <rect key="frame" x="146" y="766" width="200" height="35"/>
+                    <rect key="frame" x="146" y="766" width="110" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="BHw-fP-mYI"/>
+                        <constraint firstAttribute="width" constant="110" id="BHw-fP-mYI"/>
                         <constraint firstAttribute="height" constant="35" id="JCl-7u-z8C"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <connections>
-                        <action selector="policyButtonTapped:" destination="-1" eventType="touchUpInside" id="1Zt-65-FTw"/>
+                        <action selector="userAgreementButtonTapped:" destination="-1" eventType="touchUpInside" id="1Zt-65-FTw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9f-Hx-Lm2">
+                    <rect key="frame" x="265" y="766" width="82" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="J70-Oe-gc3"/>
+                        <constraint firstAttribute="height" constant="35" id="Qnw-cS-Sf0"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <connections>
+                        <action selector="policyButtonTapped:" destination="-1" eventType="touchUpInside" id="LZo-G4-EFb"/>
                     </connections>
                 </button>
             </subviews>
@@ -85,6 +96,8 @@
                 <constraint firstItem="dYD-mp-uTJ" firstAttribute="leading" secondItem="toX-oN-aug" secondAttribute="trailing" constant="62" id="dlw-1s-T7v"/>
                 <constraint firstItem="ME3-ww-QEo" firstAttribute="top" secondItem="gql-5h-A4i" secondAttribute="bottom" constant="23" id="fwD-B9-drd"/>
                 <constraint firstItem="nF3-6s-bSk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iW4-OS-pLo"/>
+                <constraint firstItem="p9f-Hx-Lm2" firstAttribute="centerY" secondItem="toX-oN-aug" secondAttribute="centerY" id="n2n-ZD-dMV"/>
+                <constraint firstItem="p9f-Hx-Lm2" firstAttribute="leading" secondItem="toX-oN-aug" secondAttribute="trailing" constant="181" id="pOb-Fx-gU2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gql-5h-A4i" secondAttribute="trailing" constant="21" id="rFJ-sj-8mL"/>
                 <constraint firstItem="CCg-Tw-zbA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="236" id="ucG-Wh-Df3"/>
                 <constraint firstItem="gql-5h-A4i" firstAttribute="top" secondItem="CCg-Tw-zbA" secondAttribute="bottom" constant="100" id="ymu-Jd-3cc"/>

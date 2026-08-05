@@ -1,6 +1,6 @@
 import Foundation
 
-struct TendiLocalUser: Decodable {
+struct TendiLocalUser: Codable {
     let id: String
     let nickname: String
     let avatarImageName: String
@@ -315,11 +315,11 @@ final class TendiLocalDataStore {
     private let allVideoItems: [TendiHomeVideoItem]
     private let allImageItems: [TendiFindPostItem]
     private let allUserPostItems: [TendiUserPostItem]
-    private let currentUser: TendiLocalUser?
-    private let usersById: [String: TendiLocalUser]
-    private let initialLikedPostIds: Set<String>
-    private let initialFollowedUserIds: Set<String>
-    private let initialFollowerUserIds: Set<String>
+    private var currentUser: TendiLocalUser?
+    private var usersById: [String: TendiLocalUser]
+    private var initialLikedPostIds: Set<String>
+    private var initialFollowedUserIds: Set<String>
+    private var initialFollowerUserIds: Set<String>
     private var likedPostIds: Set<String>
     private var followedUserIds: Set<String>
     private var blockedUserIds: Set<String>
@@ -337,13 +337,23 @@ final class TendiLocalDataStore {
     private static let localAiChatMessagesKey = "TendiLocalDataStore.localAiChatMessages"
     private static let currentCoinBalanceKeyPrefix = "TendiLocalDataStore.currentCoinBalance"
     private static let currentProfileOverrideKeyPrefix = "TendiLocalDataStore.currentProfileOverride"
+    private static let currentUserIdKey = "TendiLocalDataStore.currentUserId"
+    private static let localCurrentUserKey = "TendiLocalDataStore.localCurrentUser"
 
     private init() {
         let loadedPayload = TendiLocalDataStore.loadPayload()
-        let resolvedCurrentUserId = loadedPayload.users.first(where: { $0.isTestUser })?.id ?? loadedPayload.users.first?.id
+        let defaultCurrentUserId = loadedPayload.users.first(where: { $0.isTestUser })?.id ?? loadedPayload.users.first?.id
 
-        let resolvedUsersById = Dictionary(uniqueKeysWithValues: loadedPayload.users.map { ($0.id, $0) })
+        var resolvedUsersById = Dictionary(uniqueKeysWithValues: loadedPayload.users.map { ($0.id, $0) })
+        if let localCurrentUser = TendiLocalDataStore.loadLocalCurrentUser() {
+            resolvedUsersById[localCurrentUser.id] = localCurrentUser
+        }
         usersById = resolvedUsersById
+
+        let persistedCurrentUserId = UserDefaults.standard.string(forKey: TendiLocalDataStore.currentUserIdKey)
+        let resolvedCurrentUserId = persistedCurrentUserId.flatMap { resolvedUsersById[$0] == nil ? nil : $0 }
+            ?? defaultCurrentUserId
+
         let resolvedCurrentUser: TendiLocalUser?
         if let currentUserId = resolvedCurrentUserId {
             resolvedCurrentUser = resolvedUsersById[currentUserId]
@@ -492,6 +502,20 @@ final class TendiLocalDataStore {
     }
 
     func updateCurrentUserProfile(nickname: String, bio: String, birthdayRawValue: String) {
+        if let currentUser {
+            let updatedCurrentUser = currentUser.updating(
+                nickname: nickname,
+                bio: bio,
+                birthdayRawValue: birthdayRawValue
+            )
+            self.currentUser = updatedCurrentUser
+            usersById[updatedCurrentUser.id] = updatedCurrentUser
+
+            if TendiLocalDataStore.loadLocalCurrentUser()?.id == updatedCurrentUser.id {
+                TendiLocalDataStore.persistLocalCurrentUser(updatedCurrentUser)
+            }
+        }
+
         currentProfileOverride = TendiLocalProfileOverride(
             nickname: nickname,
             bio: bio,
@@ -499,6 +523,48 @@ final class TendiLocalDataStore {
         )
         persistCurrentProfileOverride()
         NotificationCenter.default.post(name: .tendiCurrentUserProfileDidChange, object: currentUserProfile)
+    }
+
+    func prepareNewLocalAccount(email: String) {
+        let localUser = TendiLocalUser(
+            id: UUID().uuidString,
+            nickname: TendiLocalDataStore.defaultNickname(from: email),
+            avatarImageName: "tendi_avatar",
+            isTestUser: false,
+            bio: "",
+            birthdayRawValue: "",
+            followerCount: 0,
+            followingCount: 0,
+            coinBalance: 0
+        )
+
+        currentUser = localUser
+        usersById[localUser.id] = localUser
+        initialLikedPostIds = []
+        initialFollowedUserIds = []
+        initialFollowerUserIds = []
+        likedPostIds = []
+        followedUserIds = []
+        blockedUserIds = []
+        localComments = []
+        localChatMessages = []
+        localAiChatMessages = []
+        currentProfileOverride = nil
+        currentCoinBalanceValue = 0
+
+        UserDefaults.standard.set(localUser.id, forKey: TendiLocalDataStore.currentUserIdKey)
+        TendiLocalDataStore.persistLocalCurrentUser(localUser)
+        UserDefaults.standard.removeObject(forKey: currentProfileOverrideKey)
+        persistLikeState()
+        persistFollowState()
+        persistBlockedUsers()
+        persistLocalComments()
+        persistLocalChatMessages()
+        persistLocalAiChatMessages()
+        persistCurrentCoinBalance()
+
+        NotificationCenter.default.post(name: .tendiCurrentUserProfileDidChange, object: currentUserProfile)
+        NotificationCenter.default.post(name: .tendiFollowStateDidChange, object: nil)
     }
 
     @discardableResult
@@ -965,6 +1031,26 @@ final class TendiLocalDataStore {
         let key = profileOverrideKey(for: userId)
         guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(TendiLocalProfileOverride.self, from: data)
+    }
+
+    private static func loadLocalCurrentUser() -> TendiLocalUser? {
+        guard let data = UserDefaults.standard.data(forKey: localCurrentUserKey) else { return nil }
+        return try? JSONDecoder().decode(TendiLocalUser.self, from: data)
+    }
+
+    private static func persistLocalCurrentUser(_ user: TendiLocalUser) {
+        guard let data = try? JSONEncoder().encode(user) else { return }
+        UserDefaults.standard.set(data, forKey: localCurrentUserKey)
+    }
+
+    private static func defaultNickname(from email: String) -> String {
+        let name = email
+            .split(separator: "@", maxSplits: 1)
+            .first
+            .map(String.init)?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        return name.isEmpty ? "Tendi user" : name
     }
 
     private static func loadPayload() -> TendiConfigPayload {

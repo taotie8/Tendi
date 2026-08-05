@@ -31,8 +31,12 @@ class AuthMainViewController: UIViewController {
         isAgreementSelected.toggle()
     }
     
+    @IBAction private func userAgreementButtonTapped(_ sender: UIButton) {
+        presentTendiUserAgreement()
+    }
+    
     @IBAction private func policyButtonTapped(_ sender: UIButton) {
-        TendiHUD.showToast("Privacy Policy", in: view)
+        presentTendiPrivacyAgreement()
     }
     
     private func isAgreementAccepted() -> Bool {
