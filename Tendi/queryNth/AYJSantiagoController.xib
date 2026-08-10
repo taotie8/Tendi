@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner" customClass="AYJSantiagoController" customModule="Tendi" customModuleProvider="target">
+            <connections>
+                <outlet property="agreementButton" destination="fDh-rj-t7f" id="1lN-Xe-pKn"/>
+                <outlet property="view" destination="z3B-KT-77N" id="6Pc-87-LVs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="z3B-KT-77N">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detailCost" translatesAutoresizingMaskIntoConstraints="NO" id="tD9-p8-VDs">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trimmedFollow" translatesAutoresizingMaskIntoConstraints="NO" id="hB9-jz-hXA">
+                    <rect key="frame" x="146.66666666666666" y="236" width="100" height="100"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDe-zs-ULR">
+                    <rect key="frame" x="21" y="436" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="followingOriginal"/>
+                    <connections>
+                        <action selector="emailLoginButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="MjP-9x-XMm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgl-Py-0R3">
+                    <rect key="frame" x="21" y="513" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="dallarCommentSelf_m"/>
+                    <connections>
+                        <action selector="newAccountButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="xQo-Tu-HRx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDh-rj-t7f">
+                    <rect key="frame" x="49" y="766" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34.99" id="oJR-xg-GQz"/>
+                        <constraint firstAttribute="width" constant="35.01" id="cqq-pS-NKp"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="itemCompletedHarassment"/>
+                    <connections>
+                        <action selector="agreementButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="KZu-Nb-D0Z"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visibleHandler" translatesAutoresizingMaskIntoConstraints="NO" id="ADB-cz-pgN">
+                    <rect key="frame" x="84" y="775" width="259" height="17"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7S-KY-r7f">
+                    <rect key="frame" x="146" y="766" width="110" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110.01" id="lLV-Z3-7kZ"/>
+                        <constraint firstAttribute="height" constant="34.99" id="eKu-XK-fdD"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <connections>
+                        <action selector="userAgreementButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="6nu-TU-ME4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qp3-3n-l22">
+                    <rect key="frame" x="265" y="766" width="82" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="81.98" id="aY9-t2-VyY"/>
+                        <constraint firstAttribute="height" constant="34.98" id="Tr5-1V-s47"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <connections>
+                        <action selector="policyButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="qrS-Kx-ccJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="qkV-wW-O7e"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fDh-rj-t7f" secondAttribute="bottom" constant="50.99" id="xGe-1z-YsW"/>
+                <constraint firstItem="tD9-p8-VDs" firstAttribute="top" secondItem="z3B-KT-77N" secondAttribute="top" id="Lh4-8e-OdL"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="Fgl-Py-0R3" secondAttribute="trailing" constant="20.99" id="YsP-hO-z93"/>
+                <constraint firstItem="fDh-rj-t7f" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="49.02" id="zi5-jS-9gW"/>
+                <constraint firstItem="p7S-KY-r7f" firstAttribute="centerY" secondItem="fDh-rj-t7f" secondAttribute="centerY" id="dh5-Pv-4yC"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="tD9-p8-VDs" secondAttribute="trailing" id="ipW-Kx-AM8"/>
+                <constraint firstItem="CDe-zs-ULR" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="20.97" id="0SX-dW-Bk7"/>
+                <constraint firstItem="hB9-jz-hXA" firstAttribute="centerX" secondItem="z3B-KT-77N" secondAttribute="centerX" id="l2o-5s-nrY"/>
+                <constraint firstAttribute="bottom" secondItem="tD9-p8-VDs" secondAttribute="bottom" id="6we-my-cyP"/>
+                <constraint firstItem="fDh-rj-t7f" firstAttribute="centerY" secondItem="ADB-cz-pgN" secondAttribute="centerY" id="w53-g0-hjk"/>
+                <constraint firstItem="Fgl-Py-0R3" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="20.97" id="sIP-47-0AJ"/>
+                <constraint firstItem="ADB-cz-pgN" firstAttribute="leading" secondItem="fDh-rj-t7f" secondAttribute="trailing" id="rPq-3R-FXA"/>
+                <constraint firstItem="p7S-KY-r7f" firstAttribute="leading" secondItem="fDh-rj-t7f" secondAttribute="trailing" constant="61.99" id="O4c-W2-C4S"/>
+                <constraint firstItem="Fgl-Py-0R3" firstAttribute="top" secondItem="CDe-zs-ULR" secondAttribute="bottom" constant="22.96" id="Pbg-RX-WJN"/>
+                <constraint firstItem="tD9-p8-VDs" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" id="7mi-du-Cpn"/>
+                <constraint firstItem="qp3-3n-l22" firstAttribute="centerY" secondItem="fDh-rj-t7f" secondAttribute="centerY" id="vsJ-Va-8cZ"/>
+                <constraint firstItem="qp3-3n-l22" firstAttribute="leading" secondItem="fDh-rj-t7f" secondAttribute="trailing" constant="181.01" id="gKo-Ig-DDA"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="CDe-zs-ULR" secondAttribute="trailing" constant="21.02" id="o38-in-UgJ"/>
+                <constraint firstItem="hB9-jz-hXA" firstAttribute="top" secondItem="z3B-KT-77N" secondAttribute="top" constant="236.01" id="2Eg-qK-9uR"/>
+                <constraint firstItem="CDe-zs-ULR" firstAttribute="top" secondItem="hB9-jz-hXA" secondAttribute="bottom" constant="99.98" id="ppS-EG-r6e"/>
+            </constraints>
+            <point key="canvasLocation" x="35.877862595419849" y="123.94366197183099"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="trimmedFollow" width="100" height="100"/>
+        <image name="detailCost" width="375" height="812"/>
+        <image name="dallarCommentSelf_m" width="341" height="54"/>
+        <image name="followingOriginal" width="341" height="54"/>
+        <image name="visibleHandler" width="259" height="17"/>
+        <image name="itemCompletedHarassment" width="22" height="22"/>
+    </resources>
+</document>

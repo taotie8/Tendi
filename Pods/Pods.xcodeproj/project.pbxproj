@@ -7,91 +7,91 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BFFF57B52D1FB269D6B548EDD854A7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		8BCB75130A794DF0C64F248ABA136FE7 /* Pods-Tendi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 41170887B5894D7BD6B8EF84667BA5B5 /* Pods-Tendi-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9EF990E5018206EC8D64F3F2DBD3D1EF /* Pods-Tendi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CD7DC0A990AC43348ECB0A5E3B6699 /* Pods-Tendi-dummy.m */; };
+		5S7339GI0U5103H169433M8R0841F993 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14Q4009U27415787307Z14624427141W /* Foundation.framework */; };
+		7H5P73QVTH21U65401G1882I8A8A9631 /* Pods-Tendi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7H34995R04451ZHAMN4PIWD613B01LN8 /* Pods-Tendi-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		JDM0S21F365A770457578D44163N6010 /* Pods-Tendi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 680309703683PX0T80K733T647H52Y2B /* Pods-Tendi-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03CD7DC0A990AC43348ECB0A5E3B6699 /* Pods-Tendi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tendi-dummy.m"; sourceTree = "<group>"; };
-		0F03E891FC0E3FED22DBC0725DD91C09 /* Pods-Tendi */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Tendi"; path = Pods_Tendi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CE251642A3613E3B67C9C628926A847 /* Pods-Tendi-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tendi-Info.plist"; sourceTree = "<group>"; };
-		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		41170887B5894D7BD6B8EF84667BA5B5 /* Pods-Tendi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tendi-umbrella.h"; sourceTree = "<group>"; };
-		719FC39060299A3B84BE899FD824072D /* Pods-Tendi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tendi.release.xcconfig"; sourceTree = "<group>"; };
-		71BE4DF2FC8AF1EBFE253335AB0E93BD /* Pods-Tendi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tendi.debug.xcconfig"; sourceTree = "<group>"; };
-		7C4D534D356342B5ABA1F7739FBBA94A /* Pods-Tendi-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tendi-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DCEAF738C6CA20C951980C607050348 /* Pods-Tendi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Tendi.modulemap"; sourceTree = "<group>"; };
-		AA44E6763EF58548D38712ECF0DD925C /* Pods-Tendi-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tendi-acknowledgements.markdown"; sourceTree = "<group>"; };
+		680309703683PX0T80K733T647H52Y2B /* Pods-Tendi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tendi-dummy.m"; sourceTree = "<group>"; };
+		Y356Y49R2W2UUC17V3637470E1H06D1A /* Pods-Tendi */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Tendi"; path = Pods_Tendi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		536U238420201T2I28873A364V5IH186 /* Pods-Tendi-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tendi-Info.plist"; sourceTree = "<group>"; };
+		14Q4009U27415787307Z14624427141W /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7H34995R04451ZHAMN4PIWD613B01LN8 /* Pods-Tendi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tendi-umbrella.h"; sourceTree = "<group>"; };
+		C9LCD5440LN6V44B40332C945915333Q /* Pods-Tendi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tendi.release.xcconfig"; sourceTree = "<group>"; };
+		T1Y3GG090M25K410XO873C5SO2E6S754 /* Pods-Tendi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tendi.debug.xcconfig"; sourceTree = "<group>"; };
+		73O4T419N5168I6W930U634254346312 /* Pods-Tendi-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tendi-acknowledgements.plist"; sourceTree = "<group>"; };
+		7OKN02260079013K8182395I24564601 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3R41Y13T50686E53W31DNL206J959476 /* Pods-Tendi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Tendi.modulemap"; sourceTree = "<group>"; };
+		3563643S7D3OW7852X030EW8531M7471 /* Pods-Tendi-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tendi-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7F20668B67AD3D86DE9E7AC5BFF4E765 /* Frameworks */ = {
+		V30669URE2M451HM74619031298J999V /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BFFF57B52D1FB269D6B548EDD854A7B /* Foundation.framework in Frameworks */,
+				5S7339GI0U5103H169433M8R0841F993 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		307F5306D24C1F32DA8ABD807F4A6437 /* Pods-Tendi */ = {
+		8M8G0MN040C6Y3738Q15J7BV5SKDCQ38 /* Pods-Tendi */ = {
 			isa = PBXGroup;
 			children = (
-				9DCEAF738C6CA20C951980C607050348 /* Pods-Tendi.modulemap */,
-				AA44E6763EF58548D38712ECF0DD925C /* Pods-Tendi-acknowledgements.markdown */,
-				7C4D534D356342B5ABA1F7739FBBA94A /* Pods-Tendi-acknowledgements.plist */,
-				03CD7DC0A990AC43348ECB0A5E3B6699 /* Pods-Tendi-dummy.m */,
-				2CE251642A3613E3B67C9C628926A847 /* Pods-Tendi-Info.plist */,
-				41170887B5894D7BD6B8EF84667BA5B5 /* Pods-Tendi-umbrella.h */,
-				71BE4DF2FC8AF1EBFE253335AB0E93BD /* Pods-Tendi.debug.xcconfig */,
-				719FC39060299A3B84BE899FD824072D /* Pods-Tendi.release.xcconfig */,
+				3R41Y13T50686E53W31DNL206J959476 /* Pods-Tendi.modulemap */,
+				3563643S7D3OW7852X030EW8531M7471 /* Pods-Tendi-acknowledgements.markdown */,
+				73O4T419N5168I6W930U634254346312 /* Pods-Tendi-acknowledgements.plist */,
+				680309703683PX0T80K733T647H52Y2B /* Pods-Tendi-dummy.m */,
+				536U238420201T2I28873A364V5IH186 /* Pods-Tendi-Info.plist */,
+				7H34995R04451ZHAMN4PIWD613B01LN8 /* Pods-Tendi-umbrella.h */,
+				T1Y3GG090M25K410XO873C5SO2E6S754 /* Pods-Tendi.debug.xcconfig */,
+				C9LCD5440LN6V44B40332C945915333Q /* Pods-Tendi.release.xcconfig */,
 			);
 			name = "Pods-Tendi";
 			path = "Target Support Files/Pods-Tendi";
 			sourceTree = "<group>";
 		};
-		48D2E146CE7AC1220F5CEA8CF62E7ED0 /* Targets Support Files */ = {
+		002614A14R555R61T43969485K25OPW7 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				307F5306D24C1F32DA8ABD807F4A6437 /* Pods-Tendi */,
+				8M8G0MN040C6Y3738Q15J7BV5SKDCQ38 /* Pods-Tendi */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		8268354D2801B8DE21A22EB69987C5DF /* Products */ = {
+		3WJD32781N4027QXB0VW28938Q9B540R /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0F03E891FC0E3FED22DBC0725DD91C09 /* Pods-Tendi */,
+				Y356Y49R2W2UUC17V3637470E1H06D1A /* Pods-Tendi */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CF1408CF629C7361332E53B88F7BD30C = {
+		R2808UTXZ71X31785RW67627625172L6 = {
 			isa = PBXGroup;
 			children = (
-				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				8268354D2801B8DE21A22EB69987C5DF /* Products */,
-				48D2E146CE7AC1220F5CEA8CF62E7ED0 /* Targets Support Files */,
+				7OKN02260079013K8182395I24564601 /* Podfile */,
+				P73RJ011V2PK7493E35Y358111700LVB /* Frameworks */,
+				3WJD32781N4027QXB0VW28938Q9B540R /* Products */,
+				002614A14R555R61T43969485K25OPW7 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		P73RJ011V2PK7493E35Y358111700LVB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
+				40X72O15KGO0P525T0550UZ47366C229 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
+		40X72O15KGO0P525T0550UZ47366C229 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
+				14Q4009U27415787307Z14624427141W /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -99,25 +99,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		F2E4E0C6E21CC16E13F893E07D2619C0 /* Headers */ = {
+		1S012D80719AHO97VG355W5Y23Z60GQS /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BCB75130A794DF0C64F248ABA136FE7 /* Pods-Tendi-umbrella.h in Headers */,
+				7H5P73QVTH21U65401G1882I8A8A9631 /* Pods-Tendi-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8AC11A65CC0E18CE9496C521A95D1AAF /* Pods-Tendi */ = {
+		53048DX5WZ5485B1P750A7655975G971 /* Pods-Tendi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4211F7573FD59D7669C0AC4BFC6B300C /* Build configuration list for PBXNativeTarget "Pods-Tendi" */;
+			buildConfigurationList = 346O2T346648O4Y07Y655K1231N810D0 /* Build configuration list for PBXNativeTarget "Pods-Tendi" */;
 			buildPhases = (
-				F2E4E0C6E21CC16E13F893E07D2619C0 /* Headers */,
-				22BB862B3C85A221417E5AB48C616803 /* Sources */,
-				7F20668B67AD3D86DE9E7AC5BFF4E765 /* Frameworks */,
-				5A3FC70662CB0D361048656B9F625F4E /* Resources */,
+				1S012D80719AHO97VG355W5Y23Z60GQS /* Headers */,
+				086P06M4128L627931573X397J0F7979 /* Sources */,
+				V30669URE2M451HM74619031298J999V /* Frameworks */,
+				SB32POQ2104Z45089H34F74191ZWVV21 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -125,19 +125,19 @@
 			);
 			name = "Pods-Tendi";
 			productName = Pods_Tendi;
-			productReference = 0F03E891FC0E3FED22DBC0725DD91C09 /* Pods-Tendi */;
+			productReference = Y356Y49R2W2UUC17V3637470E1H06D1A /* Pods-Tendi */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+		NMYS7P10350371P99L1369G77918224U /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 			};
-			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 329V6H2P5B40NB333R77K2081C4380W6 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 16.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -145,20 +145,20 @@
 				Base,
 				en,
 			);
-			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			mainGroup = R2808UTXZ71X31785RW67627625172L6;
 			minimizedProjectReferenceProxies = 0;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 8268354D2801B8DE21A22EB69987C5DF /* Products */;
+			productRefGroup = 3WJD32781N4027QXB0VW28938Q9B540R /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8AC11A65CC0E18CE9496C521A95D1AAF /* Pods-Tendi */,
+				53048DX5WZ5485B1P750A7655975G971 /* Pods-Tendi */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5A3FC70662CB0D361048656B9F625F4E /* Resources */ = {
+		SB32POQ2104Z45089H34F74191ZWVV21 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -168,18 +168,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		22BB862B3C85A221417E5AB48C616803 /* Sources */ = {
+		086P06M4128L627931573X397J0F7979 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EF990E5018206EC8D64F3F2DBD3D1EF /* Pods-Tendi-dummy.m in Sources */,
+				JDM0S21F365A770457578D44163N6010 /* Pods-Tendi-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1F73DB51DC5FF40951C99015EACDDD8B /* Release */ = {
+		H832Y2KH42KKW16B72I11SZ2F25Y4GCJ /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,9 +241,9 @@
 			};
 			name = Release;
 		};
-		921A43A7D9D042F91E0323595D06B4FB /* Release */ = {
+		D432B3640Y54TL48M0I492T60B236W4B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 719FC39060299A3B84BE899FD824072D /* Pods-Tendi.release.xcconfig */;
+			baseConfigurationReference = C9LCD5440LN6V44B40332C945915333Q /* Pods-Tendi.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -281,7 +281,7 @@
 			};
 			name = Release;
 		};
-		AB356AEF3B9E0B3DCA52EC93D5763084 /* Debug */ = {
+		632RR81R500X4337T9F450JM4HK0NI0U /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -347,9 +347,9 @@
 			};
 			name = Debug;
 		};
-		F8E5BFAC897160710EB8D88796660A9E /* Debug */ = {
+		6JA15M9153Y1E5255L8046DU8A94VL95 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71BE4DF2FC8AF1EBFE253335AB0E93BD /* Pods-Tendi.debug.xcconfig */;
+			baseConfigurationReference = T1Y3GG090M25K410XO873C5SO2E6S754 /* Pods-Tendi.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -389,25 +389,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4211F7573FD59D7669C0AC4BFC6B300C /* Build configuration list for PBXNativeTarget "Pods-Tendi" */ = {
+		346O2T346648O4Y07Y655K1231N810D0 /* Build configuration list for PBXNativeTarget "Pods-Tendi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F8E5BFAC897160710EB8D88796660A9E /* Debug */,
-				921A43A7D9D042F91E0323595D06B4FB /* Release */,
+				6JA15M9153Y1E5255L8046DU8A94VL95 /* Debug */,
+				D432B3640Y54TL48M0I492T60B236W4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+		329V6H2P5B40NB333R77K2081C4380W6 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB356AEF3B9E0B3DCA52EC93D5763084 /* Debug */,
-				1F73DB51DC5FF40951C99015EACDDD8B /* Release */,
+				632RR81R500X4337T9F450JM4HK0NI0U /* Debug */,
+				H832Y2KH42KKW16B72I11SZ2F25Y4GCJ /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+	rootObject = NMYS7P10350371P99L1369G77918224U /* Project object */;
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="6Tv-XQ-KtB" customClass="YTLaunchCell" customModule="Tendi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Tv-XQ-KtB" id="p72-EA-Qme">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KH-sc-8C5">
+                        <rect key="frame" x="21" y="6" width="333" height="104"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zonsChatDefault_3" translatesAutoresizingMaskIntoConstraints="NO" id="6Xx-i7-Pau">
+                                <rect key="frame" x="0.0" y="0.0" width="333" height="104"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HMv-5c-kX4">
+                                <rect key="frame" x="16" y="12" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40.03" id="Rxp-P2-gvh"/>
+                                    <constraint firstAttribute="width" constant="39.98" id="kVB-67-b4W"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aT2-1T-CmJ">
+                                <rect key="frame" x="68" y="22.333333333333336" width="40.666666666666657" height="19.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahk-HN-Xii">
+                                <rect key="frame" x="273" y="10" width="55" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35.01" id="8dJ-sO-aG0"/>
+                                    <constraint firstAttribute="width" constant="55.02" id="lDh-X1-qs2"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A little good in life, enough to be happy for a long time." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFl-jK-FS0">
+                                <rect key="frame" x="16" y="60" width="301" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VFl-jK-FS0" firstAttribute="top" secondItem="HMv-5c-kX4" secondAttribute="bottom" constant="7.99" id="l5C-SQ-yh9"/>
+                            <constraint firstItem="aT2-1T-CmJ" firstAttribute="leading" secondItem="HMv-5c-kX4" secondAttribute="trailing" constant="12.02" id="Elh-Er-6M2"/>
+                            <constraint firstAttribute="bottom" secondItem="6Xx-i7-Pau" secondAttribute="bottom" id="ZLI-l4-fEd"/>
+                            <constraint firstItem="HMv-5c-kX4" firstAttribute="top" secondItem="1KH-sc-8C5" secondAttribute="top" constant="11.98" id="KG6-A2-Pyu"/>
+                            <constraint firstItem="ahk-HN-Xii" firstAttribute="top" secondItem="1KH-sc-8C5" secondAttribute="top" constant="10.01" id="0jM-9u-7EF"/>
+                            <constraint firstAttribute="trailing" secondItem="ahk-HN-Xii" secondAttribute="trailing" constant="5.01" id="1zE-Va-ryS"/>
+                            <constraint firstAttribute="trailing" secondItem="VFl-jK-FS0" secondAttribute="trailing" constant="15.99" id="LBd-8q-853"/>
+                            <constraint firstItem="ahk-HN-Xii" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aT2-1T-CmJ" secondAttribute="trailing" constant="8.02" id="Ba4-Id-Hrx"/>
+                            <constraint firstItem="6Xx-i7-Pau" firstAttribute="top" secondItem="1KH-sc-8C5" secondAttribute="top" id="5EA-xB-VIj"/>
+                            <constraint firstItem="6Xx-i7-Pau" firstAttribute="leading" secondItem="1KH-sc-8C5" secondAttribute="leading" id="gTu-7S-58z"/>
+                            <constraint firstItem="VFl-jK-FS0" firstAttribute="leading" secondItem="1KH-sc-8C5" secondAttribute="leading" constant="15.97" id="SXW-Lw-08i"/>
+                            <constraint firstItem="aT2-1T-CmJ" firstAttribute="centerY" secondItem="HMv-5c-kX4" secondAttribute="centerY" id="ucu-xP-I3y"/>
+                            <constraint firstAttribute="trailing" secondItem="6Xx-i7-Pau" secondAttribute="trailing" id="aG5-ML-4jP"/>
+                            <constraint firstItem="HMv-5c-kX4" firstAttribute="leading" secondItem="1KH-sc-8C5" secondAttribute="leading" constant="15.99" id="ZwJ-yj-O54"/>
+                            <constraint firstAttribute="height" constant="103.98" id="aex-M8-baT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1KH-sc-8C5" secondAttribute="trailing" constant="21.03" id="CKJ-k7-n4H"/>
+                    <constraint firstItem="1KH-sc-8C5" firstAttribute="top" secondItem="p72-EA-Qme" secondAttribute="top" constant="5.99" id="OWv-5W-1y1"/>
+                    <constraint firstAttribute="bottom" secondItem="1KH-sc-8C5" secondAttribute="bottom" constant="6.01" id="ITs-nD-wT1"/>
+                    <constraint firstItem="1KH-sc-8C5" firstAttribute="leading" secondItem="p72-EA-Qme" secondAttribute="leading" constant="21.01" id="VMz-I6-gYL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="I8t-X6-EAc"/>
+            <connections>
+                <outlet property="comment_avatar_image" destination="HMv-5c-kX4" id="4uf-UC-bY5"/>
+                <outlet property="comment_name_label" destination="aT2-1T-CmJ" id="1lY-g6-Pet"/>
+                <outlet property="comment_content_label" destination="VFl-jK-FS0" id="uJG-YG-6lJ"/>
+                <outlet property="comment_more_button" destination="ahk-HN-Xii" id="qvI-i9-nOF"/>
+            </connections>
+            <point key="canvasLocation" x="140" y="117"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="zonsChatDefault_3" width="341" height="115"/>
+    </resources>
+</document>

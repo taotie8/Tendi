@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Gl3-oK-yeV" customClass="FTableView" customModule="Tendi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VRj-74-Mfh">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ry-Y2-LDl">
+                    <rect key="frame" x="0.0" y="583" width="393" height="269"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="costChangesSafari" translatesAutoresizingMaskIntoConstraints="NO" id="0YV-iL-NeP">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="269"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2c-7x-Ei9">
+                            <rect key="frame" x="42.666666666666657" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="buttonsInsufficientModity"/>
+                            <connections>
+                                <action selector="cameraButtonTapped:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="xwr-uf-2rr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-i3-h8X">
+                            <rect key="frame" x="204.66666666666663" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="passwordImagePolicy"/>
+                            <connections>
+                                <action selector="albumButtonTapped:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="UAj-Wu-p2u"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEo-Yb-OL7">
+                            <rect key="frame" x="101.66666666666669" y="182" width="190" height="42"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="durationKey"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="U6n-G1-H9l"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uEo-Yb-OL7" firstAttribute="centerX" secondItem="4Ry-Y2-LDl" secondAttribute="centerX" id="hBW-Ta-LkU"/>
+                        <constraint firstItem="K2c-7x-Ei9" firstAttribute="centerX" secondItem="4Ry-Y2-LDl" secondAttribute="centerX" constant="-81" id="GFt-CZ-sIe"/>
+                        <constraint firstItem="aWg-i3-h8X" firstAttribute="leading" secondItem="K2c-7x-Ei9" secondAttribute="trailing" constant="16.02" id="wYR-V4-syt"/>
+                        <constraint firstAttribute="trailing" secondItem="0YV-iL-NeP" secondAttribute="trailing" id="Y6H-YU-92i"/>
+                        <constraint firstAttribute="bottom" secondItem="0YV-iL-NeP" secondAttribute="bottom" id="dic-pj-s6q"/>
+                        <constraint firstItem="0YV-iL-NeP" firstAttribute="top" secondItem="4Ry-Y2-LDl" secondAttribute="top" id="Rmi-A8-fAR"/>
+                        <constraint firstAttribute="height" constant="269.01" id="zG4-x9-7PA"/>
+                        <constraint firstItem="K2c-7x-Ei9" firstAttribute="top" secondItem="4Ry-Y2-LDl" secondAttribute="top" constant="29.98" id="9K9-Ot-zjr"/>
+                        <constraint firstItem="aWg-i3-h8X" firstAttribute="top" secondItem="4Ry-Y2-LDl" secondAttribute="top" constant="30.02" id="VHt-qN-Bqj"/>
+                        <constraint firstAttribute="bottom" secondItem="uEo-Yb-OL7" secondAttribute="bottom" constant="44.98" id="GI4-cO-Mi6"/>
+                        <constraint firstItem="0YV-iL-NeP" firstAttribute="leading" secondItem="4Ry-Y2-LDl" secondAttribute="leading" id="EPR-OX-zMV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="oLt-8V-o3V"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="oLt-8V-o3V" firstAttribute="trailing" secondItem="VRj-74-Mfh" secondAttribute="trailing" id="wrk-Vb-Tat"/>
+                <constraint firstAttribute="bottom" secondItem="VRj-74-Mfh" secondAttribute="bottom" id="HfM-8W-5L3"/>
+                <constraint firstItem="4Ry-Y2-LDl" firstAttribute="leading" secondItem="oLt-8V-o3V" secondAttribute="leading" id="IDV-YV-zcQ"/>
+                <constraint firstItem="VRj-74-Mfh" firstAttribute="leading" secondItem="oLt-8V-o3V" secondAttribute="leading" id="uNG-MN-dAP"/>
+                <constraint firstItem="VRj-74-Mfh" firstAttribute="top" secondItem="Gl3-oK-yeV" secondAttribute="top" id="aOJ-ky-f3D"/>
+                <constraint firstAttribute="bottom" secondItem="4Ry-Y2-LDl" secondAttribute="bottom" id="hjs-AM-Zmb"/>
+                <constraint firstItem="oLt-8V-o3V" firstAttribute="trailing" secondItem="4Ry-Y2-LDl" secondAttribute="trailing" id="1z4-hI-GaK"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomContainerView" destination="4Ry-Y2-LDl" id="4KB-jW-eEs"/>
+            </connections>
+            <point key="canvasLocation" x="37" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="costChangesSafari" width="375" height="269"/>
+        <image name="durationKey" width="190" height="42"/>
+        <image name="passwordImagePolicy" width="146" height="124"/>
+        <image name="buttonsInsufficientModity" width="146" height="124"/>
+    </resources>
+</document>

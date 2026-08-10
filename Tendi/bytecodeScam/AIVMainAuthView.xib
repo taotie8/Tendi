@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Gl3-oK-yeV" customClass="AIVMainAuthView" customModule="Tendi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bZE-kr-zMl">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0Y-SB-tEJ">
+                    <rect key="frame" x="0.0" y="583" width="393" height="269"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="costChangesSafari" translatesAutoresizingMaskIntoConstraints="NO" id="C7Q-yg-GDj">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="269"/>
+                        </imageView>
+                        <button opaque="NO" tag="985" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1d-6x-uhq">
+                            <rect key="frame" x="42.666666666666657" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="createdSecondPackages"/>
+                            <connections>
+                                <action selector="chooseMoreClick:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="45v-cd-yWw"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="986" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdO-iX-vcs">
+                            <rect key="frame" x="204.66666666666663" y="30" width="146" height="124"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="identifiersTopMessage"/>
+                            <connections>
+                                <action selector="chooseMoreClick:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="pJM-zF-qjl"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zq-fM-abo">
+                            <rect key="frame" x="101.66666666666669" y="182" width="190" height="42"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="durationKey"/>
+                            <connections>
+                                <action selector="chooseCancelClick:" destination="Gl3-oK-yeV" eventType="touchUpInside" id="Zot-hI-ZDp"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="rdO-iX-vcs" firstAttribute="top" secondItem="K0Y-SB-tEJ" secondAttribute="top" constant="29.98" id="wQk-6d-Z66"/>
+                        <constraint firstAttribute="bottom" secondItem="3zq-fM-abo" secondAttribute="bottom" constant="44.99" id="VO8-DD-o82"/>
+                        <constraint firstItem="C7Q-yg-GDj" firstAttribute="top" secondItem="K0Y-SB-tEJ" secondAttribute="top" id="u5z-Ll-Bv9"/>
+                        <constraint firstAttribute="trailing" secondItem="C7Q-yg-GDj" secondAttribute="trailing" id="JM2-Xw-2lH"/>
+                        <constraint firstAttribute="bottom" secondItem="C7Q-yg-GDj" secondAttribute="bottom" id="lGg-hX-zzo"/>
+                        <constraint firstItem="C7Q-yg-GDj" firstAttribute="leading" secondItem="K0Y-SB-tEJ" secondAttribute="leading" id="rZe-x6-RPT"/>
+                        <constraint firstAttribute="height" constant="268.97" id="jfZ-eS-H4V"/>
+                        <constraint firstItem="r1d-6x-uhq" firstAttribute="centerX" secondItem="K0Y-SB-tEJ" secondAttribute="centerX" constant="-81" id="Aoq-aL-p8Z"/>
+                        <constraint firstItem="r1d-6x-uhq" firstAttribute="top" secondItem="K0Y-SB-tEJ" secondAttribute="top" constant="30.03" id="3Dc-yq-TQO"/>
+                        <constraint firstItem="3zq-fM-abo" firstAttribute="centerX" secondItem="K0Y-SB-tEJ" secondAttribute="centerX" id="Qsg-dG-ACy"/>
+                        <constraint firstItem="rdO-iX-vcs" firstAttribute="leading" secondItem="r1d-6x-uhq" secondAttribute="trailing" constant="16.02" id="KT5-S9-THa"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="oLt-8V-o3V"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="K0Y-SB-tEJ" firstAttribute="trailing" secondItem="oLt-8V-o3V" secondAttribute="trailing" id="hu6-DD-adB"/>
+                <constraint firstAttribute="bottom" secondItem="bZE-kr-zMl" secondAttribute="bottom" id="GHH-r1-5VJ"/>
+                <constraint firstItem="bZE-kr-zMl" firstAttribute="trailing" secondItem="oLt-8V-o3V" secondAttribute="trailing" id="hoV-Wi-wTX"/>
+                <constraint firstItem="K0Y-SB-tEJ" firstAttribute="leading" secondItem="oLt-8V-o3V" secondAttribute="leading" id="A7N-4M-puw"/>
+                <constraint firstAttribute="bottom" secondItem="K0Y-SB-tEJ" secondAttribute="bottom" id="459-JJ-MxY"/>
+                <constraint firstItem="bZE-kr-zMl" firstAttribute="top" secondItem="Gl3-oK-yeV" secondAttribute="top" id="avR-14-RYE"/>
+                <constraint firstItem="bZE-kr-zMl" firstAttribute="leading" secondItem="oLt-8V-o3V" secondAttribute="leading" id="kzY-ts-J8Z"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomContainerView" destination="K0Y-SB-tEJ" id="QdA-2G-YSi"/>
+            </connections>
+            <point key="canvasLocation" x="-596" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="costChangesSafari" width="375" height="269"/>
+        <image name="durationKey" width="190" height="42"/>
+        <image name="identifiersTopMessage" width="146" height="124"/>
+        <image name="createdSecondPackages" width="146" height="124"/>
+    </resources>
+</document>

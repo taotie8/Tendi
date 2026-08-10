@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner" customClass="GAAMineController" customModule="Tendi" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="z3B-KT-77N" id="6Pc-87-LVs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="z3B-KT-77N">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scenePresenting" translatesAutoresizingMaskIntoConstraints="NO" id="T65-gQ-8Of">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="812"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnj-Ds-xrZ">
+                    <rect key="frame" x="21" y="171" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="confirmTypesHome">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="editProfileButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="z7O-Ah-IQX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="545-xG-bNV">
+                    <rect key="frame" x="21" y="241" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="headerLooper">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="blacklistButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="OUg-MO-rzG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1R-8O-3IM">
+                    <rect key="frame" x="21" y="311" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="extension_fvAdded">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="userAgreementButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="BvD-Xw-5hb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zs7-SA-i83">
+                    <rect key="frame" x="21" y="381" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="controllerLayoutMess">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="privacyAgreementButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="QKS-6e-tg5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voa-1d-bVt">
+                    <rect key="frame" x="21" y="451" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="submitAll">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteAccountButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="CTr-1e-kwh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj1-7u-w5e">
+                    <rect key="frame" x="21" y="521" width="351" height="54"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="peopleHas">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="logoutButtonTapped:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="I7Z-xk-u1I"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="qkV-wW-O7e"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="545-xG-bNV" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" id="3lC-1Q-A3x"/>
+                <constraint firstItem="pnj-Ds-xrZ" firstAttribute="top" secondItem="qkV-wW-O7e" secondAttribute="top" constant="52.96" id="UVW-Cd-k2h"/>
+                <constraint firstItem="zs7-SA-i83" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" id="XoD-gp-En5"/>
+                <constraint firstItem="zs7-SA-i83" firstAttribute="leading" secondItem="pnj-Ds-xrZ" secondAttribute="leading" id="Zyp-es-heO"/>
+                <constraint firstItem="fj1-7u-w5e" firstAttribute="leading" secondItem="pnj-Ds-xrZ" secondAttribute="leading" id="M4F-Ai-vVz"/>
+                <constraint firstItem="T65-gQ-8Of" firstAttribute="top" secondItem="z3B-KT-77N" secondAttribute="top" id="4ua-PH-76a"/>
+                <constraint firstItem="e1R-8O-3IM" firstAttribute="top" secondItem="545-xG-bNV" secondAttribute="bottom" constant="16.01" id="A6P-Dg-XP9"/>
+                <constraint firstItem="fj1-7u-w5e" firstAttribute="top" secondItem="voa-1d-bVt" secondAttribute="bottom" constant="16.03" id="TKM-mI-aYH"/>
+                <constraint firstItem="T65-gQ-8Of" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" id="LoV-FU-d8y"/>
+                <constraint firstItem="pnj-Ds-xrZ" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="21.02" id="bcX-g9-2nD"/>
+                <constraint firstItem="fj1-7u-w5e" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" id="s9C-wc-DaR"/>
+                <constraint firstItem="545-xG-bNV" firstAttribute="leading" secondItem="pnj-Ds-xrZ" secondAttribute="leading" id="a87-kz-nR3"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" constant="20.98" id="LSq-uG-DIN"/>
+                <constraint firstItem="zs7-SA-i83" firstAttribute="top" secondItem="e1R-8O-3IM" secondAttribute="bottom" constant="16.05" id="AqW-mL-vDs"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="T65-gQ-8Of" secondAttribute="trailing" id="HLf-eN-uyi"/>
+                <constraint firstItem="545-xG-bNV" firstAttribute="top" secondItem="pnj-Ds-xrZ" secondAttribute="bottom" constant="15.98" id="5Km-JZ-D5K"/>
+                <constraint firstItem="voa-1d-bVt" firstAttribute="top" secondItem="zs7-SA-i83" secondAttribute="bottom" constant="16.02" id="Bxg-Zr-i7J"/>
+                <constraint firstItem="e1R-8O-3IM" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" id="tjk-aX-V2t"/>
+                <constraint firstItem="e1R-8O-3IM" firstAttribute="leading" secondItem="pnj-Ds-xrZ" secondAttribute="leading" id="3gv-AC-zVC"/>
+                <constraint firstItem="voa-1d-bVt" firstAttribute="trailing" secondItem="pnj-Ds-xrZ" secondAttribute="trailing" id="gsl-7p-qTJ"/>
+                <constraint firstItem="voa-1d-bVt" firstAttribute="leading" secondItem="pnj-Ds-xrZ" secondAttribute="leading" id="akK-MG-F09"/>
+            </constraints>
+            <point key="canvasLocation" x="37" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="headerLooper" width="341" height="54"/>
+        <image name="submitAll" width="341" height="54"/>
+        <image name="confirmTypesHome" width="341" height="54"/>
+        <image name="peopleHas" width="341" height="54"/>
+        <image name="controllerLayoutMess" width="341" height="54"/>
+        <image name="extension_fvAdded" width="341" height="54"/>
+        <image name="scenePresenting" width="375" height="812"/>
+    </resources>
+</document>

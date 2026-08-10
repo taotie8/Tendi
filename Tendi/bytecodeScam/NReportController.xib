@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="cLn-Eu-geJ" userLabel="File's Owner" customClass="NReportController" customModule="Tendi" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="k7H-La-GR3" id="xID-Zn-8QD"/>
+                <outlet property="view" destination="z3B-KT-77N" id="6Pc-87-LVs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="WIK-yT-pBO" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="z3B-KT-77N">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scenePresenting" translatesAutoresizingMaskIntoConstraints="NO" id="jsd-1H-gMg">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips：Please select the reason for the report, and we will review and handle it as soon as possible." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjW-in-zx9">
+                    <rect key="frame" x="21" y="136" width="351" height="33.666666666666657"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="k7H-La-GR3">
+                    <rect key="frame" x="0.0" y="177.66666666666669" width="393" height="577.33333333333326"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csp-zZ-k6q">
+                    <rect key="frame" x="21" y="763" width="351" height="48"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="confirmUpdates"/>
+                    <connections>
+                        <action selector="tendi_submitedClick:" destination="cLn-Eu-geJ" eventType="touchUpInside" id="o7w-cZ-awR"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="qkV-wW-O7e"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="yjW-in-zx9" secondAttribute="trailing" constant="21.010000000000002" id="8Jt-5J-BcG"/>
+                <constraint firstItem="k7H-La-GR3" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" id="FGt-Yo-4br"/>
+                <constraint firstAttribute="bottom" secondItem="csp-zZ-k6q" secondAttribute="bottom" constant="40.990000000000002" id="Hc6-Zn-lg4"/>
+                <constraint firstItem="jsd-1H-gMg" firstAttribute="top" secondItem="z3B-KT-77N" secondAttribute="top" id="NYp-gX-IHJ"/>
+                <constraint firstItem="jsd-1H-gMg" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" id="OqH-E7-l3i"/>
+                <constraint firstItem="yjW-in-zx9" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="21.030000000000001" id="VbJ-GT-o6z"/>
+                <constraint firstItem="csp-zZ-k6q" firstAttribute="leading" secondItem="qkV-wW-O7e" secondAttribute="leading" constant="20.98" id="YcK-5k-ozQ"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="jsd-1H-gMg" secondAttribute="trailing" id="aem-FV-OAg"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="csp-zZ-k6q" secondAttribute="trailing" constant="21.030000000000001" id="sgN-Fw-3pJ"/>
+                <constraint firstItem="yjW-in-zx9" firstAttribute="top" secondItem="qkV-wW-O7e" secondAttribute="top" constant="17.969999999999999" id="t6B-sN-dQs"/>
+                <constraint firstItem="qkV-wW-O7e" firstAttribute="trailing" secondItem="k7H-La-GR3" secondAttribute="trailing" id="tBe-q1-l9z"/>
+                <constraint firstItem="csp-zZ-k6q" firstAttribute="top" secondItem="k7H-La-GR3" secondAttribute="bottom" constant="7.9699999999999998" id="uiJ-Uc-qoA"/>
+                <constraint firstAttribute="bottom" secondItem="jsd-1H-gMg" secondAttribute="bottom" id="wk5-PX-faq"/>
+                <constraint firstItem="k7H-La-GR3" firstAttribute="top" secondItem="yjW-in-zx9" secondAttribute="bottom" constant="7.9900000000000002" id="xUU-ZU-ET1"/>
+            </constraints>
+            <point key="canvasLocation" x="-15" y="125"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="confirmUpdates" width="326" height="48"/>
+        <image name="scenePresenting" width="375" height="812"/>
+    </resources>
+</document>
