@@ -17,6 +17,8 @@ var enbale_Result: Bool? = false
     let followerCount: Int
     let followingCount: Int
     let coinBalance: Int
+    let email: String
+    let password: String
 
     init(
         id: String,
@@ -27,7 +29,9 @@ var enbale_Result: Bool? = false
         birthdayRawValue: String,
         followerCount: Int,
         followingCount: Int,
-        coinBalance: Int
+        coinBalance: Int,
+        email: String = "",
+        password: String = ""
     ) {
         self.id = id
         self.nickname = nickname
@@ -38,6 +42,8 @@ var enbale_Result: Bool? = false
         self.followerCount = followerCount
         self.followingCount = followingCount
         self.coinBalance = coinBalance
+        self.email = email
+        self.password = password
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -50,6 +56,8 @@ var enbale_Result: Bool? = false
         case followerCount = "fC8n"
         case followingCount = "pX2d"
         case coinBalance = "sE9a"
+        case email = "eH3r"
+        case password = "oW5t"
     }
 
     init(from decoder: Decoder) throws {
@@ -63,6 +71,8 @@ var enbale_Result: Bool? = false
         followerCount = try container.decodeIfPresent(Int.self, forKey: .followerCount) ?? 0
         followingCount = try container.decodeIfPresent(Int.self, forKey: .followingCount) ?? 0
         coinBalance = try container.decodeIfPresent(Int.self, forKey: .coinBalance) ?? 0
+        email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
+        password = try container.decodeIfPresent(String.self, forKey: .password) ?? ""
     }
 
     func updating(nickname: String, bio: String, birthdayRawValue: String) -> VUIRegister {
@@ -97,7 +107,9 @@ return         VUIRegister(
             birthdayRawValue: birthdayRawValue,
             followerCount: followerCount,
             followingCount: followingCount,
-            coinBalance: coinBalance
+            coinBalance: coinBalance,
+            email: email,
+            password: password
         )
    repeat {
       main_iA = !main_iA
@@ -2948,7 +2960,7 @@ withUnsafeMutablePointer(to: &managerLerp) { pointer in
 
 
 
-    func prepareNewLocalAccount(email: String) {
+    func prepareNewLocalAccount(email: String, password: String) {
 
          let shadowsShortfloat: Double = additionalStatusAboveFunction(completesStart:51.0, ynewsPreferred:84.0, changeKey:false)
 
@@ -3100,7 +3112,9 @@ _ = shadowsShortfloat
             birthdayRawValue: "",
             followerCount: 0,
             followingCount: 0,
-            coinBalance: 0
+            coinBalance: 0,
+            email: email,
+            password: password
         )
 
         currentUser = store
@@ -6008,7 +6022,72 @@ return         comments(forPostId: item.id, baseComments: item.comments)
    } while (3948417 == time_j1.count) && ((time_j1.count % (Swift.max(4, 2))) > 1 && (time_j1.count % 4) > 1)
       monevayoanad.append("\(time_j1.values.count)")
 
-return         followState(for: item.user)
+    return         followState(for: item.user)
+    }
+
+    @discardableResult
+    func switchCurrentAccount(email: String, password: String) -> Bool {
+        let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let payload = CCPickerData.loadPayload()
+
+        if let payloadUser = payload.users.first(where: { user in
+            user.email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == normalizedEmail
+                && user.password == password
+        }) {
+            activateCurrentUser(payloadUser, payload: payload)
+            return true
+        }
+
+        if let localUser = CCPickerData.loadLocalCurrentUser(),
+           localUser.email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == normalizedEmail,
+           localUser.password == password {
+            activateCurrentUser(localUser, payload: payload)
+            return true
+        }
+
+        return false
+    }
+
+    private func activateCurrentUser(_ user: VUIRegister, payload: BVSDallarPicker) {
+        currentUser = user
+        usersById[user.id] = user
+
+        initialLikedPostIds = Set(payload.posts.compactMap { post in
+            post.likedUserIds.contains(user.id) ? post.id : nil
+        })
+        initialFollowedUserIds = Set(payload.follows.compactMap { follow in
+            follow.userId == user.id ? follow.targetUserId : nil
+        })
+        initialFollowerUserIds = Set(payload.follows.compactMap { follow in
+            follow.targetUserId == user.id ? follow.userId : nil
+        })
+
+        likedPostIds = initialLikedPostIds
+        followedUserIds = initialFollowedUserIds
+        blockedUserIds = []
+        localComments = []
+        localChatMessages = []
+        localAiChatMessages = []
+        currentProfileOverride = CCPickerData.loadCurrentProfileOverride(for: user.id)
+
+        let coinBalanceKey = CCPickerData.coinBalanceKey(for: user.id)
+        let hasPersistedCoinBalance = UserDefaults.standard.object(forKey: coinBalanceKey) != nil
+        currentCoinBalanceValue = hasPersistedCoinBalance
+            ? UserDefaults.standard.integer(forKey: coinBalanceKey)
+            : user.coinBalance
+
+        UserDefaults.standard.set(user.id, forKey: CCPickerData.currentUserIdKey)
+        persistLikeState()
+        persistFollowState()
+        persistBlockedUsers()
+        persistLocalComments()
+        persistLocalChatMessages()
+        persistLocalAiChatMessages()
+        persistCurrentCoinBalance()
+
+        NotificationCenter.default.post(name: .tendiCurrentUserProfileDidChange, object: currentUserProfile)
+        NotificationCenter.default.post(name: .tendiFollowStateDidChange, object: nil)
+        NotificationCenter.default.post(name: .tendiCoinBalanceDidChange, object: nil)
     }
 
 

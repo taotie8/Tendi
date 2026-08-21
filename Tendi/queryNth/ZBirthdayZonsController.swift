@@ -584,6 +584,11 @@ withUnsafeMutablePointer(to: &upvpIcon) { pointer in
       }
       nnewsA.append("\(register_0X.count)")
 
+        guard CCPickerData.shared.switchCurrentAccount(email: email, password: password) else {
+            showMessage("Email or password is incorrect.")
+            return
+        }
+
         enterInformationPage(prefillsCurrentUser: true)
     }
     
@@ -632,7 +637,7 @@ withUnsafeMutablePointer(to: &upvpIcon) { pointer in
          pauseP -= (Double(Int(detail7 > 79779852.0 || detail7 < -79779852.0 ? 22.0 : detail7)))
          bottomE /= Swift.max(Float(2), 1)
       errorE -= errorE
-        CCPickerData.shared.prepareNewLocalAccount(email: email)
+        CCPickerData.shared.prepareNewLocalAccount(email: email, password: password)
         enterInformationPage(prefillsCurrentUser: false)
     }
     
